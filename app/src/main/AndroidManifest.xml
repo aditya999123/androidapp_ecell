@@ -17,7 +17,12 @@
         </activity>
         <activity android:name=".Home.Home" />
         <activity android:name=".Welcome.Welcome" />
-        <activity android:name=".Events.Events"></activity>
+        <activity android:name=".Events.Events" />
+        <activity android:name=".AboutUs.AboutUs" />
+        <activity android:name=".Blogs.Blogs" />
+        <activity android:name=".ContactUs.ContactUs" />
+        <activity android:name=".Login.Login" />
+        <activity android:name=".SignUp.SignUp"></activity>
     </application>
 
 </manifest>
