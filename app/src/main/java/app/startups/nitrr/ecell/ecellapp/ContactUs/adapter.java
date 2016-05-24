@@ -70,9 +70,7 @@ contactViewHolder datavar =new contactViewHolder(v);
 
 
     }
-
-
-
+    //.
     @Override
     public int getItemCount() {
         return item.size();
