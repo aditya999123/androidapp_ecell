@@ -2,6 +2,10 @@ package app.startups.nitrr.ecell.ecellapp.ContactUs;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +15,8 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -19,6 +25,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Transformation;
 
 import java.util.ArrayList;
 
@@ -39,11 +46,12 @@ private ArrayList<datavar> item;
     public adapter(Context applicationContext, ArrayList<datavar> item) {
         this.item = item;this.context=applicationContext;
     }
-
+View viewanime;
     @Override
-    public adapter.contactViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public adapter.contactViewHolder onCreateViewHolder(ViewGroup viewGroup, int i)
+    {
         View v= LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.activity_contactus_cardview,viewGroup,false);
-
+viewanime=v;
 contactViewHolder datavar =new contactViewHolder(v);
 
 
@@ -58,10 +66,10 @@ contactViewHolder datavar =new contactViewHolder(v);
         contactViewHolder.email_p.setText(item.get(i).getEmail_p());
         //contactViewHolder.image_p.setImageResource(item.get(i).getImage_p());
 
-        Picasso.with(context).load("http://adityaagr.tk/"+item.get(i).getName_p()+".png").into(contactViewHolder.image_p);
+        Picasso.with(context).load("http://adityaagr.tk/" + item.get(i).getName_p() + ".jpg").transform(new CircleTransform()).into(contactViewHolder.image_p);
+
+
     }
-
-
 
 
 
@@ -92,6 +100,43 @@ contactViewHolder datavar =new contactViewHolder(v);
 
             }
 
+    }
+
+    public class CircleTransform implements Transformation {
+        @Override
+        public Bitmap transform(Bitmap source)
+        {
+            int size = Math.min(source.getWidth(), source.getHeight());
+
+            int x = (source.getWidth() - size) / 2;
+            int y = (source.getHeight() - size) / 2;
+
+            Bitmap squaredBitmap = Bitmap.createBitmap(source, x, y, size, size);
+            if (squaredBitmap != source)
+            {
+                source.recycle();
+            }
+
+            Bitmap bitmap = Bitmap.createBitmap(size, size, source.getConfig());
+
+            Canvas canvas = new Canvas(bitmap);
+            Paint paint = new Paint();
+            BitmapShader shader = new BitmapShader(squaredBitmap,
+                    BitmapShader.TileMode.CLAMP, BitmapShader.TileMode.CLAMP);
+            paint.setShader(shader);
+            paint.setAntiAlias(true);
+
+            float r = size / 2f;
+            canvas.drawCircle(r, r, r, paint);
+
+            squaredBitmap.recycle();
+            return bitmap;
+        }
+
+        @Override
+        public String key() {
+            return "circle";
+        }
     }
 
 }
