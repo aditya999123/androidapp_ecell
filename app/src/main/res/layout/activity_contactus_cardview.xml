@@ -1,4 +1,4 @@
-<FrameLayout android:background="#837474"
+<FrameLayout android:background="#ece4e4"
     android:id="@+id/container"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
@@ -12,8 +12,10 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:elevation="100dp"
-        android:layout_marginBottom="1dp"
+        android:layout_marginBottom="2dp"
         android:layout_marginTop="1dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         >
 
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -21,8 +23,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:elevation="25dp"
-            android:id="@+id/r1"
-            android:background="#b1d6e7">
+            android:id="@+id/r1">
 
 
             <TextView
@@ -77,6 +78,7 @@
                 android:layout_gravity="center"
                 android:contentDescription="image"
                 android:layout_marginTop="2dp"
+                android:layout_marginLeft="2dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />

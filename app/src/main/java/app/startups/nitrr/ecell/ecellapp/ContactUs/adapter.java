@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -28,6 +29,7 @@ import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import app.startups.nitrr.ecell.ecellapp.R;
 
@@ -67,8 +69,20 @@ contactViewHolder datavar =new contactViewHolder(v);
         //contactViewHolder.image_p.setImageResource(item.get(i).getImage_p());
 
         Picasso.with(context).load("http://adityaagr.tk/" + item.get(i).getName_p() + ".jpg").transform(new CircleTransform()).into(contactViewHolder.image_p);
+        setAnimation(contactViewHolder.itemView,i);
 
+    }
 
+    private int lastPosition = -1;
+
+    private void setAnimation(View viewToAnimate, int position) {
+        // If the bound view wasn't previously displayed on screen, it's animated
+        if (position > lastPosition) {
+            ScaleAnimation anim = new ScaleAnimation(0.0f, 1.0f, 0.0f, 1.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+            anim.setDuration(new Random().nextInt(501));//to make duration random number between [0,501)
+            viewToAnimate.startAnimation(anim);
+            lastPosition = position;
+        }
     }
     //.
     @Override

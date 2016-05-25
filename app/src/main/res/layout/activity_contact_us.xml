@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/relativerecycler"
-    android:background="#b1d6e7">
+>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -12,9 +12,8 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textColor="#090909"
+
         android:layout_marginLeft="3dp"
-        android:background="#b1d6e7"
         android:textSize="25dp" />
     <android.support.v7.widget.RecyclerView
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -23,7 +22,6 @@
         android:layout_height="match_parent"
         android:padding="5dp"
         android:scrollbars="vertical"
-        android:background="#b1d6e7"
         android:layout_below="@+id/textView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
