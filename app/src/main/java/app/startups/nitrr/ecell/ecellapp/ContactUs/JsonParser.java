@@ -16,33 +16,33 @@ public class JsonParser
         //make HTTP request
 
         HttpURLConnection urlConnection = null;
-String ans=null;
-            StringBuilder result = new StringBuilder();
+        String ans=null;
+        StringBuilder result = new StringBuilder();
 
-            try {
+        try {
 
-                URL url = new URL("http://adityaagr.tk/ContactJson3");
-                urlConnection = (HttpURLConnection) url.openConnection();
+            URL url = new URL("http://adityaagr.tk/ContactJson3");
+            urlConnection = (HttpURLConnection) url.openConnection();
 
-                urlConnection.setConnectTimeout(1000);
+            urlConnection.setConnectTimeout(1000);
 
-                InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-                BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+            InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 
-                String line;
-                while ((line = reader.readLine()) != null)
-                {
-                    result.append(line+"\n");
-                }
-
-            }catch( Exception e) {
-                e.printStackTrace();
+            String line;
+            while ((line = reader.readLine()) != null)
+            {
+                result.append(line+"\n");
             }
-            finally {
-                urlConnection.disconnect();
-            }
-        urlConnection.disconnect();
-         return result.toString();
+
+        }catch( Exception e) {
+            e.printStackTrace();
         }
-
+        finally {
+            urlConnection.disconnect();
+        }
+        urlConnection.disconnect();
+        return result.toString();
     }
+
+}
