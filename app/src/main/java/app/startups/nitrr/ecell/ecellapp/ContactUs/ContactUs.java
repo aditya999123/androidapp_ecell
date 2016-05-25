@@ -39,9 +39,7 @@ public class ContactUs extends Activity {
         datals = new ArrayList<>();
 
 
-        //datals.add(new datavar(R.drawable.img3, "Aditya", "Tech", "7587485272", "aditya999123@gmail.com"));
         new AsyncTaskParseJson().execute();
-
         recycler1 = (RecyclerView) findViewById(R.id.recycler1);
         lmanager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
 
@@ -71,7 +69,7 @@ public class ContactUs extends Activity {
             try {
 
                 JsonParser jParser = new JsonParser();
-             //       datals.add(new datavar(3, "Aditya2", "Tech", "7587485272", "aditya999123@gmail.com"));
+                 //datals.add(new datavar(3, "Aditya2", "Tech", "7587485272", "aditya999123@gmail.com"));
                 String jsonstr = null;
                 //String jsonurl = "http://adityaagr.tk/ContactJson";
                 jsonstr = jParser.getJSONFromUrl();
@@ -91,7 +89,7 @@ public class ContactUs extends Activity {
 
                         String jsonname = jsonObject.optString("name").toString();
                         String jsondsgn = jsonObject.optString("designation").toString();
-                        String jsonnumber = jsonObject.optString("number").toString();
+                        String jsonnumber = jsonObject.optString("phone").toString();
                         String jsonemail = jsonObject.optString("email").toString();
 
 

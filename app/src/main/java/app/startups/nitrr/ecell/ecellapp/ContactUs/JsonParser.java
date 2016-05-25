@@ -21,7 +21,7 @@ String ans=null;
 
             try {
 
-                URL url = new URL("http://adityaagr.tk/ContactJson");
+                URL url = new URL("http://adityaagr.tk/ContactJson3");
                 urlConnection = (HttpURLConnection) url.openConnection();
 
                 urlConnection.setConnectTimeout(1000);
