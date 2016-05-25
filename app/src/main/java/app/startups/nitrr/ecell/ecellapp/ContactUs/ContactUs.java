@@ -77,7 +77,7 @@ public class ContactUs extends Activity {
             try {
 
                 JsonParser jParser = new JsonParser();
-                 datals.add(new datavar(3, "Aditya", "Tech", "7587485272", "aditya999123@gmail.com"));
+                 //datals.add(new datavar(3, "Aditya", "Tech", "7587485272", "aditya999123@gmail.com"));
                 String jsonstr = null;
                 //String jsonurl = "http://adityaagr.tk/ContactJson";
                 jsonstr = jParser.getJSONFromUrl();
@@ -90,7 +90,7 @@ public class ContactUs extends Activity {
 
 
                    dataJsonArr = jsonobj.getJSONArray("Contacts");
-                    datals.add(new datavar(3, "Aditya", "Tech", "7587485272", "aditya999123@gmail.com"));
+                 //   datals.add(new datavar(3, "Aditya", "Tech", "7587485272", "aditya999123@gmail.com"));
 
                     for (int i = 0; i < dataJsonArr.length(); i++) {
                         JSONObject jsonObject = dataJsonArr.getJSONObject(i);
