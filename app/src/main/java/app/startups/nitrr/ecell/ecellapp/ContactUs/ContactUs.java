@@ -62,12 +62,12 @@ public class ContactUs extends Activity {
 //        datals.add(new datavar(3, "Aditya", "Tech", "7587485272", "aditya999123@gmail.com"));
 
 
-        recycler1 = (RecyclerView) findViewById(R.id.recycler1);
+        recycler1 = (RecyclerView) findViewById(R.id.contactus_recycler1);
         lmanager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
 
         recycler1.setLayoutManager(lmanager);
         Radapter = new adapter(getApplicationContext(), datals);
-        datals.add(new datavar(3, "Aditya", "Tech", "7587485272", "aditya999123@gmail.com"));
+        //datals.add(new datavar(3, "Aditya", "Tech", "7587485272", "aditya999123@gmail.com"));
 
         String url = "http://adityaagr.tk/ContactJson3.json";
         //final String[] strjson = {""};

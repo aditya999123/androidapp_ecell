@@ -69,7 +69,7 @@ contactViewHolder datavar =new contactViewHolder(v);
         contactViewHolder.email_p.setText(item.get(i).getEmail_p());
         //contactViewHolder.image_p.setImageResource(item.get(i).getImage_p());
 
-        Picasso.with(context).load("http://adityaagr.tk/" + item.get(i).getName_p() + ".jpg").transform(new CircleTransform()).into(contactViewHolder.image_p);
+        Picasso.with(context).load("http://adityaagr.tk/" + item.get(i).getEmail_p() + ".jpg").transform(new CircleTransform()).into(contactViewHolder.image_p);
         setAnimation(contactViewHolder.itemView,i);
 
     }
@@ -102,14 +102,14 @@ contactViewHolder datavar =new contactViewHolder(v);
 
         public contactViewHolder(View itemView) {
             super(itemView);
-            relativeLayout = (RelativeLayout) itemView.getRootView().findViewById(R.id.r1);
-            image_p = (ImageView) itemView.findViewById(R.id.viewimage);
-            name_p = (TextView) itemView.findViewById(R.id.viewname);
-            dsgn_p = (TextView) itemView.findViewById(R.id.viewdsgn);
-            number_p = (TextView) itemView.findViewById(R.id.viewnum);
-            email_p = (TextView) itemView.findViewById(R.id.viewemail);
+            relativeLayout = (RelativeLayout) itemView.getRootView().findViewById(R.id.contactus_cardview_r1);
+            image_p = (ImageView) itemView.findViewById(R.id.contactus_cardview_viewimage);
+            name_p = (TextView) itemView.findViewById(R.id.contactus_cardview_viewname);
+            dsgn_p = (TextView) itemView.findViewById(R.id.contactus_cardview_viewdsgn);
+            number_p = (TextView) itemView.findViewById(R.id.contactus_cardview_viewnum);
+            email_p = (TextView) itemView.findViewById(R.id.contactus_cardview_viewemail);
 
-            re1=(RecyclerView)itemView.findViewById(R.id.recycler1) ;
+            re1=(RecyclerView)itemView.findViewById(R.id.contactus_recycler1) ;
 
             }
 

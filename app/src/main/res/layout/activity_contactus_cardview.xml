@@ -1,5 +1,5 @@
 <FrameLayout android:background="#ece4e4"
-    android:id="@+id/container"
+    android:id="@+id/contactus_cardview_container"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     tools:ignore="MergeRootFrame"
@@ -8,14 +8,14 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto">
 
     <android.support.v7.widget.CardView
-        android:id="@+id/cardview"
+        android:id="@+id/contactus_cardview_cardview"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:elevation="100dp"
         android:layout_marginBottom="2dp"
         android:layout_marginTop="1dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp"
         >
 
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:elevation="25dp"
-            android:id="@+id/r1">
+            android:id="@+id/contactus_cardview_r1">
 
 
             <TextView
@@ -31,27 +31,27 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Medium Text8"
-                android:id="@+id/viewdsgn"
+                android:id="@+id/contactus_cardview_viewdsgn"
                 android:gravity="left"
-                android:textSize="16dp"
+                android:textSize="15dp"
                 android:textColor="#030303"
-                android:layout_below="@+id/viewname"
-                android:layout_alignLeft="@+id/viewname"
-                android:layout_alignStart="@+id/viewname" />
+                android:layout_below="@+id/contactus_cardview_viewname"
+                android:layout_alignLeft="@+id/contactus_cardview_viewname"
+                android:layout_alignStart="@+id/contactus_cardview_viewname" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Name"
-                android:textSize="22dp"
+                android:textSize="20dp"
                 android:gravity="left"
-                android:id="@+id/viewname"
+                android:id="@+id/contactus_cardview_viewname"
 
                 android:textColor="#030303"
                 android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/viewimage"
-                android:layout_toEndOf="@+id/viewimage"
+                android:layout_toRightOf="@+id/contactus_cardview_viewimage"
+                android:layout_toEndOf="@+id/contactus_cardview_viewimage"
                 android:layout_marginLeft="23dp"
                 android:layout_marginStart="15dp" />
 
@@ -61,19 +61,19 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Medium Text"
                 android:gravity="left"
-                android:id="@+id/viewnum"
+                android:id="@+id/contactus_cardview_viewnum"
 
                 android:textSize="13dp"
                 android:textColor="#030303"
-                android:layout_below="@+id/viewdsgn"
-                android:layout_alignLeft="@+id/viewdsgn"
+                android:layout_below="@+id/contactus_cardview_viewdsgn"
+                android:layout_alignLeft="@+id/contactus_cardview_viewdsgn"
                 android:layout_marginTop="17dp"
-                android:layout_alignStart="@+id/viewdsgn" />
+                android:layout_alignStart="@+id/contactus_cardview_viewdsgn" />
 
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:id="@+id/viewimage"
+                android:id="@+id/contactus_cardview_viewimage"
                 android:scaleType="centerCrop"
                 android:layout_gravity="center"
                 android:contentDescription="image"
@@ -89,12 +89,12 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Medium Text"
                 android:gravity="left"
-                android:id="@+id/viewemail"
+                android:id="@+id/contactus_cardview_viewemail"
                 android:layout_gravity="center"
                 android:textSize="13dp"
                 android:textColor="#030303"
-                android:layout_below="@+id/viewnum"
-                android:layout_alignLeft="@+id/viewdsgn"
+                android:layout_below="@+id/contactus_cardview_viewnum"
+                android:layout_alignLeft="@+id/contactus_cardview_viewdsgn"
                 android:layout_marginTop="2dp"/>
 
         </RelativeLayout>
