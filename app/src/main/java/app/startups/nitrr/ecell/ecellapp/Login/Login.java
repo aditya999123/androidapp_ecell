@@ -7,26 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-
-import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.auth.api.signin.GoogleSignInResult;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.SignInButton;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.OptionalPendingResult;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.common.api.Status;
-
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-
-import android.app.ProgressDialog;
-import android.content.Intent;
-import android.util.Log;
-import android.view.View;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -44,10 +25,8 @@ import app.startups.nitrr.ecell.ecellapp.R;
 public class Login extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener,
         View.OnClickListener {
-
     private static final String TAG = "SignInActivity";
-    private static final int RC_SIGN_IN = 9001;
-
+    private static final int RC_SIGN_IN = 900;
     private GoogleApiClient mGoogleApiClient;
     private TextView mStatusTextView;
     private TextView clientemail;
@@ -59,20 +38,16 @@ public class Login extends AppCompatActivity implements
         setContentView(R.layout.activity_login);
 
         mStatusTextView = (TextView) findViewById(R.id.status);
-        clientemail=(TextView) findViewById(R.id.user_email);
-        // Button listeners
+        clientemail = (TextView) findViewById(R.id.user_email);
+
         findViewById(R.id.sign_in_button).setOnClickListener(this);
         findViewById(R.id.sign_out_button).setOnClickListener(this);
         findViewById(R.id.disconnect_button).setOnClickListener(this);
 
-        // [START configure_signin]
-        // Configure sign-in to request the user's ID, email address, and basic
-        // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
         // [END configure_signin]
-
         // [START build_client]
         // Build a GoogleApiClient with access to the Google Sign-In API and the
         // options specified by gso.
@@ -83,7 +58,7 @@ public class Login extends AppCompatActivity implements
         // [END build_client]
 
         SignInButton signInButton = (SignInButton) findViewById(R.id.sign_in_button);
-        signInButton.setSize(SignInButton.SIZE_STANDARD);
+        signInButton.setSize(SignInButton.SIZE_WIDE);
         signInButton.setScopes(gso.getScopeArray());
         // [END customize_button]
     }
@@ -91,7 +66,6 @@ public class Login extends AppCompatActivity implements
     @Override
     public void onStart() {
         super.onStart();
-
         OptionalPendingResult<GoogleSignInResult> opr = Auth.GoogleSignInApi.silentSignIn(mGoogleApiClient);
         if (opr.isDone()) {
             // If the user's cached credentials are valid, the OptionalPendingResult will be "done"
@@ -117,7 +91,6 @@ public class Login extends AppCompatActivity implements
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
@@ -132,9 +105,10 @@ public class Login extends AppCompatActivity implements
             GoogleSignInAccount acct = result.getSignInAccount();
             mStatusTextView.setText(acct.getDisplayName());
             clientemail.setText(acct.getEmail());
+            Toast.makeText(this, "Successful Email :" + acct.getEmail(), Toast.LENGTH_LONG).show();
             updateUI(true);
         } else {
-            // Signed out, show unauthenticated UI.
+            Toast.makeText(this, "Something Went wrong : " + result.getSignInAccount(), Toast.LENGTH_LONG).show();
             updateUI(false);
         }
     }
@@ -158,7 +132,6 @@ public class Login extends AppCompatActivity implements
                 });
     }
 
-
     private void revokeAccess() {
         Auth.GoogleSignInApi.revokeAccess(mGoogleApiClient).setResultCallback(
                 new ResultCallback<Status>() {
@@ -173,7 +146,6 @@ public class Login extends AppCompatActivity implements
 
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
-
         Log.d(TAG, "onConnectionFailed:" + connectionResult);
     }
 
@@ -195,6 +167,7 @@ public class Login extends AppCompatActivity implements
 
     private void updateUI(boolean signedIn) {
         if (signedIn) {
+
             findViewById(R.id.sign_in_button).setVisibility(View.GONE);
             findViewById(R.id.sign_out_button).setVisibility(View.VISIBLE);
         } else {

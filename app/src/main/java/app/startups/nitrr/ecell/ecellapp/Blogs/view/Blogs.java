@@ -1,4 +1,4 @@
-package app.startups.nitrr.ecell.ecellapp.Blogs;
+package app.startups.nitrr.ecell.ecellapp.Blogs.view;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

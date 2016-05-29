@@ -1,22 +1,15 @@
 package app.startups.nitrr.ecell.ecellapp.ContactUs;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Rect;
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
-import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -36,29 +29,33 @@ import app.startups.nitrr.ecell.ecellapp.R;
 /**
  * Created by aditya on 17/5/16.
  */
-public class adapter extends RecyclerView.Adapter<adapter.contactViewHolder>{
-Context context,context2;
-    int flag=0;
-private ArrayList<datavar> item;
+public class adapter extends RecyclerView.Adapter<adapter.contactViewHolder> {
+    Context context, context2;
+    int flag = 0;
+    private ArrayList<datavar> item;
     private Button test;
     private Button callbtn;
-    private PopupWindow popupwindow;;
+    private PopupWindow popupwindow;
+    ;
     private LayoutInflater layoutInflater;
 
     public adapter(Context applicationContext, ArrayList<datavar> item) {
-        this.item = item;this.context=applicationContext;
+        this.item = item;
+        this.context = applicationContext;
     }
-View viewanime;
+
+    View viewanime;
+
     @Override
-    public adapter.contactViewHolder onCreateViewHolder(ViewGroup viewGroup, int i)
-    {
-        View v= LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.activity_contactus_cardview,viewGroup,false);
-viewanime=v;
-contactViewHolder datavar =new contactViewHolder(v);
+    public adapter.contactViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.activity_contactus_cardview, viewGroup, false);
+        viewanime = v;
+        contactViewHolder datavar = new contactViewHolder(v);
 
 
         return datavar;
     }
+
     @Override
     public void onBindViewHolder(adapter.contactViewHolder contactViewHolder, int i) {
 
@@ -69,7 +66,7 @@ contactViewHolder datavar =new contactViewHolder(v);
         //contactViewHolder.image_p.setImageResource(item.get(i).getImage_p());
 
         Picasso.with(context).load("http://adityaagr.tk/" + item.get(i).getEmail_p() + ".jpg").transform(new CircleTransform()).into(contactViewHolder.image_p);
-        setAnimation(contactViewHolder.itemView,i);
+        setAnimation(contactViewHolder.itemView, i);
 
     }
 
@@ -84,6 +81,7 @@ contactViewHolder datavar =new contactViewHolder(v);
             lastPosition = position;
         }
     }
+
     //.
     @Override
     public int getItemCount() {
@@ -98,7 +96,6 @@ contactViewHolder datavar =new contactViewHolder(v);
         RecyclerView re1;
 
 
-
         public contactViewHolder(View itemView) {
             super(itemView);
             relativeLayout = (RelativeLayout) itemView.getRootView().findViewById(R.id.contactus_cardview_r1);
@@ -108,24 +105,22 @@ contactViewHolder datavar =new contactViewHolder(v);
             number_p = (TextView) itemView.findViewById(R.id.contactus_cardview_viewnum);
             email_p = (TextView) itemView.findViewById(R.id.contactus_cardview_viewemail);
 
-            re1=(RecyclerView)itemView.findViewById(R.id.contactus_recycler1) ;
+            re1 = (RecyclerView) itemView.findViewById(R.id.contactus_recycler1);
 
-            }
+        }
 
     }
 
     public class CircleTransform implements Transformation {
         @Override
-        public Bitmap transform(Bitmap source)
-        {
+        public Bitmap transform(Bitmap source) {
             int size = Math.min(source.getWidth(), source.getHeight());
 
             int x = (source.getWidth() - size) / 2;
             int y = (source.getHeight() - size) / 2;
 
             Bitmap squaredBitmap = Bitmap.createBitmap(source, x, y, size, size);
-            if (squaredBitmap != source)
-            {
+            if (squaredBitmap != source) {
                 source.recycle();
             }
 
