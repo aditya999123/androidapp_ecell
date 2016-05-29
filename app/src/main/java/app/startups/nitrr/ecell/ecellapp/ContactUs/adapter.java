@@ -25,7 +25,6 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.squareup.okhttp.Callback;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
