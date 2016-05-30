@@ -32,6 +32,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import app.startups.nitrr.ecell.ecellapp.R;
+import app.startups.nitrr.ecell.ecellapp.Utils.CircleTransform;
 
 /**
  * Created by aditya on 17/5/16.
@@ -70,11 +71,8 @@ contactViewHolder datavar =new contactViewHolder(v);
 
         Picasso.with(context).load("http://adityaagr.tk/" + item.get(i).getEmail_p() + ".jpg").transform(new CircleTransform()).into(contactViewHolder.image_p);
         setAnimation(contactViewHolder.itemView,i);
-
     }
-
     private int lastPosition = -1;
-
     private void setAnimation(View viewToAnimate, int position) {
         // If the bound view wasn't previously displayed on screen, it's animated
         if (position > lastPosition) {
@@ -84,7 +82,6 @@ contactViewHolder datavar =new contactViewHolder(v);
             lastPosition = position;
         }
     }
-    //.
     @Override
     public int getItemCount() {
         return item.size();
@@ -97,8 +94,6 @@ contactViewHolder datavar =new contactViewHolder(v);
         RelativeLayout relativeLayout;
         RecyclerView re1;
 
-
-
         public contactViewHolder(View itemView) {
             super(itemView);
             relativeLayout = (RelativeLayout) itemView.getRootView().findViewById(R.id.contactus_cardview_r1);
@@ -107,50 +102,7 @@ contactViewHolder datavar =new contactViewHolder(v);
             dsgn_p = (TextView) itemView.findViewById(R.id.contactus_cardview_viewdsgn);
             number_p = (TextView) itemView.findViewById(R.id.contactus_cardview_viewnum);
             email_p = (TextView) itemView.findViewById(R.id.contactus_cardview_viewemail);
-
             re1=(RecyclerView)itemView.findViewById(R.id.contactus_recycler1) ;
-
             }
-
     }
-
-    public class CircleTransform implements Transformation {
-        @Override
-        public Bitmap transform(Bitmap source)
-        {
-            int size = Math.min(source.getWidth(), source.getHeight());
-
-            int x = (source.getWidth() - size) / 2;
-            int y = (source.getHeight() - size) / 2;
-
-            Bitmap squaredBitmap = Bitmap.createBitmap(source, x, y, size, size);
-            if (squaredBitmap != source)
-            {
-                source.recycle();
-            }
-
-            Bitmap bitmap = Bitmap.createBitmap(size, size, source.getConfig());
-
-            Canvas canvas = new Canvas(bitmap);
-            Paint paint = new Paint();
-            BitmapShader shader = new BitmapShader(squaredBitmap,
-                    BitmapShader.TileMode.CLAMP, BitmapShader.TileMode.CLAMP);
-            paint.setShader(shader);
-            paint.setAntiAlias(true);
-
-            float r = size / 2f;
-            canvas.drawCircle(r, r, r, paint);
-
-            squaredBitmap.recycle();
-            return bitmap;
-        }
-
-        @Override
-        public String key() {
-            return "circle";
-        }
-    }
-
 }
-
-

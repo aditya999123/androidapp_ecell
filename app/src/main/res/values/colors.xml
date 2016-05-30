@@ -3,4 +3,13 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="white">#FFFFFF</color>
+
+    <color name="feed_bg">#d3d6db</color>
+
+    <color name="feed_item_bg">#ffffff</color>
+    <color name="feed_item_border">#E1F5FE</color>
+
+    <dimen name="feed_item_corner_radius">3dp</dimen>
+    <dimen name="feed_item_border_width">1dp</dimen>
 </resources>
