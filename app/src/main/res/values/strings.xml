@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ECellApp</string>
+    <string name="openDrawer">onDrawerOpened</string>
+    <string name="closeDrawer">onDrawerClosed</string>
 </resources>
