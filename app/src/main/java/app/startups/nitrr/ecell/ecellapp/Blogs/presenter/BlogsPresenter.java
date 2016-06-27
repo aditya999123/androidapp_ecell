@@ -1,6 +1,4 @@
-package app.startups.nitrr.ecell.ecellapp.Blogs.presenter;
-
-import app.startups.nitrr.ecell.ecellapp.Blogs.OnBlogsReceived;
+package app.startups.nitrr.ecell.ecellapp.blogs.presenter;
 
 /**
  * Created by Meghal on 5/29/2016.

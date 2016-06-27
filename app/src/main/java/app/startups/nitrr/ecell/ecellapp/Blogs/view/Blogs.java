@@ -1,9 +1,8 @@
-package app.startups.nitrr.ecell.ecellapp.Blogs.view;
+package app.startups.nitrr.ecell.ecellapp.blogs.view;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatAutoCompleteTextView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,11 +13,11 @@ import android.widget.ProgressBar;
 
 import java.util.List;
 
-import app.startups.nitrr.ecell.ecellapp.Blogs.BlogsAdapter;
-import app.startups.nitrr.ecell.ecellapp.Blogs.data.BlogData;
-import app.startups.nitrr.ecell.ecellapp.Blogs.model.RetrofitBlogsProvider;
-import app.startups.nitrr.ecell.ecellapp.Blogs.presenter.BlogsPresenter;
-import app.startups.nitrr.ecell.ecellapp.Blogs.presenter.BlogsPresenterImpl;
+import app.startups.nitrr.ecell.ecellapp.blogs.BlogsAdapter;
+import app.startups.nitrr.ecell.ecellapp.blogs.data.BlogData;
+import app.startups.nitrr.ecell.ecellapp.blogs.model.RetrofitBlogsProvider;
+import app.startups.nitrr.ecell.ecellapp.blogs.presenter.BlogsPresenter;
+import app.startups.nitrr.ecell.ecellapp.blogs.presenter.BlogsPresenterImpl;
 import app.startups.nitrr.ecell.ecellapp.R;
 
 public class Blogs extends AppCompatActivity implements BlogsInterface {
@@ -36,8 +35,14 @@ public class Blogs extends AppCompatActivity implements BlogsInterface {
         setContentView(R.layout.activity_blogs);
         Initialize();
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        toolbar.setNavigationIcon(ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_white_24dp));
+        toolbar.setTitle("Blogs");
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         requestBlogs();
     }
 

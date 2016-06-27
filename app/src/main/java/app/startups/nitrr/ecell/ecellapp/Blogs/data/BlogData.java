@@ -1,4 +1,4 @@
-package app.startups.nitrr.ecell.ecellapp.Blogs.data;
+package app.startups.nitrr.ecell.ecellapp.blogs.data;
 
 /**
  * Created by Meghal on 5/30/2016.

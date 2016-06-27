@@ -6,4 +6,13 @@
     <dimen name="feed_item_margin">10dp</dimen>
     <dimen name="feed_item_padding_top_bottom">20dp</dimen>
     <dimen name="feed_item_padding_left_right">15dp</dimen>
+    <dimen name="nav_drawer_width">280dp</dimen>
+    <dimen name="size_xlarge">24dp</dimen>
+    <dimen name="padding_small">8dp</dimen>
+    <dimen name="padding_medium">12dp</dimen>
+    <dimen name="dots_height">10dp</dimen>
+    <dimen name="dots_margin_bottom">12dp</dimen>
+    <dimen name="slide_title">18dp</dimen>
+    <dimen name="desc_padding">12dp</dimen>
+    <dimen name="slide_desc">16dp</dimen>
 </resources>

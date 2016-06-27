@@ -1,9 +1,8 @@
-package app.startups.nitrr.ecell.ecellapp.Blogs;
+package app.startups.nitrr.ecell.ecellapp.blogs;
 
 import java.util.List;
 
-import app.startups.nitrr.ecell.ecellapp.Blogs.data.BlogData;
-import app.startups.nitrr.ecell.ecellapp.Blogs.data.BlogFeed;
+import app.startups.nitrr.ecell.ecellapp.blogs.data.BlogData;
 
 /**
  * Created by Meghal on 5/30/2016.

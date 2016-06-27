@@ -1,13 +1,8 @@
-package app.startups.nitrr.ecell.ecellapp.Blogs.api;
+package app.startups.nitrr.ecell.ecellapp.blogs.api;
 
-import java.util.List;
-
-import app.startups.nitrr.ecell.ecellapp.Blogs.data.BlogData;
-import app.startups.nitrr.ecell.ecellapp.Blogs.data.BlogFeed;
+import app.startups.nitrr.ecell.ecellapp.blogs.data.BlogFeed;
 import retrofit2.Call;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.POST;
 
 /**
  * Created by Meghal on 5/30/2016.

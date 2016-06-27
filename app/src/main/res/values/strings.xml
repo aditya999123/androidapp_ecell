@@ -1,8 +1,48 @@
 <resources>
     <string name="app_name">ECellApp</string>
-    <string name="openDrawer">onDrawerOpened</string>
-    <string name="closeDrawer">onDrawerClosed</string>
-    <string name="AboutUs">About Us\n The Entrepreneurship Cell is a non-profit organisation run by the students of NIT Raipur that aims at manifesting the latent entrepreneurial spirit of the young students.We at E-Cell host various workshops,innovative games,competitions for the aspiring entrepreneurs and support them by providing necessary resources such as seed funding, mentoring, consultancy and networking.\n E-Cell NITRR is devoted to promoting and helping the young minds in the campus to find the DIAMOND in them.The Committee provides a platform to share their innovations.And the'll be provided with all the help they need to meet their aim.
 
-    </string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+
+    <string name="slide_1_title">Platform for Enterpreneurs!</string>
+    <string name="slide_1_desc">The easiest way to stay in touch with Startups Across State ! Use E-CellApp</string>
+
+    <string name="slide_2_title">Submit Ideas</string>
+    <string name="slide_2_desc">Be Creative . Submit ideas and show your creativity</string>
+
+    <string name="slide_3_title">Great Discounts</string>
+    <string name="slide_3_desc">Best discounts on every single service we offer!</string>
+
+    <string name="slide_4_title">World Class Service</string>
+    <string name="slide_4_desc">MedoBoss Belive in Quality Service and Customer Satisfaction more than Anything !</string>
+
+
+    <string name="nav_item_home">Home</string>
+    <string name="nav_item_profile">Profile</string>
+    <string name="nav_item_blogs">Blogs</string>
+    <string name="nav_item_events">Events</string>
+    <string name="nav_item_photo_gallery">Photo Gallery</string>
+    <string name="nav_item_e_summit">E-Summit</string>
+    <string name="nav_item_contact_us">Contact Us</string>
+    <string name="nav_item_about_us">About Us</string>
+    <string name="nav_item_logout">Logout</string>
+    <string name="welcome_name">Welcome , Meghal</string>
+    <string name="welcome_quote">Hi ! Hope you\'r doing super duper . \\n We at E-Cell will try to keep you motivated . \\n We Love startups . Seriously ! :)</string>
+    <string name="activity_blogs">Blogs</string>
+
+    <!-- navigation drawer item labels  -->
+    <string-array name="nav_drawer_labels">
+        <item></item>
+        <item>@string/nav_item_home</item>
+        <item>@string/nav_item_profile</item>
+        <item>@string/nav_item_blogs</item>
+        <item>@string/nav_item_events</item>
+        <item>@string/nav_item_photo_gallery</item>
+        <item>@string/nav_item_e_summit</item>
+        <item>@string/nav_item_contact_us</item>
+        <item>@string/nav_item_about_us</item>
+        <item>@string/nav_item_logout</item>
+    </string-array>
+
+
 </resources>

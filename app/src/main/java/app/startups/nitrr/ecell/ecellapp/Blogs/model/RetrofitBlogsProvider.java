@@ -1,13 +1,10 @@
-package app.startups.nitrr.ecell.ecellapp.Blogs.model;
+package app.startups.nitrr.ecell.ecellapp.blogs.model;
 
 import android.util.Log;
 
-import java.util.List;
-
-import app.startups.nitrr.ecell.ecellapp.Blogs.OnBlogsReceived;
-import app.startups.nitrr.ecell.ecellapp.Blogs.api.RequestInterface;
-import app.startups.nitrr.ecell.ecellapp.Blogs.data.BlogData;
-import app.startups.nitrr.ecell.ecellapp.Blogs.data.BlogFeed;
+import app.startups.nitrr.ecell.ecellapp.blogs.OnBlogsReceived;
+import app.startups.nitrr.ecell.ecellapp.blogs.api.RequestInterface;
+import app.startups.nitrr.ecell.ecellapp.blogs.data.BlogFeed;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

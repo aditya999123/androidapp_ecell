@@ -1,14 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#000000</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent1">#11A3C4</color>
+    <color name="colorAccent">#30479E</color>
+    <color name="colorAccent_26_alpha">#4030479E</color>
+    <color name="logo_dark_shade">#30479E</color>
+    <color name="logo_light_shade">#11A3C4</color>
     <color name="white">#FFFFFF</color>
 
     <color name="feed_bg">#d3d6db</color>
 
+    <array name="array_dot_active">
+        <item>@color/white</item>
+        <item>@color/white</item>
+        <item>@color/white</item>
+        <item>@color/white</item>
+    </array>
+
+    <array name="array_dot_inactive">
+        <item>@color/white</item>
+        <item>@color/white</item>
+        <item>@color/white</item>
+        <item>@color/white</item>
+    </array>
+
+
     <color name="feed_item_bg">#ffffff</color>
     <color name="feed_item_border">#E1F5FE</color>
+    <color name="black">#000000</color>
+    <color name="facebookColor">#3b5999</color>
 
     <dimen name="feed_item_corner_radius">3dp</dimen>
     <dimen name="feed_item_border_width">1dp</dimen>

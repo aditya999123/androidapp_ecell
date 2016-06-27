@@ -1,4 +1,4 @@
-package app.startups.nitrr.ecell.ecellapp.Events;
+package app.startups.nitrr.ecell.ecellapp.events;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

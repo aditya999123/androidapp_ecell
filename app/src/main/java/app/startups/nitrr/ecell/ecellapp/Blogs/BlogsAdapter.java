@@ -1,11 +1,10 @@
-package app.startups.nitrr.ecell.ecellapp.Blogs;
+package app.startups.nitrr.ecell.ecellapp.blogs;
 
 /**
  * Created by Meghal on 5/30/2016.
  */
 
 import android.content.Context;
-import android.provider.ContactsContract;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,12 +16,10 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import app.startups.nitrr.ecell.ecellapp.Blogs.data.BlogData;
-import app.startups.nitrr.ecell.ecellapp.ContactUs.adapter;
-import app.startups.nitrr.ecell.ecellapp.ImageLoaders.GlideImageLoader;
-import app.startups.nitrr.ecell.ecellapp.ImageLoaders.ImageLoader;
+import app.startups.nitrr.ecell.ecellapp.blogs.data.BlogData;
+import app.startups.nitrr.ecell.ecellapp.helper.image_loaders.GlideImageLoader;
+import app.startups.nitrr.ecell.ecellapp.helper.image_loaders.ImageLoader;
 import app.startups.nitrr.ecell.ecellapp.R;
-import app.startups.nitrr.ecell.ecellapp.Utils.CircleTransform;
 
 
 /**

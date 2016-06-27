@@ -2,7 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="178dp"
-    android:background="@drawable/ecell"
     android:orientation="vertical"
     android:weightSum="1">
 
@@ -45,7 +44,6 @@
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:src="@drawable/praty"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="38dp"
         android:id="@+id/circleView"

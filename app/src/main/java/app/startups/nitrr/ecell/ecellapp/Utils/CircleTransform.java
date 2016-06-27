@@ -1,4 +1,4 @@
-package app.startups.nitrr.ecell.ecellapp.Utils;
+package app.startups.nitrr.ecell.ecellapp.utils;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;

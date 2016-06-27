@@ -1,11 +1,11 @@
-package app.startups.nitrr.ecell.ecellapp.Blogs.presenter;
+package app.startups.nitrr.ecell.ecellapp.blogs.presenter;
 
 import java.util.List;
 
-import app.startups.nitrr.ecell.ecellapp.Blogs.OnBlogsReceived;
-import app.startups.nitrr.ecell.ecellapp.Blogs.data.BlogData;
-import app.startups.nitrr.ecell.ecellapp.Blogs.model.BlogsProvider;
-import app.startups.nitrr.ecell.ecellapp.Blogs.view.BlogsInterface;
+import app.startups.nitrr.ecell.ecellapp.blogs.OnBlogsReceived;
+import app.startups.nitrr.ecell.ecellapp.blogs.data.BlogData;
+import app.startups.nitrr.ecell.ecellapp.blogs.model.BlogsProvider;
+import app.startups.nitrr.ecell.ecellapp.blogs.view.BlogsInterface;
 
 /**
  * Created by Meghal on 5/29/2016.

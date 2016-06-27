@@ -1,111 +1,20 @@
 {
   "project_info": {
-    "project_number": "533590550639",
-    "project_id": "ecellapp-6b211"
+    "project_number": "668510525152",
+    "project_id": "ecellapp-61b8a"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:533590550639:android:10b5ac6de4426352",
-        "android_client_info": {
-          "package_name": "ECellApp.ecell"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "533590550639-q1hilao8n69m6up88h8ib6jbg0rb9p5u.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "ECellApp.ecell",
-            "certificate_hash": "76AFBD4CD02CCADFBE45892DB51D06C488B3F1AC"
-          }
-        },
-        {
-          "client_id": "533590550639-s2blbgr4iq9vqva8p85ksi6h8iquv80a.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyB_UALFLGB-LotakGjiLXM0803TOdHPYE8"
-        }
-      ],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 1
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:533590550639:android:dc453e9e25201f21",
-        "android_client_info": {
-          "package_name": "app.startups.nitrr.ecell.ecellapp.Login"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "533590550639-60k3iq9ep3dgfuhbrktu6ie075o9gif7.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "app.startups.nitrr.ecell.ecellapp.Login",
-            "certificate_hash": "76AFBD4CD02CCADFBE45892DB51D06C488B3F1AC"
-          }
-        },
-        {
-          "client_id": "533590550639-s2blbgr4iq9vqva8p85ksi6h8iquv80a.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyB_UALFLGB-LotakGjiLXM0803TOdHPYE8"
-        }
-      ],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 1
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:533590550639:android:20d7cb43c90e2861",
+        "mobilesdk_app_id": "1:668510525152:android:20d7cb43c90e2861",
         "android_client_info": {
           "package_name": "app.startups.nitrr.ecell.ecellapp"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "533590550639-65qaf9k2ruoavc8gvr4d40rqk4ov2rpo.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "app.startups.nitrr.ecell.ecellapp",
-            "certificate_hash": "76AFBD4CD02CCADFBE45892DB51D06C488B3F1AC"
-          }
-        },
-        {
-          "client_id": "533590550639-s2blbgr4iq9vqva8p85ksi6h8iquv80a.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyB_UALFLGB-LotakGjiLXM0803TOdHPYE8"
+          "current_key": "AIzaSyD4YZZPG8kqM4V198ZUWMvM-lpjfxAS-S0"
         }
       ],
       "services": {

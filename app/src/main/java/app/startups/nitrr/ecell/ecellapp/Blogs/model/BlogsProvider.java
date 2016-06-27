@@ -1,6 +1,6 @@
-package app.startups.nitrr.ecell.ecellapp.Blogs.model;
+package app.startups.nitrr.ecell.ecellapp.blogs.model;
 
-import app.startups.nitrr.ecell.ecellapp.Blogs.OnBlogsReceived;
+import app.startups.nitrr.ecell.ecellapp.blogs.OnBlogsReceived;
 
 /**
  * Created by Meghal on 5/29/2016.

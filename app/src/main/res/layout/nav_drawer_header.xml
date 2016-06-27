@@ -1,0 +1,48 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_header_container"
+    android:layout_width="match_parent"
+    android:layout_height="192dp"
+    android:background="@color/black"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <app.startups.nitrr.ecell.ecellapp.custom_views.Shape
+            android:id="@+id/circle"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_centerHorizontal="true"
+            app:shapeType="Circle"
+            android:layout_margin="@dimen/padding_medium"
+            />
+
+        <TextView
+            android:id="@+id/nameFirstWord"
+            android:textSize="30dp"
+            android:textColor="@color/white"
+            android:text="M"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="casual"
+        android:padding="@dimen/padding_medium"
+        android:gravity="center"
+        android:text="Meghal Agrawal\n 8109109457"
+        android:textColor="@color/white"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:typeface="serif" />
+
+</LinearLayout>
