@@ -25,29 +25,33 @@ import app.startups.nitrr.ecell.ecellapp.utils.CircleTransform;
 /**
  * Created by aditya on 17/5/16.
  */
-public class adapter extends RecyclerView.Adapter<adapter.contactViewHolder>{
-Context context,context2;
-    int flag=0;
-private ArrayList<datavar> item;
+public class adapter extends RecyclerView.Adapter<adapter.contactViewHolder> {
+    Context context, context2;
+    int flag = 0;
+    View viewanime;
+    private ArrayList<datavar> item;
     private Button test;
     private Button callbtn;
-    private PopupWindow popupwindow;;
+    ;
+    private PopupWindow popupwindow;
     private LayoutInflater layoutInflater;
+    private int lastPosition = -1;
 
     public adapter(Context applicationContext, ArrayList<datavar> item) {
-        this.item = item;this.context=applicationContext;
+        this.item = item;
+        this.context = applicationContext;
     }
-View viewanime;
+
     @Override
-    public adapter.contactViewHolder onCreateViewHolder(ViewGroup viewGroup, int i)
-    {
-        View v= LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.activity_contactus_cardview,viewGroup,false);
-viewanime=v;
-contactViewHolder datavar =new contactViewHolder(v);
+    public adapter.contactViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.activity_contactus_cardview, viewGroup, false);
+        viewanime = v;
+        contactViewHolder datavar = new contactViewHolder(v);
 
 
         return datavar;
     }
+
     @Override
     public void onBindViewHolder(adapter.contactViewHolder contactViewHolder, int i) {
 
@@ -58,9 +62,9 @@ contactViewHolder datavar =new contactViewHolder(v);
         //contactViewHolder.image_p.setImageResource(item.get(i).getImage_p());
 
         Picasso.with(context).load("http://adityaagr.tk/" + item.get(i).getEmail_p() + ".jpg").transform(new CircleTransform()).into(contactViewHolder.image_p);
-        setAnimation(contactViewHolder.itemView,i);
+        setAnimation(contactViewHolder.itemView, i);
     }
-    private int lastPosition = -1;
+
     private void setAnimation(View viewToAnimate, int position) {
         // If the bound view wasn't previously displayed on screen, it's animated
         if (position > lastPosition) {
@@ -70,6 +74,7 @@ contactViewHolder datavar =new contactViewHolder(v);
             lastPosition = position;
         }
     }
+
     @Override
     public int getItemCount() {
         return item.size();
@@ -90,7 +95,7 @@ contactViewHolder datavar =new contactViewHolder(v);
             dsgn_p = (TextView) itemView.findViewById(R.id.contactus_cardview_viewdsgn);
             number_p = (TextView) itemView.findViewById(R.id.contactus_cardview_viewnum);
             email_p = (TextView) itemView.findViewById(R.id.contactus_cardview_viewemail);
-            re1=(RecyclerView)itemView.findViewById(R.id.contactus_recycler1) ;
-            }
+            re1 = (RecyclerView) itemView.findViewById(R.id.contactus_recycler1);
+        }
     }
 }

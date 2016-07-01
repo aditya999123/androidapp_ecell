@@ -1,9 +1,10 @@
 package app.startups.nitrr.ecell.ecellapp.about_us;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import app.startups.nitrr.ecell.ecellapp.R;
+
 
 public class AboutUs extends AppCompatActivity {
 

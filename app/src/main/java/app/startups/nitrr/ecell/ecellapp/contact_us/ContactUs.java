@@ -15,6 +15,7 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 import app.startups.nitrr.ecell.ecellapp.R;
@@ -23,12 +24,12 @@ import app.startups.nitrr.ecell.ecellapp.R;
  * Created by aditya on 17/5/16.
  */
 public class ContactUs extends Activity {
+    Bitmap myBitmap;
+    int flag = 0;
     private RecyclerView recycler1;
     private RecyclerView.LayoutManager lmanager;
     private RecyclerView.Adapter Radapter;
     private ArrayList<datavar> datals;
-    Bitmap myBitmap;
-    int flag = 0;
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -69,12 +70,12 @@ public class ContactUs extends Activity {
                             //             text1.setText("b");
                             JSONObject jsonobj = new JSONObject(response);
 
-          //                  datals.add(new datavar(3, "Aditya4", "Tech", "7587485272", "aditya999123@gmail.com"));
+                            //                  datals.add(new datavar(3, "Aditya4", "Tech", "7587485272", "aditya999123@gmail.com"));
 
 
                             JSONArray dataJsonArr = jsonobj.getJSONArray("Contacts");
 
-            //                datals.add(new datavar(3, "Aditya", "Tech", "7587485272", "aditya999123@gmail.com"));
+                            //                datals.add(new datavar(3, "Aditya", "Tech", "7587485272", "aditya999123@gmail.com"));
 
                             for (int i = 0; i < dataJsonArr.length(); i++) {
                                 JSONObject jsonObject = dataJsonArr.getJSONObject(i);

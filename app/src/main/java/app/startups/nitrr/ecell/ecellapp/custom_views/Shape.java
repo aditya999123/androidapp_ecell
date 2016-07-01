@@ -72,7 +72,7 @@ public class Shape extends View {
                 canvas.drawCircle((getWidth() / 2) - getPaddingLeft() - getPaddingRight()
                         , (getHeight() / 2) - getPaddingTop() - getPaddingBottom()
                         , (getWidth() / 2) - getPaddingLeft() - getPaddingBottom(), paint);
-            break;
+                break;
             case 2:
                 canvas.drawLine(0, 0, getWidth(), getHeight(), paint);
 
@@ -92,13 +92,13 @@ public class Shape extends View {
         return shape;
     }
 
-    public int getShapeColor() {
-        return shapeColor;
-    }
-
     public void setShape(int shape) {
         this.shape = shape;
         invalidate();
+    }
+
+    public int getShapeColor() {
+        return shapeColor;
     }
 
     public void setShapeColor(int shapeColor) {

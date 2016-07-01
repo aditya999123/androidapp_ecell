@@ -12,14 +12,13 @@ import com.bumptech.glide.RequestManager;
 public class GlideImageLoader implements ImageLoader {
 
     private static final String TAG = "GlideImageLoader";
-    private RequestManager requestManager;
-
     Context mContext;
+    private RequestManager requestManager;
 
     public GlideImageLoader(Context mContext) {
 
         this.mContext = mContext;
-        requestManager=Glide.with(mContext);
+        requestManager = Glide.with(mContext);
     }
 
     @Override
@@ -35,8 +34,6 @@ public class GlideImageLoader implements ImageLoader {
         requestManager.load(url).crossFade().thumbnail(0.01f)
                 //.animate(R.anim.image_animation)
                 .into(imageView);
-
-
 
 
         // This code is used for Round Image View using Glide :)

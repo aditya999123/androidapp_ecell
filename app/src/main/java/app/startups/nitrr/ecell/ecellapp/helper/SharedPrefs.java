@@ -16,7 +16,7 @@ public class SharedPrefs {
     private static final String KEY_EMAIL = "email";
     private static final String KEY_PHOTO_URL = "photoUrl";
     private static final String KEY_USER_ID = "userId";
-    private static final String IS_FIRST_TIME_LAUNCH ="firstTimeLaunch" ;
+    private static final String IS_FIRST_TIME_LAUNCH = "firstTimeLaunch";
 
 
     // LogCat tag
@@ -67,10 +67,9 @@ public class SharedPrefs {
 
     }
 
-    public void setPhotoUrl(String photoUrl) {
+    public String getUserId() {
 
-        editor.putString(KEY_PHOTO_URL, photoUrl);
-        editor.commit();
+        return pref.getString(KEY_USER_ID, "Not Available");
 
     }
 
@@ -81,15 +80,16 @@ public class SharedPrefs {
 
     }
 
-    public String getUserId() {
-
-        return pref.getString(KEY_USER_ID, "Not Available");
-
-    }
-
     public String getPhotoUrl() {
 
         return pref.getString(KEY_PHOTO_URL, "Not Available");
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+
+        editor.putString(KEY_PHOTO_URL, photoUrl);
+        editor.commit();
+
     }
 
     public String getEmail() {
@@ -97,13 +97,13 @@ public class SharedPrefs {
         return pref.getString(KEY_EMAIL, "Not Available");
     }
 
+    public boolean isFirstTimeLaunch() {
+        return pref.getBoolean(IS_FIRST_TIME_LAUNCH, true);
+    }
+
     public void setFirstTimeLaunch(boolean isFirstTime) {
         editor.putBoolean(IS_FIRST_TIME_LAUNCH, isFirstTime);
         editor.commit();
-    }
-
-    public boolean isFirstTimeLaunch() {
-        return pref.getBoolean(IS_FIRST_TIME_LAUNCH, true);
     }
 
 }

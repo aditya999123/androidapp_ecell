@@ -28,7 +28,7 @@
             />
         <activity android:name=".contact_us.ContactUs" />
         <activity android:name=".Login.Login" />
-        <activity android:name=".SignUp.SignUp" />
+        <activity android:name=".signUp.SignUp" />
 
         <activity android:name=".sign_in.view.SignInActivity">
 

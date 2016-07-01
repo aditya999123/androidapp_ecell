@@ -8,7 +8,6 @@ import android.view.WindowManager;
 
 import app.startups.nitrr.ecell.ecellapp.R;
 import app.startups.nitrr.ecell.ecellapp.helper.SharedPrefs;
-import app.startups.nitrr.ecell.ecellapp.home.view.Home;
 import app.startups.nitrr.ecell.ecellapp.welcome.Welcome;
 
 public class SplashScreen extends AppCompatActivity {

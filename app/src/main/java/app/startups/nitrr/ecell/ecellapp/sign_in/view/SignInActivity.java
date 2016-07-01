@@ -95,7 +95,7 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
             startActivity(intent);
             finish();
         } else {
-
+            Log.d(TAG, "Failed");
         }
     }
 

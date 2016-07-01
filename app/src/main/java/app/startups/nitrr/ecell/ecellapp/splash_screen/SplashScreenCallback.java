@@ -5,6 +5,6 @@ package app.startups.nitrr.ecell.ecellapp.splash_screen;
  */
 public interface SplashScreenCallback {
 
-public void onTaskCompleted();
+    public void onTaskCompleted();
 
 }
