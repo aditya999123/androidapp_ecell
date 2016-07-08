@@ -1,11 +1,11 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
-<!--
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        &lt;!&ndash; Customize your theme here. &ndash;&gt;
-        </style>
--->
+    <!--
+        <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+            &lt;!&ndash; Customize your theme here. &ndash;&gt;
+            </style>
+    -->
     <style name="MyMaterialTheme" parent="MyMaterialTheme.Base">
 
     </style>
@@ -18,9 +18,27 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
         <item name="colorControlHighlight">@color/colorAccent_26_alpha</item>
-        </style>
+        <item name="android:textViewStyle">@style/RobotoTextViewStyle</item>
+    </style>
+
+
+    <style name="RobotoTextViewStyle" parent="android:Widget.TextView">
+        <item name="android:fontFamily" tools:ignore="NewApi">sans-serif-condensed</item>
+    </style>
 
     <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
         <item name="color">@android:color/white</item>
     </style>
+
+    <style name="FacebookLoginButton">
+        <item name="android:textSize">@dimen/smallTxtSize</item>
+        <item name="android:background">@drawable/com_facebook_button_background</item>
+        <item name="android:layout_marginRight">16dp</item>
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:elevation" tools:targetApi="lollipop">2dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <dimen name="smallTxtSize">14dp</dimen>
 </resources>
