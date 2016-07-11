@@ -1,4 +1,4 @@
-package app.startups.nitrr.ecell.ecellapp.welcome;
+package app.startups.nitrr.ecell.ecellapp.welcome.view;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -19,9 +19,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.MediaController;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -48,8 +46,6 @@ import com.google.android.gms.common.api.Scope;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -57,29 +53,45 @@ import app.startups.nitrr.ecell.ecellapp.R;
 import app.startups.nitrr.ecell.ecellapp.helper.SharedPrefs;
 import app.startups.nitrr.ecell.ecellapp.home.view.Home;
 import app.startups.nitrr.ecell.ecellapp.sign_in.view.SignInActivity;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
-public class Welcome extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
+public class WelcomeActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, WelcomeView {
 
-    Timer swipeTimer;
-    int NUM_PAGES = 4;
-    private ViewPager viewPager;
+
+    @BindView(R.id.view_pager)
+    ViewPager viewPager;
+
+    @BindView(R.id.layoutDots)
+    LinearLayout dotsLayout;
+
+    @BindView(R.id.login_button)
+    LoginButton facebookLoginButton;
+
+    @BindView(R.id.picture)
+    ProfilePictureView profilePictureView;
+
+    @BindView(R.id.share)
+    Button share;
+
+    @BindView(R.id.details)
+    Button details;
+
+
+    private Timer swipeTimer;
+    private int NUM_PAGES = 4;
     private MyViewPagerAdapter myViewPagerAdapter;
-    private LinearLayout dotsLayout;
     private TextView[] dots;
     private int[] layouts;
     private static final int RC_SIGN_IN = 100;
     private static final String TAG = "Google Sign in";
     private GoogleApiClient mGoogleApiClient;
-    private TextView name;
 
-    private Button btnSkip;
+    private TextView name;
     private SharedPrefs sharedPrefs;
-    private MediaController mediaController;
 
     CallbackManager callbackManager;
-    Button share, details;
     ShareDialog shareDialog;
-    LoginButton login;
     ProfilePictureView profile;
     Dialog details_dialog;
     TextView details_txt;
@@ -87,7 +99,6 @@ public class Welcome extends AppCompatActivity implements GoogleApiClient.OnConn
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Checking fuor first time launch - before calling setContentView()
         sharedPrefs = new SharedPrefs(this);
         sharedPrefs.setFirstTimeLaunch(true);
         if (!sharedPrefs.isFirstTimeLaunch()) {
@@ -98,20 +109,16 @@ public class Welcome extends AppCompatActivity implements GoogleApiClient.OnConn
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         }
-        FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_welcome);
-        if (mediaController == null) {
-            mediaController = new MediaController(Welcome.this);
-        }
-        viewPager = (ViewPager) findViewById(R.id.view_pager);
-        dotsLayout = (LinearLayout) findViewById(R.id.layoutDots);
-        btnSkip = (Button) findViewById(R.id.btn_skip);
+        ButterKnife.bind(this);
+
+        FacebookSdk.sdkInitialize(getApplicationContext());
+
 
         ViewPager.OnPageChangeListener viewPagerPageChangeListener = new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
                 addBottomDots(position);
-                // changing the next button text 'NEXT' / 'GOT IT'
             }
 
             @Override
@@ -138,13 +145,6 @@ public class Welcome extends AppCompatActivity implements GoogleApiClient.OnConn
         myViewPagerAdapter = new MyViewPagerAdapter();
         viewPager.setAdapter(myViewPagerAdapter);
         viewPager.addOnPageChangeListener(viewPagerPageChangeListener);
-        btnSkip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent in = new Intent(Welcome.this, SignInActivity.class);
-                startActivity(in);
-            }
-        });
         swipeTimer = new Timer();
         swipeTimer.schedule(new TimerTask() {
 
@@ -196,12 +196,8 @@ public class Welcome extends AppCompatActivity implements GoogleApiClient.OnConn
 
 
         callbackManager = CallbackManager.Factory.create();
-        login = (LoginButton) findViewById(R.id.login_button);
-        profile = (ProfilePictureView) findViewById(R.id.picture);
         shareDialog = new ShareDialog(this);
-        share = (Button) findViewById(R.id.share);
-        details = (Button) findViewById(R.id.details);
-        login.setReadPermissions("public_profile email");
+        facebookLoginButton.setReadPermissions("public_profile email");
         details_dialog = new Dialog(this);
         details_dialog.setContentView(R.layout.fb_dialog_details);
         details_dialog.setTitle("Details");
@@ -220,7 +216,7 @@ public class Welcome extends AppCompatActivity implements GoogleApiClient.OnConn
             details.setVisibility(View.VISIBLE);
         }
 */
-        login.setOnClickListener(new View.OnClickListener() {
+        facebookLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (AccessToken.getCurrentAccessToken() != null) {
@@ -239,7 +235,7 @@ public class Welcome extends AppCompatActivity implements GoogleApiClient.OnConn
 
             }
         });
-        login.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+        facebookLoginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
 
@@ -284,9 +280,10 @@ public class Welcome extends AppCompatActivity implements GoogleApiClient.OnConn
 
     private void launchHomeScreen() {
         sharedPrefs.setFirstTimeLaunch(false);
-        startActivity(new Intent(Welcome.this, SignInActivity.class));
+        startActivity(new Intent(WelcomeActivity.this, SignInActivity.class));
         // finish();
     }
+
     @Override
     public void onUserInteraction() {
         super.onUserInteraction();
@@ -304,6 +301,16 @@ public class Welcome extends AppCompatActivity implements GoogleApiClient.OnConn
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(Color.TRANSPARENT);
         }
+    }
+
+    @Override
+    public void requestLogin() {
+
+    }
+
+    @Override
+    public void showProgressDialog(boolean show) {
+
     }
 
     /**
@@ -357,6 +364,7 @@ public class Welcome extends AppCompatActivity implements GoogleApiClient.OnConn
             handleSignInResult(result);
             Log.i(TAG, "Google plus signin ");
         } else {
+
             callbackManager.onActivityResult(requestCode, resultCode, data);
             Log.i(TAG, "Facebook sign in");
 
@@ -375,7 +383,7 @@ public class Welcome extends AppCompatActivity implements GoogleApiClient.OnConn
             sharedPrefs.setUserId(acct.getId());
             sharedPrefs.setUsername(acct.getDisplayName());
             sharedPrefs.setLogin(true);
-            Intent intent = new Intent(Welcome.this, Home.class);
+            Intent intent = new Intent(WelcomeActivity.this, Home.class);
             startActivity(intent);
             finish();
         } else {
@@ -386,6 +394,7 @@ public class Welcome extends AppCompatActivity implements GoogleApiClient.OnConn
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+        // Do nothing for now !
 
     }
 

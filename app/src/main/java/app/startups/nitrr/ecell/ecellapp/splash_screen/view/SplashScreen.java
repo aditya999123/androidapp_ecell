@@ -8,7 +8,7 @@ import android.view.WindowManager;
 
 import app.startups.nitrr.ecell.ecellapp.R;
 import app.startups.nitrr.ecell.ecellapp.helper.SharedPrefs;
-import app.startups.nitrr.ecell.ecellapp.welcome.Welcome;
+import app.startups.nitrr.ecell.ecellapp.welcome.view.WelcomeActivity;
 
 public class SplashScreen extends AppCompatActivity {
 
@@ -27,11 +27,11 @@ public class SplashScreen extends AppCompatActivity {
             public void run() {
 
                 if (sharedPrefs.isLoggedIn()) {
-                    Intent in = new Intent(SplashScreen.this, Welcome.class);
+                    Intent in = new Intent(SplashScreen.this, WelcomeActivity.class);
                     startActivity(in);
                     finish();
                 } else {
-                    Intent signIn = new Intent(SplashScreen.this, Welcome.class);
+                    Intent signIn = new Intent(SplashScreen.this, WelcomeActivity.class);
                     startActivity(signIn);
                     finish();
 
