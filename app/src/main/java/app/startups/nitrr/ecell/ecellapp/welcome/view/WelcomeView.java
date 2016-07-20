@@ -6,6 +6,8 @@ package app.startups.nitrr.ecell.ecellapp.welcome.view;
 public interface WelcomeView {
 
     void requestLogin();
+
     void showProgressDialog(boolean show);
 
+    void isLoggedIn(boolean show);
 }

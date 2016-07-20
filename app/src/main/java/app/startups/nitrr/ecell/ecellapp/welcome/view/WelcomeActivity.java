@@ -53,6 +53,9 @@ import app.startups.nitrr.ecell.ecellapp.R;
 import app.startups.nitrr.ecell.ecellapp.helper.SharedPrefs;
 import app.startups.nitrr.ecell.ecellapp.home.view.Home;
 import app.startups.nitrr.ecell.ecellapp.sign_in.view.SignInActivity;
+import app.startups.nitrr.ecell.ecellapp.welcome.model.MockSignInProvider;
+import app.startups.nitrr.ecell.ecellapp.welcome.presenter.SignInPresenter;
+import app.startups.nitrr.ecell.ecellapp.welcome.presenter.SignInPresenterImpl;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -78,6 +81,7 @@ public class WelcomeActivity extends AppCompatActivity implements GoogleApiClien
     Button details;
 
 
+    private SignInPresenter signInPresenter;
     private Timer swipeTimer;
     private int NUM_PAGES = 4;
     private MyViewPagerAdapter myViewPagerAdapter;
@@ -105,12 +109,16 @@ public class WelcomeActivity extends AppCompatActivity implements GoogleApiClien
             launchHomeScreen();
             finish();
         }
+
         // Making notification bar transparent
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         }
         setContentView(R.layout.activity_welcome);
+
+
         ButterKnife.bind(this);
+        signInPresenter = new SignInPresenterImpl(this, new MockSignInProvider());
 
         FacebookSdk.sdkInitialize(getApplicationContext());
 
@@ -187,6 +195,7 @@ public class WelcomeActivity extends AppCompatActivity implements GoogleApiClien
                 .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
+        assert signInButton != null;
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -313,6 +322,11 @@ public class WelcomeActivity extends AppCompatActivity implements GoogleApiClien
 
     }
 
+    @Override
+    public void isLoggedIn(boolean show) {
+
+    }
+
     /**
      * View pager adapter
      */
@@ -374,18 +388,22 @@ public class WelcomeActivity extends AppCompatActivity implements GoogleApiClien
     private void handleSignInResult(GoogleSignInResult result) {
         Log.d(TAG, "handleSignInResult:" + result.isSuccess());
         if (result.isSuccess()) {
+
             Log.d(TAG, "Success");
+
 
             // Signed in successfully, show authenticated UI.
             GoogleSignInAccount acct = result.getSignInAccount();
-
+            signInPresenter.requestSignIn(acct.getId(),acct.getDisplayName(),acct.getEmail(),null,1);
             sharedPrefs.setEmailId(acct.getEmail());
             sharedPrefs.setUserId(acct.getId());
             sharedPrefs.setUsername(acct.getDisplayName());
             sharedPrefs.setLogin(true);
+/*
             Intent intent = new Intent(WelcomeActivity.this, Home.class);
             startActivity(intent);
             finish();
+*/
         } else {
 
             Log.d(TAG, "Failed");

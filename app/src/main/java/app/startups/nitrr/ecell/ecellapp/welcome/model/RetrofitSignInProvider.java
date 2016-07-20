@@ -1,11 +1,11 @@
 package app.startups.nitrr.ecell.ecellapp.welcome.model;
 
 import app.startups.nitrr.ecell.ecellapp.helper.Urls;
+import app.startups.nitrr.ecell.ecellapp.welcome.OnSignInCallback;
 import app.startups.nitrr.ecell.ecellapp.welcome.model.data.SignInData;
-import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.Url;
 import rx.Observable;
 
 /**
@@ -15,7 +15,7 @@ public class RetrofitSignInProvider implements SignInProvider {
 
     private Retrofit retrofit;
 
-    RetrofitSignInProvider(){
+    RetrofitSignInProvider() {
       /*  HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
@@ -23,16 +23,18 @@ public class RetrofitSignInProvider implements SignInProvider {
 
         retrofit = new Retrofit.Builder()
                 .baseUrl(Urls.BASE_URL)
-  //              .client(client)
+                //              .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
-        orderDetailsRequestApi = retrofit.create(OrderDetailsRequestApi.class);
+        //     orderDetailsRequestApi = retrofit.create(OrderDetailsRequestApi.class);
 
     }
 
     @Override
-    public Observable<SignInData> requestSignIn(String userId, String username, String email, String profilePhoto, String profileUrl, int signInType) {
+    public Observable<SignInData> requestSignIn(String userId, String username, String email, String profilePhoto, int signInType, OnSignInCallback onSignInCallback) {
+
+
         return null;
     }
 }
