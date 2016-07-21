@@ -9,7 +9,7 @@ public class RetrofitSignInProvider implements SignInProvider {
 
 
     @Override
-    public void requestSignIn() {
+    public void requestSignIn(String userId) {
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {

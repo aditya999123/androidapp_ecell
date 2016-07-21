@@ -1,7 +1,6 @@
 package app.startups.nitrr.ecell.ecellapp.welcome.model;
 
 import app.startups.nitrr.ecell.ecellapp.helper.Urls;
-import app.startups.nitrr.ecell.ecellapp.welcome.OnSignInCallback;
 import app.startups.nitrr.ecell.ecellapp.welcome.model.data.SignInData;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -32,7 +31,8 @@ public class RetrofitSignInProvider implements SignInProvider {
     }
 
     @Override
-    public Observable<SignInData> requestSignIn(String userId, String username, String email, String profilePhoto, int signInType, OnSignInCallback onSignInCallback) {
+    public Observable<SignInData> requestSignIn(String userId, String username, String email,
+                                                String profilePhoto, int signInType) {
 
 
         return null;

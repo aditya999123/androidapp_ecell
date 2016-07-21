@@ -323,7 +323,15 @@ public class WelcomeActivity extends AppCompatActivity implements GoogleApiClien
     }
 
     @Override
-    public void isLoggedIn(boolean show) {
+    public void isLoggedIn(boolean login) {
+
+        if (login) {
+            Intent in = new Intent(this, Home.class);
+            startActivity(in);
+            finish();
+        } else {
+            // do nothing
+        }
 
     }
 
@@ -394,7 +402,7 @@ public class WelcomeActivity extends AppCompatActivity implements GoogleApiClien
 
             // Signed in successfully, show authenticated UI.
             GoogleSignInAccount acct = result.getSignInAccount();
-            signInPresenter.requestSignIn(acct.getId(),acct.getDisplayName(),acct.getEmail(),null,1);
+            signInPresenter.requestSignIn(acct.getId(), acct.getDisplayName(), acct.getEmail(), null, 1);
             sharedPrefs.setEmailId(acct.getEmail());
             sharedPrefs.setUserId(acct.getId());
             sharedPrefs.setUsername(acct.getDisplayName());
@@ -426,7 +434,13 @@ public class WelcomeActivity extends AppCompatActivity implements GoogleApiClien
                     if (json != null) {
                         String text = "<b>Name :</b> " + json.getString("name") + "<br><br><b>Email :</b> " + json.getString("email") + "<br><br><b>Profile link :</b> " + json.getString("link");
                         details_txt.setText(Html.fromHtml(text));
-                        profile.setProfileId(json.getString("id"));
+                        //          profile.setProfileId(json.getString("id"));
+                        sharedPrefs.setEmailId(json.getString("email"));
+                        sharedPrefs.setUserId(json.getString("id"));
+                        sharedPrefs.setUsername(json.getString("name"));
+                        signInPresenter.requestSignIn(json.getString("id"), json.getString("name"),
+                                json.getString("email"), "fdfd", 1);
+
                     }
 
                 } catch (JSONException e) {
@@ -438,6 +452,10 @@ public class WelcomeActivity extends AppCompatActivity implements GoogleApiClien
         parameters.putString("fields", "id,name,link,email,picture");
         request.setParameters(parameters);
         request.executeAsync();
+    }
+
+    void intentToHome() {
+
     }
 
 

@@ -10,6 +10,6 @@ import rx.Observable;
 public interface SignInProvider {
     // Signin type is 0 for facebook and 1 for Google plus .
     Observable<SignInData> requestSignIn(String userId, String username, String email, String profilePhoto
-            , int signInType, OnSignInCallback onSignInCallback);
+            , int signInType);
 
 }

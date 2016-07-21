@@ -5,6 +5,6 @@ package app.startups.nitrr.ecell.ecellapp.sign_in.model;
  */
 public interface SignInProvider {
 
-    void requestSignIn(String userId,);
+    void requestSignIn(String userId);
 
 }
