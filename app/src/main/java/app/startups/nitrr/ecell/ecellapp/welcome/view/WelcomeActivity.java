@@ -1,6 +1,7 @@
 package app.startups.nitrr.ecell.ecellapp.welcome.view;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -20,6 +21,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -312,13 +314,21 @@ public class WelcomeActivity extends AppCompatActivity implements GoogleApiClien
         }
     }
 
-    @Override
-    public void requestLogin() {
-
-    }
 
     @Override
     public void showProgressDialog(boolean show) {
+
+        if (show) {
+            ProgressDialog progressDialog = new ProgressDialog(this);
+            progressDialog.setMessage("Loading .\n Please Wait . . .");
+            progressDialog.setTitle("Setting up few things - Login");
+            progressDialog.setIndeterminate(true);
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+        } else {
+
+        }
+
 
     }
 
@@ -330,10 +340,23 @@ public class WelcomeActivity extends AppCompatActivity implements GoogleApiClien
             startActivity(in);
             finish();
         } else {
+            sharedPrefs.setLogin(false);
+            sharedPrefs.setUsername("");
+            sharedPrefs.setUserId("");
+            sharedPrefs.setEmailId("");
+            sharedPrefs.setPhotoUrl("");
+
             // do nothing
         }
 
     }
+
+    @Override
+    public void showMessage(String message) {
+
+        Toast.makeText(WelcomeActivity.this, message, Toast.LENGTH_SHORT).show();
+    }
+
 
     /**
      * View pager adapter
@@ -435,12 +458,14 @@ public class WelcomeActivity extends AppCompatActivity implements GoogleApiClien
                         String text = "<b>Name :</b> " + json.getString("name") + "<br><br><b>Email :</b> " + json.getString("email") + "<br><br><b>Profile link :</b> " + json.getString("link");
                         details_txt.setText(Html.fromHtml(text));
                         //          profile.setProfileId(json.getString("id"));
+
+                        signInPresenter.requestSignIn(json.getString("id"), json.getString("name"),
+                                json.getString("email"), "https://graph.facebook.com/" + json.getString("id") + "/picture?type=large", 1);
+
                         sharedPrefs.setEmailId(json.getString("email"));
                         sharedPrefs.setUserId(json.getString("id"));
                         sharedPrefs.setUsername(json.getString("name"));
-                        signInPresenter.requestSignIn(json.getString("id"), json.getString("name"),
-                                json.getString("email"), "fdfd", 1);
-
+                        sharedPrefs.setLogin(true);
                     }
 
                 } catch (JSONException e) {
@@ -452,10 +477,6 @@ public class WelcomeActivity extends AppCompatActivity implements GoogleApiClien
         parameters.putString("fields", "id,name,link,email,picture");
         request.setParameters(parameters);
         request.executeAsync();
-    }
-
-    void intentToHome() {
-
     }
 
 

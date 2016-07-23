@@ -26,10 +26,9 @@ public class SignInPresenterImpl implements SignInPresenter {
     }
 
     @Override
-    public void requestSignIn(String userId, String userName, String email, String profilePhoto,
-                              int signInType) {
+    public void requestSignIn(String userId, String userName, String email, String profilePhoto,int signInType) {
 
-
+        welcomeView.showProgressDialog(true);
         observable = signInProvider.requestSignIn(userId, userName, email, profilePhoto, signInType);
 
 
@@ -43,12 +42,17 @@ public class SignInPresenterImpl implements SignInPresenter {
             @Override
             public void onError(Throwable e) {
 
+                e.printStackTrace();
+                welcomeView.showProgressDialog(false);
+                welcomeView.showMessage("Something went Wrong - Facing issues with servers");
             }
 
             @Override
             public void onNext(SignInData signInData) {
 
+                welcomeView.showProgressDialog(false);
                 welcomeView.isLoggedIn(true);
+                welcomeView.showMessage(signInData.getMessage());
             }
         });
 

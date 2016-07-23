@@ -13,14 +13,18 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.facebook.login.LoginManager;
+
 import java.util.List;
 
 import app.startups.nitrr.ecell.ecellapp.R;
 import app.startups.nitrr.ecell.ecellapp.blogs.view.Blogs;
+import app.startups.nitrr.ecell.ecellapp.helper.SharedPrefs;
 import app.startups.nitrr.ecell.ecellapp.home.model.MockHomeDetailsProvider;
 import app.startups.nitrr.ecell.ecellapp.home.model.data.HomeDetails;
 import app.startups.nitrr.ecell.ecellapp.home.presenter.HomePresenter;
 import app.startups.nitrr.ecell.ecellapp.home.presenter.HomePresenterImpl;
+import app.startups.nitrr.ecell.ecellapp.welcome.view.WelcomeActivity;
 
 
 public class Home extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener, HomeInterface {
@@ -37,6 +41,7 @@ public class Home extends AppCompatActivity implements FragmentDrawer.FragmentDr
     private FragmentDrawer drawerFragment;
     private HomeDetailsAdapter homeDetailsAdapter;
     private HomePresenter homePresenter;
+    private SharedPrefs sharedPrefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +67,7 @@ public class Home extends AppCompatActivity implements FragmentDrawer.FragmentDr
     }
 
     private void initialize() {
+        sharedPrefs = new SharedPrefs(this);
         homePresenter = new HomePresenterImpl(this, new MockHomeDetailsProvider());
         homeDetailsAdapter = new HomeDetailsAdapter(this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -102,6 +108,23 @@ public class Home extends AppCompatActivity implements FragmentDrawer.FragmentDr
                 finish();
   */
                 break;
+            case 6:
+                break;
+            case 7:
+                break;
+            case 8:
+                break;
+            case 9:
+                sharedPrefs.setLogin(false);
+                sharedPrefs.setUsername("");
+                sharedPrefs.setEmailId("");
+                sharedPrefs.setPhotoUrl("");
+                sharedPrefs.setUserId("");
+                LoginManager.getInstance().logOut();
+                Intent intent = new Intent(this, WelcomeActivity.class);
+                startActivity(intent);
+                finish();
+                break;
             default:
                 break;
         }
@@ -133,10 +156,5 @@ public class Home extends AppCompatActivity implements FragmentDrawer.FragmentDr
 
     }
 
-    protected void showSubCategory(int subCategoryId) {
-        //    Intent in = new Intent(Home.this, SubCategoryActivity.class);
-        //    in.putExtra(Keys.KEY_CATEGORY_ID,subCategoryId);
-        //    startActivity(in);
 
-    }
 }
