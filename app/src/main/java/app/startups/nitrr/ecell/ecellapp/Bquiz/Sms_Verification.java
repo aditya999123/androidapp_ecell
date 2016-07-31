@@ -67,7 +67,7 @@ public class Sms_Verification extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
             // Showing progress dialog
-
+//iket test
             pDialog.setMessage("Please wait...");
             pDialog.setCancelable(false);
             pDialog.show();
