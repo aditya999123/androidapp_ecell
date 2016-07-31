@@ -30,7 +30,37 @@
     <string name="welcome_name">Welcome , Meghal</string>
     <string name="welcome_quote">Hi ! Hope you\'r doing super duper . \\n We at E-Cell will try to keep you motivated . \\n We Love startups . Seriously ! :)</string>
     <string name="activity_blogs">Blogs</string>
+    <string name="email">Email Textview</string>
 
+    <string name="prompt">Choose semester</string>
+    <string-array name="sem_ar">
+        <item>--Select Semester</item>
+        <item>1st</item>
+        <item>2nd</item>
+        <item>3rd</item>
+        <item>4th</item>
+        <item>5th</item>
+        <item>6th</item>
+        <item>7th</item>
+        <item>8th</item>
+    </string-array>
+
+    <string-array name="branch_ar">
+        <item>--Select Branch</item>
+        <item>Archietecture</item>
+        <item>BioMed Engineering</item>
+        <item>Biotech Engineering</item>
+        <item>Chemical Engineering</item>
+        <item>Civil Engineering</item>
+        <item>CSE</item>
+        <item>Electrical Engineering</item>
+        <item>Electronics and Telecommunication</item>
+        <item>Information Technology</item>
+        <item>Mechanical Engineering</item>
+        <item>Metallurgy</item>
+        <item>Mining</item>
+        <item>MCA</item>
+    </string-array>
     <!-- navigation drawer item labels  -->
     <string-array name="nav_drawer_labels">
         <item></item>

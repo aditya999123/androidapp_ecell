@@ -54,7 +54,7 @@ import java.util.TimerTask;
 import app.startups.nitrr.ecell.ecellapp.R;
 import app.startups.nitrr.ecell.ecellapp.helper.SharedPrefs;
 import app.startups.nitrr.ecell.ecellapp.home.view.Home;
-import app.startups.nitrr.ecell.ecellapp.sign_in.view.SignInActivity;
+import app.startups.nitrr.ecell.ecellapp.set_up_profile.view.SetUpProfile;
 import app.startups.nitrr.ecell.ecellapp.welcome.model.MockSignInProvider;
 import app.startups.nitrr.ecell.ecellapp.welcome.presenter.SignInPresenter;
 import app.startups.nitrr.ecell.ecellapp.welcome.presenter.SignInPresenterImpl;
@@ -106,11 +106,6 @@ public class WelcomeActivity extends AppCompatActivity implements GoogleApiClien
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sharedPrefs = new SharedPrefs(this);
-        sharedPrefs.setFirstTimeLaunch(true);
-        if (!sharedPrefs.isFirstTimeLaunch()) {
-            launchHomeScreen();
-            finish();
-        }
 
         // Making notification bar transparent
         if (Build.VERSION.SDK_INT >= 21) {
@@ -289,12 +284,6 @@ public class WelcomeActivity extends AppCompatActivity implements GoogleApiClien
     }
 
 
-    private void launchHomeScreen() {
-        sharedPrefs.setFirstTimeLaunch(false);
-        startActivity(new Intent(WelcomeActivity.this, SignInActivity.class));
-        // finish();
-    }
-
     @Override
     public void onUserInteraction() {
         super.onUserInteraction();
@@ -430,7 +419,8 @@ public class WelcomeActivity extends AppCompatActivity implements GoogleApiClien
             sharedPrefs.setUserId(acct.getId());
             sharedPrefs.setUsername(acct.getDisplayName());
             sharedPrefs.setLogin(true);
-/*
+            sharedPrefs.setLoginType(0);
+            /*
             Intent intent = new Intent(WelcomeActivity.this, Home.class);
             startActivity(intent);
             finish();
@@ -459,13 +449,18 @@ public class WelcomeActivity extends AppCompatActivity implements GoogleApiClien
                         details_txt.setText(Html.fromHtml(text));
                         //          profile.setProfileId(json.getString("id"));
 
-                        signInPresenter.requestSignIn(json.getString("id"), json.getString("name"),
+                        Intent in = new Intent(WelcomeActivity.this, SetUpProfile.class);
+                        startActivity(in);
+                        finish();
+                    /*    signInPresenter.requestSignIn(json.getString("id"), json.getString("name"),
                                 json.getString("email"), "https://graph.facebook.com/" + json.getString("id") + "/picture?type=large", 1);
-
+*/
                         sharedPrefs.setEmailId(json.getString("email"));
                         sharedPrefs.setUserId(json.getString("id"));
                         sharedPrefs.setUsername(json.getString("name"));
+                        sharedPrefs.setLoginType(1);
                         sharedPrefs.setLogin(true);
+
                     }
 
                 } catch (JSONException e) {

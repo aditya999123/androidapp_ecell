@@ -16,7 +16,7 @@ public class SharedPrefs {
     private static final String KEY_EMAIL = "email";
     private static final String KEY_PHOTO_URL = "photoUrl";
     private static final String KEY_USER_ID = "userId";
-    private static final String IS_FIRST_TIME_LAUNCH = "firstTimeLaunch";
+    private static final String KEY_LOGIN_TYPE = "loginType";
 
 
     // LogCat tag
@@ -97,12 +97,12 @@ public class SharedPrefs {
         return pref.getString(KEY_EMAIL, "Not Available");
     }
 
-    public boolean isFirstTimeLaunch() {
-        return pref.getBoolean(IS_FIRST_TIME_LAUNCH, true);
+    public int getLoginType() {
+        return pref.getInt(KEY_LOGIN_TYPE, 0);
     }
 
-    public void setFirstTimeLaunch(boolean isFirstTime) {
-        editor.putBoolean(IS_FIRST_TIME_LAUNCH, isFirstTime);
+    public void setLoginType(int loginType) {
+        editor.putInt(KEY_LOGIN_TYPE, loginType);
         editor.commit();
     }
 

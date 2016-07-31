@@ -17,8 +17,11 @@ import com.facebook.login.LoginManager;
 
 import java.util.List;
 
+import app.startups.nitrr.ecell.ecellapp.Bquiz.LogIn;
 import app.startups.nitrr.ecell.ecellapp.R;
+import app.startups.nitrr.ecell.ecellapp.about_us.AboutUs;
 import app.startups.nitrr.ecell.ecellapp.blogs.view.Blogs;
+import app.startups.nitrr.ecell.ecellapp.events_json.view.EventPage;
 import app.startups.nitrr.ecell.ecellapp.helper.SharedPrefs;
 import app.startups.nitrr.ecell.ecellapp.home.model.MockHomeDetailsProvider;
 import app.startups.nitrr.ecell.ecellapp.home.model.data.HomeDetails;
@@ -79,7 +82,6 @@ public class Home extends AppCompatActivity implements FragmentDrawer.FragmentDr
 
     @Override
     public void onDrawerItemSelected(View view, int position) {
-        String title = getString(R.string.app_name);
         switch (position) {
             case 1:
                 // Do nothing .
@@ -95,9 +97,9 @@ public class Home extends AppCompatActivity implements FragmentDrawer.FragmentDr
 
                 break;
             case 4:
-           /*     Intent myOrders = new Intent(Home.this, MyOrders.class);
-                startActivity(myOrders);
-*/
+             Intent events = new Intent(Home.this,EventPage.class);
+                startActivity(events);
+
                 break;
 
             case 5:
@@ -111,16 +113,23 @@ public class Home extends AppCompatActivity implements FragmentDrawer.FragmentDr
             case 6:
                 break;
             case 7:
+                Intent bquiz=new Intent(Home.this,LogIn.class);
+                startActivity(bquiz);
                 break;
             case 8:
+                Intent about_us=new Intent(Home.this, AboutUs.class);
+                startActivity(about_us);
                 break;
             case 9:
+                if (sharedPrefs.getLoginType() == 1) {
+                    LoginManager.getInstance().logOut();
+                }
                 sharedPrefs.setLogin(false);
                 sharedPrefs.setUsername("");
                 sharedPrefs.setEmailId("");
                 sharedPrefs.setPhotoUrl("");
                 sharedPrefs.setUserId("");
-                LoginManager.getInstance().logOut();
+
                 Intent intent = new Intent(this, WelcomeActivity.class);
                 startActivity(intent);
                 finish();

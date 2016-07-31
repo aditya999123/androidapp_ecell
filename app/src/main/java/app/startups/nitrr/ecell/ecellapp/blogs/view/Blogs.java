@@ -22,7 +22,7 @@ import app.startups.nitrr.ecell.ecellapp.blogs.presenter.BlogsPresenterImpl;
 
 public class Blogs extends AppCompatActivity implements BlogsInterface {
 
-    private static final String TAG = "Blogs";
+    private static final String TAG = "Events";
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
     private BlogsPresenter blogsPresenter;

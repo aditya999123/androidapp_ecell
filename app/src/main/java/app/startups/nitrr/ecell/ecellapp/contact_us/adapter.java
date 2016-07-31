@@ -32,7 +32,7 @@ public class adapter extends RecyclerView.Adapter<adapter.contactViewHolder> {
     private ArrayList<datavar> item;
     private Button test;
     private Button callbtn;
-    ;
+
     private PopupWindow popupwindow;
     private LayoutInflater layoutInflater;
     private int lastPosition = -1;
