@@ -1,6 +1,7 @@
 package app.startups.nitrr.ecell.ecellapp.Bquiz;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,7 +34,15 @@ public class Sms_Verification extends AppCompatActivity {
                         name= getIntent().getExtras().getString("name").toString();
                         EditText num=(EditText)findViewById(R.id.num);
                         num1=num.getText().toString();
+                        if(num1.length()!=10)
+                        {
+                            Toast.makeText(Sms_Verification.this, "ENTER CORRECT MOBILE NUMBER!",
+                                    Toast.LENGTH_LONG).show();
+                        }
+                        else
+
                         new GetData().execute();
+
                     }
                 });
         btn1.setOnClickListener(
@@ -91,6 +101,13 @@ public class Sms_Verification extends AppCompatActivity {
                 JSONObject jsonRootObject = new JSONObject(jsonStr);
                 String s=jsonRootObject.optString("status").toString();
                 Log.d("Response",s);
+                if(s.equals("verified"))
+                {
+                    Intent in=new Intent(Sms_Verification.this,Bquiz_Intro.class);
+                    startActivity(in);
+                }
+                Toast.makeText(Sms_Verification.this, "ENTER CORRECT OTP",
+                        Toast.LENGTH_LONG).show();
 
             }
             catch (JSONException e)
@@ -155,6 +172,12 @@ public class Sms_Verification extends AppCompatActivity {
             // Dismiss the progress dialog
             if (pDialog.isShowing())
                 pDialog.dismiss();
+            EditText verify=(EditText)findViewById(R.id.verify);
+            verify.setVisibility(View.VISIBLE);
+            Button btn1=(Button)findViewById(R.id.btn1);
+            btn1.setVisibility(View.VISIBLE);
+            Button btn=(Button)findViewById(R.id.btn);
+            btn.setText("Resend Otp");
 
         }
 
