@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -44,6 +45,7 @@ import com.google.android.gms.common.Scopes;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.Scope;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -51,6 +53,7 @@ import org.json.JSONObject;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import app.startups.nitrr.ecell.ecellapp.Bquiz.jsonParser;
 import app.startups.nitrr.ecell.ecellapp.R;
 import app.startups.nitrr.ecell.ecellapp.helper.SharedPrefs;
 import app.startups.nitrr.ecell.ecellapp.home.view.Home;
@@ -92,7 +95,7 @@ public class WelcomeActivity extends AppCompatActivity implements GoogleApiClien
     private static final int RC_SIGN_IN = 100;
     private static final String TAG = "Google Sign in";
     private GoogleApiClient mGoogleApiClient;
-
+    String refreshedToken="";
     private TextView name;
     private SharedPrefs sharedPrefs;
 
@@ -106,6 +109,8 @@ public class WelcomeActivity extends AppCompatActivity implements GoogleApiClien
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sharedPrefs = new SharedPrefs(this);
+         refreshedToken = FirebaseInstanceId.getInstance().getToken();
+        new GetData().execute();
 
         // Making notification bar transparent
         if (Build.VERSION.SDK_INT >= 21) {
@@ -472,6 +477,56 @@ public class WelcomeActivity extends AppCompatActivity implements GoogleApiClien
         parameters.putString("fields", "id,name,link,email,picture");
         request.setParameters(parameters);
         request.executeAsync();
+    }
+
+    private class GetData extends AsyncTask<Void, Void, Void>
+    {
+        ProgressDialog pDialog = new ProgressDialog(WelcomeActivity.this);
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            // Showing progress dialog
+
+            pDialog.setMessage("Please wait...");
+            pDialog.setCancelable(false);
+            pDialog.show();
+
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            Log.d("Response","Beore sh"+name);
+            jsonParser sh = new jsonParser();
+
+
+
+            String url="";
+            url="http://192.168.0.133:8000/send_fcm/";
+            String jsonStr = sh.getJSONFromUrl(url);
+            Log.d("Response", "> " + jsonStr);
+            try
+            {
+                JSONObject jsonRootObject = new JSONObject(jsonStr);
+                String s=jsonRootObject.optString("success").toString();
+                Log.d("Response",s);
+
+            }
+            catch (JSONException e)
+            {
+                e.printStackTrace();
+            }
+            return null;
+
+
+        }
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+            // Dismiss the progress dialog
+            if (pDialog.isShowing())
+                pDialog.dismiss();
+
+        }
+
     }
 
 

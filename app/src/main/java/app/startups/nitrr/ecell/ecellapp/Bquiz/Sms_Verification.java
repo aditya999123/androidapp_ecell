@@ -18,7 +18,7 @@ import app.startups.nitrr.ecell.ecellapp.R;
 
 public class Sms_Verification extends AppCompatActivity {
 
-    String num1="",name="",lname="",email="",college="",branch="",sem="",otp="";
+    String num1="",name="",lname="",email="",college="",branch="",sem="",otp="",token="";
     int flg=1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +53,7 @@ public class Sms_Verification extends AppCompatActivity {
                         name= getIntent().getExtras().getString("name").toString();
                         lname= getIntent().getExtras().getString("lname").toString();
                         email= getIntent().getExtras().getString("email").toString();
+                        token=getIntent().getExtras().getString("token").toString();
                         college= getIntent().getExtras().getString("college").toString();
                         branch= getIntent().getExtras().getString("branch").toString();
                         sem= getIntent().getExtras().getString("sem").toString();
@@ -92,7 +93,7 @@ public class Sms_Verification extends AppCompatActivity {
 
 
             String url="";
-            url="http://192.168.0.110:8000/ver_otp/"+name+"/"+lname+"/"+email+"/"+"college"+"/"+branch+"/"+sem+"/"+num1+"/"+otp;
+            url="http://192.168.0.133:8000/ver_otp/"+name+"/"+lname+"/"+email+"/"+"college"+"/"+sem+"/"+branch+"/"+num1+"/"+otp+"/"+token;
 
             String jsonStr = sh.getJSONFromUrl(url);
             Log.d("Response", "> " + jsonStr);
@@ -104,19 +105,22 @@ public class Sms_Verification extends AppCompatActivity {
                 if(s.equals("verified"))
                 {
                     Intent in=new Intent(Sms_Verification.this,Bquiz_Intro.class);
+                    Log.d("Response", ">");
+                    startActivity(in);
+
+                }
+                else {
+                    Toast.makeText(Sms_Verification.this, "ENTER CORRECT OTP",
+                            Toast.LENGTH_LONG).show();
+                    Intent in=new Intent(Sms_Verification.this,Sms_Verification.class);
                     startActivity(in);
                 }
-                Toast.makeText(Sms_Verification.this, "ENTER CORRECT OTP",
-                        Toast.LENGTH_LONG).show();
-
             }
             catch (JSONException e)
             {
                 e.printStackTrace();
             }
             return null;
-
-
         }
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
@@ -149,7 +153,7 @@ public class Sms_Verification extends AppCompatActivity {
 
 
             String url="";
-             url="http://192.168.0.110:8000/get_otp/"+name+"/"+num1;
+             url="http://192.168.0.133:8000/get_otp/"+name+"/"+num1;
             String jsonStr = sh.getJSONFromUrl(url);
             Log.d("Response", "> " + jsonStr);
             try
