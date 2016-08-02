@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    >
+
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
+        android:padding="@dimen/padding_small"
+        android:layout_gravity="center"
+        android:layout_width="fill_parent"
+        android:layout_height="220dp"
+        card_view:cardCornerRadius="4dp">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_small"
+            android:layout_height="220dp">
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="100dp">
+                <ImageView
+                    android:layout_width="140dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/imgview1"
+                    android:padding="3dp"
+
+                    />
+                <LinearLayout
+                    android:layout_width="200dp"
+                    android:layout_height="100dp"
+                    android:orientation="vertical"
+                    android:layout_gravity="right"
+                    android:gravity="center"
+                    >
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="25dp"
+                        android:gravity="center"
+                        android:id="@+id/event_name"
+                        android:text="Event Name"
+                        />
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="25dp"
+                        android:id="@+id/date_time"
+                        android:gravity="center"
+                        android:text="Date/time"
+                        />
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="25dp"
+                        android:gravity="center"
+                        android:id="@+id/venue"
+                        android:text="Venue"
+                        />
+
+                </LinearLayout>
+            </LinearLayout>
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:id="@+id/description"
+                android:text="DESCRIPTION \n"
+
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                android:text="Read More..."
+                />
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:text="REGISTER"
+                android:layout_gravity="bottom"
+                style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+
+                />
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+</LinearLayout>

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "673271749369",
+    "firebase_url": "https://ecellapp-push.firebaseio.com",
+    "project_id": "ecellapp-push",
+    "storage_bucket": "ecellapp-push.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:673271749369:android:20d7cb43c90e2861",
+        "android_client_info": {
+          "package_name": "app.startups.nitrr.ecell.ecellapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "673271749369-emmd07499gc4h67spfv44rg16huktsj1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.startups.nitrr.ecell.ecellapp",
+            "certificate_hash": "76AFBD4CD02CCADFBE45892DB51D06C488B3F1AC"
+          }
+        },
+        {
+          "client_id": "673271749369-m9vtu78aldu4cfh1bfc021em04dlod49.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiiiFuA2vw6U0kiajfRceeA_Wu1rLNk6Y"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "673271749369-m9vtu78aldu4cfh1bfc021em04dlod49.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

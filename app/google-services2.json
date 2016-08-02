@@ -1,0 +1,35 @@
+{
+  "project_info": {
+    "project_number": "668510525152",
+    "project_id": "ecellapp-61b8a"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:668510525152:android:20d7cb43c90e2861",
+        "android_client_info": {
+          "package_name": "app.startups.nitrr.ecell.ecellapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4YZZPG8kqM4V198ZUWMvM-lpjfxAS-S0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
