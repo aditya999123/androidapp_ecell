@@ -19,10 +19,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
-
-
         <activity android:name=".home.view.Home" />
         <activity android:name=".welcome.view.WelcomeActivity" />
         <activity android:name=".events.Events" />
@@ -47,10 +43,11 @@
 
         <activity android:name=".set_up_profile.view.SetUpProfile" />
         <activity android:name=".events.view.ListOfEvents" />
-        <activity android:name=".events_json.view.EventPage"/>
+        <activity android:name=".events_json.view.EventPage" />
         <activity android:name=".Bquiz.LogIn" />
         <activity android:name=".Bquiz.Sms_Verification" />
-        <activity android:name=".Bquiz.Bquiz_Intro"></activity>
+        <activity android:name=".Bquiz.Bquiz_Intro" />
+        <activity android:name=".send_otp.view.SendOtp"></activity>
     </application>
 
 </manifest>
