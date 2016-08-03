@@ -45,14 +45,10 @@ public class LogIn extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar1);
         toolbar.setTitle("Log In");
-
+//iket
 
         Button otp = (Button) findViewById(R.id.next_button);
-
-
-
-
-        otp.setOnClickListener(
+           otp.setOnClickListener(
                 new View.OnClickListener()
                 {
                     public void onClick(View view)
