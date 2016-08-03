@@ -47,7 +47,8 @@
         <activity android:name=".Bquiz.LogIn" />
         <activity android:name=".Bquiz.Sms_Verification" />
         <activity android:name=".Bquiz.Bquiz_Intro" />
-        <activity android:name=".send_otp.view.SendOtp"></activity>
+        <activity android:name=".send_otp.view.SendOtp" />
+        <activity android:name=".Bquiz.BQuizQuestion"></activity>
     </application>
 
 </manifest>

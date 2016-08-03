@@ -21,7 +21,7 @@ import app.startups.nitrr.ecell.ecellapp.Bquiz.LogIn;
 import app.startups.nitrr.ecell.ecellapp.R;
 import app.startups.nitrr.ecell.ecellapp.about_us.AboutUs;
 import app.startups.nitrr.ecell.ecellapp.blogs.view.Blogs;
-import app.startups.nitrr.ecell.ecellapp.events_json.view.EventPage;
+import app.startups.nitrr.ecell.ecellapp.contact_us.ContactUs;
 import app.startups.nitrr.ecell.ecellapp.helper.SharedPrefs;
 import app.startups.nitrr.ecell.ecellapp.home.model.MockHomeDetailsProvider;
 import app.startups.nitrr.ecell.ecellapp.home.model.data.HomeDetails;
@@ -97,8 +97,8 @@ public class Home extends AppCompatActivity implements FragmentDrawer.FragmentDr
 
                 break;
             case 4:
-             Intent events = new Intent(Home.this,EventPage.class);
-                startActivity(events);
+            //Intent events = new Intent(Home.this,EventPage.class);
+              //  startActivity(events);
 
                 break;
 
@@ -111,10 +111,12 @@ public class Home extends AppCompatActivity implements FragmentDrawer.FragmentDr
   */
                 break;
             case 6:
-                break;
-            case 7:
                 Intent bquiz=new Intent(Home.this,LogIn.class);
                 startActivity(bquiz);
+                break;
+            case 7:
+                Intent contact=new Intent(Home.this,ContactUs.class);
+                startActivity(contact);
                 break;
             case 8:
                 Intent about_us=new Intent(Home.this, AboutUs.class);

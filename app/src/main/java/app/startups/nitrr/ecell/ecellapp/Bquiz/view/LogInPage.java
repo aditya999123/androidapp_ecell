@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,10 +14,9 @@ import android.widget.Toast;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import app.startups.nitrr.ecell.ecellapp.Bquiz.Sms_Verification;
+import app.startups.nitrr.ecell.ecellapp.Bquiz.presenter.DataRequest;
+import app.startups.nitrr.ecell.ecellapp.Bquiz.presenter.MyOnItemSelectedListener;
 import app.startups.nitrr.ecell.ecellapp.R;
 
 /**
@@ -28,10 +26,12 @@ public class LogInPage extends AppCompatActivity {
     String refreshedToken="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        int[] ar={1, 2, 3, 4, 5, 6, 7, 8};
+        int[] ar = {1, 2, 3, 4, 5, 6, 7, 8};
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
+        //for combo box that  are used
+
         final Spinner spinner = (Spinner) findViewById(R.id.Spinner01);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 this, R.array.sem_ar, android.R.layout.simple_spinner_item);
@@ -49,41 +49,34 @@ public class LogInPage extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar1);
         toolbar.setTitle("Log In");
 
-
         Button otp = (Button) findViewById(R.id.next_button);
 
-
-
-
         otp.setOnClickListener(
-                new View.OnClickListener()
-                {
-                    public void onClick(View view)
-                    {
+                new View.OnClickListener() {
+                    public void onClick(View view) {
+                        DataRequest dR = new DataRequest();
                         EditText mEdit = (EditText) findViewById(R.id.name);
-                        String name=mEdit.getText().toString();
-                        name=space(name);
+                        String name = mEdit.getText().toString();
+                        name = dR.space(name);
                         EditText mEdit1 = (EditText) findViewById(R.id.last_name);
-                        String lname=mEdit1.getText().toString();
-                        lname=space(lname);
+                        String lname = mEdit1.getText().toString();
+                        lname = dR.space(lname);
                         EditText mEdit2 = (EditText) findViewById(R.id.email_id);
-                        String email=mEdit2.getText().toString();
-                        email=space(email);
+                        String email = mEdit2.getText().toString();
+                        email = dR.space(email);
                         EditText mEdit3 = (EditText) findViewById(R.id.college);
-                        String college=mEdit3.getText().toString();
-                        college=space(college);
-                        String branch=spinner1.getSelectedItem().toString();
-                        branch=space(branch);
+                        String college = mEdit3.getText().toString();
+                        college = dR.space(college);
+                        String branch = spinner1.getSelectedItem().toString();
+                        branch = dR.space(branch);
                         refreshedToken = FirebaseInstanceId.getInstance().getToken();
-                        Log.d("Response",branch);
+                        Log.d("Response", branch);
 
-                        String sem=spinner.getSelectedItem().toString();
-                        if(emailInvalid(email))
-                        {
+                        String sem = spinner.getSelectedItem().toString();
+                        if (dR.emailInvalid(email)) {
                             Toast.makeText(LogInPage.this, "ENTER CORRECT EMAIL ID!",
                                     Toast.LENGTH_LONG).show();
-                        }
-                        else
+                        } else
 
 
                         {
@@ -94,56 +87,11 @@ public class LogInPage extends AppCompatActivity {
                             i.putExtra("college", college);
                             i.putExtra("branch", branch);
                             i.putExtra("sem", sem);
-                            i.putExtra("token",refreshedToken);
+                            i.putExtra("token", refreshedToken);
                             Log.d("Response", "" + name);
                             startActivity(i);
                         }
                     }
                 });
     }
-    boolean emailInvalid(String email)
-    {
-        Pattern pattern;
-        Matcher matcher;
-
-        final String EMAIL_PATTERN =
-                "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-                        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-        pattern = Pattern.compile(EMAIL_PATTERN);
-        matcher = pattern.matcher(email);
-        boolean a=matcher.matches();
-        return !a;
-    }
-    String space(String name)
-    {
-        char ch;String w="";
-        for(int i=0;i<name.length();i++)
-        {
-            ch=(char)name.charAt(i);
-            int j=(int)ch;
-            if(j!=32)
-                w=w+ch;
-            else
-                w=w+"%20";
-
-        }
-        return w;
-    }
-
-
-    private class MyOnItemSelectedListener implements android.widget.AdapterView.OnItemSelectedListener {
-
-        @Override
-        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-            Toast.makeText(parent.getContext(), "Item is " +
-                    parent.getItemAtPosition(position).toString(), Toast.LENGTH_LONG).show();
-        }
-
-        @Override
-        public void onNothingSelected(AdapterView<?> parent) {
-
-        }
-    }
-
-
 }
