@@ -22,6 +22,7 @@ import app.startups.nitrr.ecell.ecellapp.R;
 import app.startups.nitrr.ecell.ecellapp.about_us.AboutUs;
 import app.startups.nitrr.ecell.ecellapp.blogs.view.Blogs;
 import app.startups.nitrr.ecell.ecellapp.contact_us.ContactUs;
+import app.startups.nitrr.ecell.ecellapp.events.view.ListOfEvents;
 import app.startups.nitrr.ecell.ecellapp.helper.SharedPrefs;
 import app.startups.nitrr.ecell.ecellapp.home.model.MockHomeDetailsProvider;
 import app.startups.nitrr.ecell.ecellapp.home.model.data.HomeDetails;
@@ -97,8 +98,8 @@ public class Home extends AppCompatActivity implements FragmentDrawer.FragmentDr
 
                 break;
             case 4:
-            //Intent events = new Intent(Home.this,EventPage.class);
-              //  startActivity(events);
+            Intent events = new Intent(Home.this,ListOfEvents.class);
+                startActivity(events);
 
                 break;
 

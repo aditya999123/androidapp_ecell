@@ -27,7 +27,7 @@ public class Sms_Verification extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sms__verification);
         Button btn=(Button)findViewById(R.id.btn);
-        Button btn1=(Button)findViewById(R.id.btn1);
+        final Button btn1=(Button)findViewById(R.id.btn1);
         EditText url1=(EditText)findViewById(R.id.url);
         url=url1.getText().toString();
         btn.setOnClickListener(
@@ -44,11 +44,19 @@ public class Sms_Verification extends AppCompatActivity {
                                     Toast.LENGTH_LONG).show();
                         }
                         else
-
                         new GetData().execute();
-
                     }
                 });
+        SmsReceiver.bindListener(new SmsListener() {
+            @Override
+            public void messageReceived(String messageText) {
+                otp=messageText.substring(messageText.length()-4,messageText.length());
+                Log.d("Response",messageText);
+                Log.d("Response",otp);
+                Toast.makeText(Sms_Verification.this,"Otp- "+otp , Toast.LENGTH_LONG).show();
+                btn1.performClick();
+            }
+        });
         btn1.setOnClickListener(
                 new View.OnClickListener()
                 {
@@ -64,13 +72,13 @@ public class Sms_Verification extends AppCompatActivity {
 
                         EditText num=(EditText)findViewById(R.id.num);
                         EditText otp1=(EditText)findViewById(R.id.verify);
+                        if(otp==null)
                         otp=otp1.getText().toString();
                         num1=num.getText().toString();
                         new PutData().execute();
                     }
                 });
     }
-
     private class PutData extends AsyncTask<Void, Void, Void>
     {
         ProgressDialog pDialog = new ProgressDialog(Sms_Verification.this);
@@ -141,8 +149,6 @@ public class Sms_Verification extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... params) {
-
-
             String url2=url+"/get_otp/"+name+"/"+num1;
             Log.d("Response","Beore sh"+url);
             String jsonStr = sh.getJSONFromUrl(url2);
@@ -152,7 +158,6 @@ public class Sms_Verification extends AppCompatActivity {
                 JSONObject jsonRootObject = new JSONObject(jsonStr);
                 String s=jsonRootObject.optString("success").toString();
                 Log.d("Response",s);
-
             }
             catch (JSONException e)
             {
@@ -171,7 +176,6 @@ public class Sms_Verification extends AppCompatActivity {
             btn1.setVisibility(View.VISIBLE);
             Button btn=(Button)findViewById(R.id.btn);
             btn.setText("Resend Otp");
-
         }
 
     }

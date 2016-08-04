@@ -20,7 +20,6 @@ import java.util.regex.Pattern;
 
 import app.startups.nitrr.ecell.ecellapp.R;
 
-
 public class LogIn extends AppCompatActivity {
     String refreshedToken="";
     @Override

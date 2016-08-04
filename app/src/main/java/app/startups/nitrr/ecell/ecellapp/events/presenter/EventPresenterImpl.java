@@ -1,5 +1,7 @@
 package app.startups.nitrr.ecell.ecellapp.events.presenter;
 
+import android.util.Log;
+
 import java.util.List;
 
 import app.startups.nitrr.ecell.ecellapp.events.model.EventsProvider;
@@ -14,6 +16,7 @@ public class EventPresenterImpl implements EventsPresenter {
     private EventsProvider eventsProvider;
     private EventsInterface eventsInterface;
 
+
     public EventPresenterImpl(EventsInterface eventsInterface, EventsProvider eventsProvider) {
         this.eventsInterface=eventsInterface;
         this.eventsProvider=eventsProvider;
@@ -22,6 +25,7 @@ public class EventPresenterImpl implements EventsPresenter {
 
     @Override
     public void requestEvents() {
+        Log.d("Response","4");
 
         eventsInterface.ShowProgressBar(true);
         eventsProvider.requestEvents(new OnEventsReceived() {
@@ -30,15 +34,14 @@ public class EventPresenterImpl implements EventsPresenter {
 
                 eventsInterface.SetData(eventDataList);
                 eventsInterface.ShowProgressBar(false);
+                Log.d("Response","Success");
             }
 
             @Override
             public void onFailure() {
                 eventsInterface.ShowProgressBar(false);
-
+                Log.d("Response","Fail");
             }
         });
-
-
     }
 }

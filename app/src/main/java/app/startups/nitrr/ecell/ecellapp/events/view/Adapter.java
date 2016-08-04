@@ -21,16 +21,19 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
     private List<EventsData> EventDataList = new ArrayList<>();
     private Context context;
     private LayoutInflater layoutInflater;
+
    // private ImageLoader imageLoader;
 
     public Adapter(Context context) {
         this.context = context;
         layoutInflater = LayoutInflater.from(context);
+
       //  imageLoader = new GlideImageLoader(context);
     }
 
     public void setData(List<EventsData> EventDataList) {
         this.EventDataList = EventDataList;
+
         if (EventDataList == null) {
             Log.e(TAG, "null data set");
         } else {
@@ -52,7 +55,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
         EventsData eventData = EventDataList.get(position);
 
-        Log.i(TAG, "Adapter : " + EventDataList.get(0).getEventName());
+        Log.i("Response", "Adapter : " + EventDataList.get(0).getEventName());
         holder.event_name.setText(eventData.getEventName());
         holder.date_time.setText(eventData.getDate());
         holder.venue.setText(eventData.getVenue());
@@ -63,7 +66,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
     @Override
     public int getItemCount() {
-        return 0;
+        return this.EventDataList.size();
     }
 
     protected class MyViewHolder extends RecyclerView.ViewHolder {
