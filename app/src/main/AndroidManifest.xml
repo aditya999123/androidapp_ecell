@@ -15,7 +15,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/MyMaterialTheme">
-        <activity android:name=".splash_screen.view.SplashScreen">
+        <activity android:name=".splash_screen.view.SplashScreenActyivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

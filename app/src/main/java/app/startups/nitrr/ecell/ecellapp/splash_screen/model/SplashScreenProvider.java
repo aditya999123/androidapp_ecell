@@ -1,7 +1,7 @@
 package app.startups.nitrr.ecell.ecellapp.splash_screen.model;
 
 /**
- * Created by Meghal on 5/18/2016.
+ * Created by meghal on 6/8/16.
  */
-public class SplashScreenModel {
+public interface SplashScreenProvider {
 }

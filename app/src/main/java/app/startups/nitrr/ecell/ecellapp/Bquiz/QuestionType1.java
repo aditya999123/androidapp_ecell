@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 
 import app.startups.nitrr.ecell.ecellapp.R;
 
+import app.startups.nitrr.ecell.ecellapp.R;
+
 public class QuestionType1 extends AppCompatActivity {
 
     @Override
