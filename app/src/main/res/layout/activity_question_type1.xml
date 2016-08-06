@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
@@ -10,7 +10,14 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:weightSum="6"
-    tools:context="app.startups.nitrr.ecell.ecellapp.Bquiz.QuestionType1">
+    tools:context="app.startups.nitrr.ecell.ecellapp.LogIn.QuestionType1">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        >
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -36,7 +43,7 @@
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:text="2:05 left"
+            android:text="02:05 left"
             android:textSize="30dp"
             android:layout_weight="1.2"
             android:gravity="center"
@@ -61,6 +68,11 @@
             android:orientation="vertical"
             android:layout_weight="1"
             >
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/progress_bar1"
+                android:layout_centerInParent="true"/>
             <ImageView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -70,6 +82,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/question_text"
                 />
+
 
 
         </LinearLayout>
@@ -145,3 +158,4 @@
 
 
 </LinearLayout>
+</ScrollView>

@@ -1,4 +1,4 @@
-package app.startups.nitrr.ecell.ecellapp.Bquiz.model;
+package app.startups.nitrr.ecell.ecellapp.LogIn.model;
 
 /**
  * Created by Iket on 8/2/2016.

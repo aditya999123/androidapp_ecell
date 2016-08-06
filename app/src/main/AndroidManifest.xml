@@ -46,13 +46,13 @@
 
         <activity android:name=".set_up_profile.view.SetUpProfile" />
         <activity android:name=".events.view.ListOfEvents" />
-        <activity android:name=".Bquiz.LogIn" />
-        <activity android:name=".Bquiz.Sms_Verification" />
-        <activity android:name=".Bquiz.Bquiz_Intro" />
+        <activity android:name=".LogIn.LogIn" />
+        <activity android:name=".LogIn.Sms_Verification" />
+        <activity android:name=".LogIn.Bquiz_Intro" />
         <activity android:name=".send_otp.view.SendOtp" />
-        <activity android:name=".Bquiz.BQuizQuestion" />
+        <activity android:name=".LogIn.BQuizQuestion" />
 
-        <receiver android:name=".Bquiz.SmsReceiver">
+        <receiver android:name=".LogIn.SmsReceiver">
             <intent-filter>
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>

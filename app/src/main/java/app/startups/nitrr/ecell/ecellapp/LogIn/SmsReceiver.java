@@ -1,4 +1,4 @@
-package app.startups.nitrr.ecell.ecellapp.Bquiz;
+package app.startups.nitrr.ecell.ecellapp.LogIn;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

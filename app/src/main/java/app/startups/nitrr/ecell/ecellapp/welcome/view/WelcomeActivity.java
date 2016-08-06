@@ -53,7 +53,7 @@ import org.json.JSONObject;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import app.startups.nitrr.ecell.ecellapp.Bquiz.jsonParser;
+import app.startups.nitrr.ecell.ecellapp.LogIn.jsonParser;
 import app.startups.nitrr.ecell.ecellapp.R;
 import app.startups.nitrr.ecell.ecellapp.helper.SharedPrefs;
 import app.startups.nitrr.ecell.ecellapp.home.view.Home;
