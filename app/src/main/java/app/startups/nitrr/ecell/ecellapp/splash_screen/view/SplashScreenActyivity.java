@@ -11,7 +11,7 @@ import app.startups.nitrr.ecell.ecellapp.helper.SharedPrefs;
 import app.startups.nitrr.ecell.ecellapp.home.view.Home;
 import app.startups.nitrr.ecell.ecellapp.welcome.view.WelcomeActivity;
 
-public class SplashScreen extends AppCompatActivity {
+public class SplashScreenActyivity extends AppCompatActivity {
 
     private SharedPrefs sharedPrefs;
 
@@ -28,11 +28,11 @@ public class SplashScreen extends AppCompatActivity {
             public void run() {
 
                 if (sharedPrefs.isLoggedIn()) {
-                    Intent in = new Intent(SplashScreen.this, Home.class);
+                    Intent in = new Intent(SplashScreenActyivity.this, Home.class);
                     startActivity(in);
                     finish();
                 } else {
-                    Intent signIn = new Intent(SplashScreen.this, WelcomeActivity.class);
+                    Intent signIn = new Intent(SplashScreenActyivity.this, WelcomeActivity.class);
                     startActivity(signIn);
                     finish();
 

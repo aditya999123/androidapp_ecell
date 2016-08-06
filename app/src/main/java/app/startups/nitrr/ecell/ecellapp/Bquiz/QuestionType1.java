@@ -3,6 +3,8 @@ package app.startups.nitrr.ecell.ecellapp.Bquiz;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import app.startups.nitrr.ecell.ecellapp.R;
+
 public class QuestionType1 extends AppCompatActivity {
 
     @Override
