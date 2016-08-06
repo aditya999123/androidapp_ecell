@@ -116,10 +116,7 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
                 CountDown(time);
                 //add images in the activity
                 break;
-
         }
-
-
     }
 
     public void CountDown(int time) {
@@ -130,6 +127,7 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
             }
 
             public void onFinish() {
+
 
             }
         }.start();
