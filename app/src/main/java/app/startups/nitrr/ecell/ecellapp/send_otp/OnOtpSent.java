@@ -8,7 +8,7 @@ import app.startups.nitrr.ecell.ecellapp.send_otp.model.data.SendOtpData;
 public interface OnOtpSent {
 
 
-    void onSuccess(SendOtpData sendOtpData);
+     void onSuccess(SendOtpData sendOtpData);
 
-    void onFailed();
+     void onFailed();
 }

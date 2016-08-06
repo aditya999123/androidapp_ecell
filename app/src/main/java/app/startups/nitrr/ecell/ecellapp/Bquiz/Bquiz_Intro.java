@@ -19,7 +19,7 @@ String url="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("Response","1st");
+        Log.d("ResponseOtp","1st");
         setContentView(R.layout.activity_bquiz__intro);
         Button btn5=(Button)findViewById(R.id.playquiz);
 
@@ -47,46 +47,46 @@ String url="";
             pDialog.setMessage("Please wait...");
             pDialog.setCancelable(false);
             pDialog.show();
-            Log.d("Response","4th");
+            Log.d("ResponseOtp","4th");
         }
 
         @Override
         protected Void doInBackground(Void... params) {
             String url2=url+"/get_ques";
             jsonParser sh=new jsonParser();
-            Log.d("Response","5th");
+            Log.d("ResponseOtp","5th");
             String jsonStr = sh.getJSONFromUrl(url2);
-            Log.d("Response", "> " + jsonStr);
+            Log.d("ResponseOtp", "> " + jsonStr);
             try
             {
                 JSONObject jsonRootObject = new JSONObject(jsonStr);
                 int time=Integer.parseInt(jsonRootObject.optString("time").toString());
-                Log.d("Response", "> " + time+"\n");
+                Log.d("ResponseOtp", "> " + time+"\n");
                 int question_no=Integer.parseInt(jsonRootObject.optString("question_no").toString());
-                Log.d("Response", "> " +question_no+"\n");
+                Log.d("ResponseOtp", "> " +question_no+"\n");
                 String question=jsonRootObject.optString("question").toString();
                 String option1=jsonRootObject.optString("option1").toString();
-                Log.d("Response", "> " + question+"\n");
+                Log.d("ResponseOtp", "> " + question+"\n");
                 String option2=jsonRootObject.optString("option2").toString();
                 String option3=jsonRootObject.optString("option3").toString();
                 String option4=jsonRootObject.optString("option4").toString();
                 String message=jsonRootObject.optString("message").toString();
                 if(time<0)
                 {
-                    Log.d("Response",""+time+"\n"+question_no+"\n"+question+"\n"+option1+"\n"+option2+"\n"+option3+"\n"+option4+"\n"+message);
+                    Log.d("ResponseOtp",""+time+"\n"+question_no+"\n"+question+"\n"+option1+"\n"+option2+"\n"+option3+"\n"+option4+"\n"+message);
                 }
                 else if(time>0)
                 {
                     Intent in=new Intent(Bquiz_Intro.this,BQuizQuestion.class);
-                    Log.d("Response", ">");
+                    Log.d("ResponseOtp", ">");
                     in.putExtra("time",time);
                     in.putExtra("Message",message);
                     startActivity(in);
-                    Log.d("Response",""+time+"\n"+question_no+"\n"+question+"\n"+option1+"\n"+option2+"\n"+option3+"\n"+option4+"\n"+message);
+                    Log.d("ResponseOtp",""+time+"\n"+question_no+"\n"+question+"\n"+option1+"\n"+option2+"\n"+option3+"\n"+option4+"\n"+message);
                 }
                 else if(time==0)
                 {
-                    Log.d("Response",""+time+"\n"+question_no+"\n"+question+"\n"+option1+"\n"+option2+"\n"+option3+"\n"+option4+"\n"+message);
+                    Log.d("ResponseOtp",""+time+"\n"+question_no+"\n"+question+"\n"+option1+"\n"+option2+"\n"+option3+"\n"+option4+"\n"+message);
                 }
             }
             catch (JSONException e)

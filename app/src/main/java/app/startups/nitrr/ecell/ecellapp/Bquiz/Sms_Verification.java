@@ -47,16 +47,17 @@ public class Sms_Verification extends AppCompatActivity {
                         new GetData().execute();
                     }
                 });
-        SmsReceiver.bindListener(new SmsListener() {
+      /*  SmsReceiver.bindListener(new SmsListener() {
             @Override
             public void messageReceived(String messageText) {
                 otp=messageText.substring(messageText.length()-4,messageText.length());
-                Log.d("Response",messageText);
-                Log.d("Response",otp);
+                Log.d("ResponseOtp",messageText);
+                Log.d("ResponseOtp",otp);
                 Toast.makeText(Sms_Verification.this,"Otp- "+otp , Toast.LENGTH_LONG).show();
                 btn1.performClick();
             }
         });
+        */
         btn1.setOnClickListener(
                 new View.OnClickListener()
                 {
@@ -72,7 +73,6 @@ public class Sms_Verification extends AppCompatActivity {
 
                         EditText num=(EditText)findViewById(R.id.num);
                         EditText otp1=(EditText)findViewById(R.id.verify);
-                        if(otp==null)
                         otp=otp1.getText().toString();
                         num1=num.getText().toString();
                         new PutData().execute();
@@ -93,22 +93,22 @@ public class Sms_Verification extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... params) {
-            Log.d("Response",url);
+            Log.d("ResponseOtp",url);
 
            String  url2=url+"/ver_otp/"+name+"/"+lname+"/"+email+"/"+"college"+"/"+sem+"/"+branch+"/"+num1+"/"+otp+"/"+token;
-            Log.d("Response",url);
+            Log.d("ResponseOtp",url);
             String jsonStr = sh.getJSONFromUrl(url2);
-            Log.d("Response", "> " + jsonStr);
+            Log.d("ResponseOtp", "> " + jsonStr);
             try
             {
                 JSONObject jsonRootObject = new JSONObject(jsonStr);
                 String s=jsonRootObject.optString("status").toString();
-                Log.d("Response",s);
+                Log.d("ResponseOtp",s);
 
                 if(s.equals("verified"))
                 {
                     Intent in=new Intent(Sms_Verification.this,Bquiz_Intro.class);
-                    Log.d("Response", ">");
+                    Log.d("ResponseOtp", ">");
                     in.putExtra("url",url);
                     startActivity(in);
 
@@ -150,14 +150,14 @@ public class Sms_Verification extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... params) {
             String url2=url+"/get_otp/"+name+"/"+num1;
-            Log.d("Response","Beore sh"+url);
+            Log.d("ResponseOtp","Beore sh"+url);
             String jsonStr = sh.getJSONFromUrl(url2);
-            Log.d("Response", "> " + jsonStr);
+            Log.d("ResponseOtp", "> " + jsonStr);
             try
             {
                 JSONObject jsonRootObject = new JSONObject(jsonStr);
                 String s=jsonRootObject.optString("success").toString();
-                Log.d("Response",s);
+                Log.d("ResponseOtp",s);
             }
             catch (JSONException e)
             {

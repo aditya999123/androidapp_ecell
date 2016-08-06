@@ -58,6 +58,7 @@ public class SharedPrefs {
         editor.putString(KEY_USERNAME, username);
         editor.commit();
 
+
     }
 
     public void setEmailId(String emailId) {

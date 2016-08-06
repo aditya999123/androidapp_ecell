@@ -82,21 +82,21 @@ public class Sms_Verify extends AppCompatActivity {
         }
         @Override
         protected Void doInBackground(Void... params) {
-            Log.d("Response","Beore sh"+name);
+            Log.d("ResponseOtp","Beore sh"+name);
             jsonParser sh = new jsonParser();
             String url="";
             url="http://192.168.0.133:8000/ver_otp/"+name+"/"+lname+"/"+email+"/"+"college"+"/"+sem+"/"+branch+"/"+num1+"/"+otp+"/"+token;
             String jsonStr = sh.getJSONFromUrl(url);
-            Log.d("Response", "> " + jsonStr);
+            Log.d("ResponseOtp", "> " + jsonStr);
             try
             {
                 JSONObject jsonRootObject = new JSONObject(jsonStr);
                 String s=jsonRootObject.optString("status").toString();
-                Log.d("Response",s);
+                Log.d("ResponseOtp",s);
                 if(s.equals("verified"))
                 {
                     Intent in=new Intent(Sms_Verify.this,Bquiz_Intro.class);
-                    Log.d("Response", ">");
+                    Log.d("ResponseOtp", ">");
                     startActivity(in);
                 }
                 else {
@@ -136,7 +136,7 @@ public class Sms_Verify extends AppCompatActivity {
             String url="";
             url="http://192.168.0.133:8000/get_otp/"+name+"/"+num1;
             String jsonStr = sh.getJSONFromUrl(url);
-            Log.d("Response", "> " + jsonStr);
+            Log.d("ResponseOtp", "> " + jsonStr);
             try
             {
                 JSONObject jsonRootObject = new JSONObject(jsonStr);

@@ -25,7 +25,7 @@ public class EventPresenterImpl implements EventsPresenter {
 
     @Override
     public void requestEvents() {
-        Log.d("Response","4");
+        Log.d("ResponseOtp","4");
 
         eventsInterface.ShowProgressBar(true);
         eventsProvider.requestEvents(new OnEventsReceived() {
@@ -34,13 +34,13 @@ public class EventPresenterImpl implements EventsPresenter {
 
                 eventsInterface.SetData(eventDataList);
                 eventsInterface.ShowProgressBar(false);
-                Log.d("Response","Success");
+                Log.d("ResponseOtp","Success");
             }
 
             @Override
             public void onFailure() {
                 eventsInterface.ShowProgressBar(false);
-                Log.d("Response","Fail");
+                Log.d("ResponseOtp","Fail");
             }
         });
     }

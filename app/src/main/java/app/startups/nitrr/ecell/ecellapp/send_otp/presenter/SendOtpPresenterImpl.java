@@ -19,10 +19,10 @@ public class SendOtpPresenterImpl implements SendOtpPresenter{
     }
 
     @Override
-    public void sendOtp(String mobile) {
+    public void sendOtp(String mobile,String name,String url) {
 
         sendOtpView.showLoading(true);
-        otpProvider.sendOtp(mobile, new OnOtpSent() {
+        otpProvider.sendOtp(mobile,name,url,new OnOtpSent() {
 
 
             @Override
@@ -32,7 +32,6 @@ public class SendOtpPresenterImpl implements SendOtpPresenter{
 
             @Override
             public void onFailed() {
-
                 sendOtpView.showLoading(false);
                 sendOtpView.showMessage("Failed");
             }

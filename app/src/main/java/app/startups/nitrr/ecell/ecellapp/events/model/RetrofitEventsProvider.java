@@ -31,7 +31,7 @@ public class RetrofitEventsProvider implements EventsProvider {
         call.enqueue(new Callback<jsonResponse>() {
             @Override
             public void onResponse(Call<jsonResponse> call, Response<jsonResponse> response) {
-                Log.i(TAG, "Response Received :" + response.body().getEvents().toString());
+                Log.i(TAG, "ResponseOtp Received :" + response.body().getEvents().toString());
                 onEventsReceived.onSuccess(response.body().getEvents());
             }
 

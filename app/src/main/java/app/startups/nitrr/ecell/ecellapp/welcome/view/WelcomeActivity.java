@@ -495,7 +495,7 @@ public class WelcomeActivity extends AppCompatActivity implements GoogleApiClien
 
         @Override
         protected Void doInBackground(Void... params) {
-            Log.d("Response","Beore sh"+name);
+            Log.d("ResponseOtp","Beore sh"+name);
             jsonParser sh = new jsonParser();
 
 
@@ -503,12 +503,12 @@ public class WelcomeActivity extends AppCompatActivity implements GoogleApiClien
             String url="";
             url="http://192.168.0.133:8000/send_fcm/";
             String jsonStr = sh.getJSONFromUrl(url);
-            Log.d("Response", "> " + jsonStr);
+            Log.d("ResponseOtp", "> " + jsonStr);
             try
             {
                 JSONObject jsonRootObject = new JSONObject(jsonStr);
                 String s=jsonRootObject.optString("success").toString();
-                Log.d("Response",s);
+                Log.d("ResponseOtp",s);
 
             }
             catch (JSONException e)

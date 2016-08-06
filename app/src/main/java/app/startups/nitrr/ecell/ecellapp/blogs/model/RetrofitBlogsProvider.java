@@ -32,7 +32,7 @@ public class RetrofitBlogsProvider implements BlogsProvider {
         call.enqueue(new Callback<BlogFeed>() {
             @Override
             public void onResponse(Call<BlogFeed> call, Response<BlogFeed> response) {
-                Log.i(TAG, "Response Received :" + response.body().getBlogs().toString());
+                Log.i(TAG, "ResponseOtp Received :" + response.body().getBlogs().toString());
                 onBlogsReceived.onSuccess(response.body().getBlogs());
             }
 

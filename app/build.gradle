@@ -63,7 +63,7 @@ dependencies {
     compile 'com.facebook.android:facebook-android-sdk:4.+'
 
     //This is for logging and is mostly used for networking logs !
-    //Like we can checkout Request Body and Response body with response time in logs :)
+    //Like we can checkout Request Body and ResponseOtp body with response time in logs :)
     compile 'com.squareup.okhttp3:logging-interceptor:3.2.0'
 
     // Circular button to be used when otp verification

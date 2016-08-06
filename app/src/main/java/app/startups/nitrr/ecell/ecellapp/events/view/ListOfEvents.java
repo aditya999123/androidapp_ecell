@@ -37,15 +37,14 @@ public class ListOfEvents extends AppCompatActivity implements EventsInterface{
         adapter = new Adapter(this);
 
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
-        Log.d("Response","1st");
+        Log.d("ResponseOtp","1st");
        recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setAdapter(adapter);
 
        // setSupportActionBar(toolbar);
        // toolbar.setNavigationIcon(ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_white_24dp));
-      // toolbar.setTitle("Events");
-
-       /* toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+//       toolbar.setTitle("Events");
+        /* toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
@@ -59,9 +58,9 @@ public class ListOfEvents extends AppCompatActivity implements EventsInterface{
 
     }
     void requestEvents() {
-        Log.d("Response","2");
+        Log.d("ResponseOtp","2");
         eventsPresenter.requestEvents();
-        Log.d("Response","3");
+        Log.d("ResponseOtp","3");
     }
 
     @Override
@@ -71,23 +70,22 @@ public class ListOfEvents extends AppCompatActivity implements EventsInterface{
             recyclerView.setVisibility(View.VISIBLE);
         } else {
             progressBar.setVisibility(View.GONE);
-            Log.d("Response","progress false");
         }
 
     }
 
     @Override
     public void SetData(List<EventsData> eventDataList) {
-        Log.d("Response", "data 1");
+        Log.d("ResponseOtp", "data 1");
         adapter.setData(eventDataList);
-        Log.d("Response", "data 2");
+        Log.d("ResponseOtp", "data 2");
         adapter.notifyDataSetChanged();
-        Log.d("Response", "data 3");
-        for (int i = 0; i <= 3; i++) {
-            Log.i("Response", "View SetData Called : " + eventDataList.get(i).getEventName());
-            Log.i("Response", "View SetData Called : " + eventDataList.get(i).getDate());
-            Log.i("Response", "View SetData Called : " + eventDataList.get(i).getDescription());
+        Log.d("ResponseOtp", "data 3");
+       /* for (int i = 0; i <= 3; i++) {
+            Log.i("ResponseOtp", "View SetData Called : " + eventDataList.get(i).getEventName());
+            Log.i("ResponseOtp", "View SetData Called : " + eventDataList.get(i).getDate());
+            Log.i("ResponseOtp", "View SetData Called : " + eventDataList.get(i).getDescription());
 
-        }
+        }*/
     }
 }

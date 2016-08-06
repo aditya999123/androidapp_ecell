@@ -74,6 +74,14 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/padding_medium"
             android:layout_gravity="center"
+            android:visibility="gone"
+            />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Log In"
+            style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+
             />
 
 
@@ -83,6 +91,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             style="@style/FacebookLoginButton"
+            android:visibility="gone"
 
             />
 

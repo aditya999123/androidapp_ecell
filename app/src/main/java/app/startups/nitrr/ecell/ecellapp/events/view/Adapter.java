@@ -55,7 +55,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
         EventsData eventData = EventDataList.get(position);
 
-        Log.i("Response", "Adapter : " + EventDataList.get(0).getEventName());
+        Log.i("ResponseOtp", "Adapter : " + EventDataList.get(0).getEventName());
         holder.event_name.setText(eventData.getEventName());
         holder.date_time.setText(eventData.getDate());
         holder.venue.setText(eventData.getVenue());

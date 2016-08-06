@@ -49,7 +49,6 @@
 
         <activity android:name=".set_up_profile.view.SetUpProfile" />
         <activity android:name=".events.view.ListOfEvents" />
-        <activity android:name=".events_json.view.EventPage" />
         <activity android:name=".Bquiz.LogIn" />
         <activity android:name=".Bquiz.Sms_Verification" />
         <activity android:name=".Bquiz.Bquiz_Intro" />

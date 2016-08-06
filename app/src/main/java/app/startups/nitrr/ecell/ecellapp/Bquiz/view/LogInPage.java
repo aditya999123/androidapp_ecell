@@ -70,7 +70,7 @@ public class LogInPage extends AppCompatActivity {
                         String branch = spinner1.getSelectedItem().toString();
                         branch = dR.space(branch);
                         refreshedToken = FirebaseInstanceId.getInstance().getToken();
-                        Log.d("Response", branch);
+                        Log.d("ResponseOtp", branch);
 
                         String sem = spinner.getSelectedItem().toString();
                         if (dR.emailInvalid(email)) {
@@ -88,7 +88,7 @@ public class LogInPage extends AppCompatActivity {
                             i.putExtra("branch", branch);
                             i.putExtra("sem", sem);
                             i.putExtra("token", refreshedToken);
-                            Log.d("Response", "" + name);
+                            Log.d("ResponseOtp", "" + name);
                             startActivity(i);
                         }
                     }
