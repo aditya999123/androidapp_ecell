@@ -8,12 +8,12 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
 
-    tools:context="app.startups.nitrr.ecell.ecellapp.Bquiz.BQuizQuestion">
+    tools:context="app.startups.nitrr.ecell.ecellapp.LogIn.BQuizQuestion">
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:hint="time left"
         android:textSize="20dp"
-        android:id="@+id/timer"
+        android:id="@+id/timer1"
         />
 </RelativeLayout>

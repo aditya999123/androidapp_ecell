@@ -17,7 +17,7 @@ import com.facebook.login.LoginManager;
 
 import java.util.List;
 
-import app.startups.nitrr.ecell.ecellapp.Bquiz.LogIn;
+import app.startups.nitrr.ecell.ecellapp.LogIn.LogIn;
 import app.startups.nitrr.ecell.ecellapp.R;
 import app.startups.nitrr.ecell.ecellapp.about_us.AboutUs;
 import app.startups.nitrr.ecell.ecellapp.blogs.view.Blogs;

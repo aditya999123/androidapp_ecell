@@ -1,4 +1,4 @@
-package app.startups.nitrr.ecell.ecellapp.Bquiz;
+package app.startups.nitrr.ecell.ecellapp.LogIn;
 
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -13,7 +13,7 @@ public class BQuizQuestion extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bquiz_question);
-         timer=(TextView)findViewById(R.id.timer);
+         timer=(TextView)findViewById(R.id.timer1);
         int time=getIntent().getExtras().getInt("time");
 
         time*=1000;

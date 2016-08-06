@@ -1,4 +1,4 @@
-package app.startups.nitrr.ecell.ecellapp.Bquiz.view;
+package app.startups.nitrr.ecell.ecellapp.LogIn;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -14,23 +14,22 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import app.startups.nitrr.ecell.ecellapp.Bquiz.Bquiz_Intro;
-import app.startups.nitrr.ecell.ecellapp.Bquiz.jsonParser;
+import app.startups.nitrr.ecell.ecellapp.LogIn.model.Json_Parser;
 import app.startups.nitrr.ecell.ecellapp.R;
 
-/**
- * Created by Iket on 8/2/2016.
- */
-public class Sms_Verify extends AppCompatActivity {
+public class Sms_Verification extends AppCompatActivity {
 
-    String num1="",name="",lname="",email="",college="",branch="",sem="",otp="",token="";
+    String num1="",name="",lname="",email="",college="",branch="",sem="",otp="",token="",url="";
     int flg=1;
+    Json_Parser sh=new Json_Parser();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sms__verification);
         Button btn=(Button)findViewById(R.id.btn);
-        Button btn1=(Button)findViewById(R.id.btn1);
+        final Button btn1=(Button)findViewById(R.id.btn1);
+        EditText url1=(EditText)findViewById(R.id.url);
+        url=url1.getText().toString();
         btn.setOnClickListener(
                 new View.OnClickListener()
                 {
@@ -41,15 +40,24 @@ public class Sms_Verify extends AppCompatActivity {
                         num1=num.getText().toString();
                         if(num1.length()!=10)
                         {
-                            Toast.makeText(Sms_Verify.this, "ENTER CORRECT MOBILE NUMBER!",
+                            Toast.makeText(Sms_Verification.this, "ENTER CORRECT MOBILE NUMBER!",
                                     Toast.LENGTH_LONG).show();
                         }
                         else
-
-                            new GetData().execute();
-
+                        new GetData().execute();
                     }
                 });
+      /*  SmsReceiver.bindListener(new SmsListener() {
+            @Override
+            public void messageReceived(String messageText) {
+                otp=messageText.substring(messageText.length()-4,messageText.length());
+                Log.d("ResponseOtp",messageText);
+                Log.d("ResponseOtp",otp);
+                Toast.makeText(Sms_Verification.this,"Otp- "+otp , Toast.LENGTH_LONG).show();
+                btn1.performClick();
+            }
+        });
+        */
         btn1.setOnClickListener(
                 new View.OnClickListener()
                 {
@@ -62,6 +70,7 @@ public class Sms_Verify extends AppCompatActivity {
                         college= getIntent().getExtras().getString("college").toString();
                         branch= getIntent().getExtras().getString("branch").toString();
                         sem= getIntent().getExtras().getString("sem").toString();
+
                         EditText num=(EditText)findViewById(R.id.num);
                         EditText otp1=(EditText)findViewById(R.id.verify);
                         otp=otp1.getText().toString();
@@ -72,37 +81,43 @@ public class Sms_Verify extends AppCompatActivity {
     }
     private class PutData extends AsyncTask<Void, Void, Void>
     {
-        ProgressDialog pDialog = new ProgressDialog(Sms_Verify.this);
+        ProgressDialog pDialog = new ProgressDialog(Sms_Verification.this);
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
             pDialog.setMessage("Please wait...");
             pDialog.setCancelable(false);
             pDialog.show();
+
         }
+
         @Override
         protected Void doInBackground(Void... params) {
-            Log.d("ResponseOtp","Beore sh"+name);
-            jsonParser sh = new jsonParser();
-            String url="";
-            url="http://192.168.0.133:8000/ver_otp/"+name+"/"+lname+"/"+email+"/"+"college"+"/"+sem+"/"+branch+"/"+num1+"/"+otp+"/"+token;
-            String jsonStr = sh.getJSONFromUrl(url);
+            Log.d("ResponseOtp",url);
+
+           String  url2=url+"/ver_otp/"+name+"/"+lname+"/"+email+"/"+"college"+"/"+sem+"/"+branch+"/"+num1+"/"+otp+"/"+token;
+            Log.d("ResponseOtp",url);
+            String jsonStr = sh.getJSONFromUrl(url2);
             Log.d("ResponseOtp", "> " + jsonStr);
             try
             {
                 JSONObject jsonRootObject = new JSONObject(jsonStr);
                 String s=jsonRootObject.optString("status").toString();
                 Log.d("ResponseOtp",s);
+
                 if(s.equals("verified"))
                 {
-                    Intent in=new Intent(Sms_Verify.this,Bquiz_Intro.class);
+                    Intent in=new Intent(Sms_Verification.this,Bquiz_Intro.class);
                     Log.d("ResponseOtp", ">");
+                    in.putExtra("url",url);
                     startActivity(in);
+
                 }
                 else {
-                    Toast.makeText(Sms_Verify.this, "ENTER CORRECT OTP",
+                    Toast.makeText(Sms_Verification.this, "ENTER CORRECT OTP",
                             Toast.LENGTH_LONG).show();
-                    Intent in=new Intent(Sms_Verify.this,Sms_Verify.class);
+                    Intent in=new Intent(Sms_Verification.this,Sms_Verification.class);
+
                     startActivity(in);
                 }
             }
@@ -117,11 +132,13 @@ public class Sms_Verify extends AppCompatActivity {
             // Dismiss the progress dialog
             if (pDialog.isShowing())
                 pDialog.dismiss();
+
         }
+
     }
     private class GetData extends AsyncTask<Void, Void, Void>
     {
-        ProgressDialog pDialog = new ProgressDialog(Sms_Verify.this);
+        ProgressDialog pDialog = new ProgressDialog(Sms_Verification.this);
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -132,15 +149,15 @@ public class Sms_Verify extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... params) {
-            jsonParser sh = new jsonParser();
-            String url="";
-            url="http://192.168.0.133:8000/get_otp/"+name+"/"+num1;
-            String jsonStr = sh.getJSONFromUrl(url);
+            String url2=url+"/get_otp/"+name+"/"+num1;
+            Log.d("ResponseOtp","Beore sh"+url);
+            String jsonStr = sh.getJSONFromUrl(url2);
             Log.d("ResponseOtp", "> " + jsonStr);
             try
             {
                 JSONObject jsonRootObject = new JSONObject(jsonStr);
                 String s=jsonRootObject.optString("success").toString();
+                Log.d("ResponseOtp",s);
             }
             catch (JSONException e)
             {
@@ -159,7 +176,6 @@ public class Sms_Verify extends AppCompatActivity {
             btn1.setVisibility(View.VISIBLE);
             Button btn=(Button)findViewById(R.id.btn);
             btn.setText("Resend Otp");
-
         }
 
     }

@@ -1,4 +1,4 @@
-package app.startups.nitrr.ecell.ecellapp.Bquiz;
+package app.startups.nitrr.ecell.ecellapp.LogIn.model;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -8,9 +8,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 /**
- * Created by Iket on 7/31/2016.
+ * Created by Iket on 8/2/2016.
  */
-public class jsonParser {
+public class Json_Parser {
     String x = null;
 
     public String getJSONFromUrl(String url1)

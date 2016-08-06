@@ -1,4 +1,4 @@
-package app.startups.nitrr.ecell.ecellapp.Bquiz;
+package app.startups.nitrr.ecell.ecellapp.LogIn;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -49,7 +49,6 @@ String url="";
             pDialog.show();
             Log.d("ResponseOtp","4th");
         }
-
         @Override
         protected Void doInBackground(Void... params) {
             String url2=url+"/get_ques";

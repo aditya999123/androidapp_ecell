@@ -1,4 +1,4 @@
-package app.startups.nitrr.ecell.ecellapp.Bquiz.view;
+package app.startups.nitrr.ecell.ecellapp.LogIn;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,24 +15,19 @@ import android.widget.Toast;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 
-import app.startups.nitrr.ecell.ecellapp.Bquiz.Sms_Verification;
-import app.startups.nitrr.ecell.ecellapp.Bquiz.presenter.DataRequest;
-import app.startups.nitrr.ecell.ecellapp.Bquiz.presenter.MyOnItemSelectedListener;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import app.startups.nitrr.ecell.ecellapp.R;
 
-/**
- * Created by Iket on 8/2/2016.
- */
-public class LogInPage extends AppCompatActivity {
+public class LogIn extends AppCompatActivity {
     String refreshedToken="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        int[] ar = {1, 2, 3, 4, 5, 6, 7, 8};
+        int[] ar={1, 2, 3, 4, 5, 6, 7, 8};
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
-        //for combo box that  are used
-
         final Spinner spinner = (Spinner) findViewById(R.id.Spinner01);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 this, R.array.sem_ar, android.R.layout.simple_spinner_item);
@@ -48,50 +44,98 @@ public class LogInPage extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar1);
         toolbar.setTitle("Log In");
+//iket
 
         Button otp = (Button) findViewById(R.id.next_button);
-
-        otp.setOnClickListener(
-                new View.OnClickListener() {
-                    public void onClick(View view) {
-                        DataRequest dR = new DataRequest();
+           otp.setOnClickListener(
+                new View.OnClickListener()
+                {
+                    public void onClick(View view)
+                    {
                         EditText mEdit = (EditText) findViewById(R.id.name);
-                        String name = mEdit.getText().toString();
-                        name = dR.space(name);
+                        String name=mEdit.getText().toString();
+                        name=space(name);
                         EditText mEdit1 = (EditText) findViewById(R.id.last_name);
-                        String lname = mEdit1.getText().toString();
-                        lname = dR.space(lname);
+                        String lname=mEdit1.getText().toString();
+                        lname=space(lname);
                         EditText mEdit2 = (EditText) findViewById(R.id.email_id);
-                        String email = mEdit2.getText().toString();
-                        email = dR.space(email);
+                        String email=mEdit2.getText().toString();
+                        email=space(email);
                         EditText mEdit3 = (EditText) findViewById(R.id.college);
-                        String college = mEdit3.getText().toString();
-                        college = dR.space(college);
-                        String branch = spinner1.getSelectedItem().toString();
-                        branch = dR.space(branch);
+                        String college=mEdit3.getText().toString();
+                        college=space(college);
+                        String branch=spinner1.getSelectedItem().toString();
+                        branch=space(branch);
                         refreshedToken = FirebaseInstanceId.getInstance().getToken();
-                        Log.d("ResponseOtp", branch);
+                        Log.d("ResponseOtp",branch);
 
-                        String sem = spinner.getSelectedItem().toString();
-                        if (dR.emailInvalid(email)) {
-                            Toast.makeText(LogInPage.this, "ENTER CORRECT EMAIL ID!",
+                        String sem=spinner.getSelectedItem().toString();
+                        if(emailInvalid(email))
+                        {
+                            Toast.makeText(LogIn.this, "ENTER CORRECT EMAIL ID!",
                                     Toast.LENGTH_LONG).show();
-                        } else
+                        }
+                        else
 
 
                         {
-                            Intent i = new Intent(LogInPage.this, Sms_Verification.class);
+                            Intent i = new Intent(LogIn.this, Sms_Verification.class);
                             i.putExtra("name", name);
                             i.putExtra("lname", lname);
                             i.putExtra("email", email);
                             i.putExtra("college", college);
                             i.putExtra("branch", branch);
                             i.putExtra("sem", sem);
-                            i.putExtra("token", refreshedToken);
+                            i.putExtra("token",refreshedToken);
                             Log.d("ResponseOtp", "" + name);
                             startActivity(i);
                         }
                     }
                 });
     }
+    boolean emailInvalid(String email)
+    {
+         Pattern pattern;
+         Matcher matcher;
+
+         final String EMAIL_PATTERN =
+                "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+        pattern = Pattern.compile(EMAIL_PATTERN);
+        matcher = pattern.matcher(email);
+        boolean a=matcher.matches();
+        return !a;
+    }
+    String space(String name)
+    {
+        char ch;String w="";
+        for(int i=0;i<name.length();i++)
+        {
+         ch=(char)name.charAt(i);
+            int j=(int)ch;
+            if(j!=32)
+                w=w+ch;
+            else
+                w=w+"%20";
+
+        }
+        return w;
+    }
+
+
+    private class MyOnItemSelectedListener implements android.widget.AdapterView.OnItemSelectedListener {
+
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            Toast.makeText(parent.getContext(), "Item is " +
+                    parent.getItemAtPosition(position).toString(), Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+
+        }
+    }
+
+
 }
