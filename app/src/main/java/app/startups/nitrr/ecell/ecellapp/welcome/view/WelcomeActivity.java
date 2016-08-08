@@ -54,6 +54,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import app.startups.nitrr.ecell.ecellapp.LogIn.jsonParser;
+import app.startups.nitrr.ecell.ecellapp.LogIn_Mvp.view.LogIn;
 import app.startups.nitrr.ecell.ecellapp.R;
 import app.startups.nitrr.ecell.ecellapp.helper.SharedPrefs;
 import app.startups.nitrr.ecell.ecellapp.home.view.Home;
@@ -75,6 +76,7 @@ public class WelcomeActivity extends AppCompatActivity implements GoogleApiClien
 
     @BindView(R.id.login_button)
     LoginButton facebookLoginButton;
+
 
     @BindView(R.id.picture)
     ProfilePictureView profilePictureView;
@@ -110,19 +112,31 @@ public class WelcomeActivity extends AppCompatActivity implements GoogleApiClien
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d("Response","1");
         super.onCreate(savedInstanceState);
         sharedPrefs = new SharedPrefs(this);
+        Log.d("Response","2");
          refreshedToken = FirebaseInstanceId.getInstance().getToken();
         new GetData().execute();
-
+        Log.d("Response","3");
         // Making notification bar transparent
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         }
         setContentView(R.layout.activity_welcome);
+       ButterKnife.bind(this);
+        Log.d("Response","4");
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent log=new Intent(WelcomeActivity.this,LogIn.class);
+                startActivity(log);
+            }
+        });
 
 
-        ButterKnife.bind(this);
+
+
         signInPresenter = new SignInPresenterImpl(this, new MockSignInProvider());
 
         FacebookSdk.sdkInitialize(getApplicationContext());

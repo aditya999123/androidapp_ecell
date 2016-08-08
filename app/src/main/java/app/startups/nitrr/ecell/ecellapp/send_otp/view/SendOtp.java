@@ -2,6 +2,7 @@ package app.startups.nitrr.ecell.ecellapp.send_otp.view;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -9,6 +10,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import app.startups.nitrr.ecell.ecellapp.R;
+import app.startups.nitrr.ecell.ecellapp.helper.SharedPrefs;
 import app.startups.nitrr.ecell.ecellapp.send_otp.model.RetrofitOtpProvider;
 import app.startups.nitrr.ecell.ecellapp.send_otp.model.RetrofitVerifyProvider;
 import app.startups.nitrr.ecell.ecellapp.send_otp.presenter.SendOtpPresenter;
@@ -33,7 +35,9 @@ public class SendOtp extends AppCompatActivity implements SendOtpView {
         verifyOtpPresenter=new VerifyOtpPresenterImpl(new RetrofitVerifyProvider(),this);
         Button btn1=(Button)findViewById(R.id.btn1);
         getIntents();
+        Log.d("Response","1");
 
+        assert btn != null;
         btn.setOnClickListener(
                 new View.OnClickListener()
                 {
@@ -50,6 +54,7 @@ public class SendOtp extends AppCompatActivity implements SendOtpView {
 
                     }
                 });
+        assert btn1 != null;
         btn1.setOnClickListener(
                 new View.OnClickListener()
                 {
@@ -118,6 +123,9 @@ public class SendOtp extends AppCompatActivity implements SendOtpView {
     @Override
     public void onOtpVerified() {
         Toast.makeText(SendOtp.this, "ALL DOne..", Toast.LENGTH_SHORT).show();
+        SharedPrefs sharedPrefs=new SharedPrefs(SendOtp.this);
+        sharedPrefs.setLogin(true);
+
 
     }
 }

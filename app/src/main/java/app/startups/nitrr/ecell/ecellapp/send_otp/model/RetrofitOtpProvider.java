@@ -16,7 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitOtpProvider implements OtpProvider {
     @Override
     public void sendOtp(String mobile, String name, final OnOtpSent onOtpSent) {
-        final SendOtpData sendOtpData=new SendOtpData(true);
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Urls.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -33,7 +33,7 @@ public class RetrofitOtpProvider implements OtpProvider {
 
             @Override
             public void onFailure(Call<SendOtpData> call, Throwable t) {
-
+t.printStackTrace();
             }
         });
 
