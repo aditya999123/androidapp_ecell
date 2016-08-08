@@ -36,7 +36,7 @@ public class SendOtp extends AppCompatActivity implements SendOtpView {
         Button btn1=(Button)findViewById(R.id.btn1);
         getIntents();
         Log.d("Response","1");
-
+        progressBar.setVisibility(View.GONE);
         assert btn != null;
         btn.setOnClickListener(
                 new View.OnClickListener()
@@ -45,12 +45,14 @@ public class SendOtp extends AppCompatActivity implements SendOtpView {
                     {
                         EditText num=(EditText)findViewById(R.id.num);
                         num1=num.getText().toString();
+                        Log.d("Response","2");
                         if(num1.length()!=10)
                         {
                             showMessage("ENTER CORRECT MOBILE NUMBER!");
                         }
                         else
                             sendOtpPresenter.sendOtp(num1,name);
+                        Log.d("Response","3");
 
                     }
                 });
@@ -62,14 +64,9 @@ public class SendOtp extends AppCompatActivity implements SendOtpView {
                     {
                         EditText verify=(EditText)findViewById(R.id.verify);
                         otp=verify.getText().toString();
-
                         sendOtpPresenter.sendOtp(num1,name);
-
                     }
                 });
-
-
-            EditText verify=(EditText)findViewById(R.id.verify);
 
 
 

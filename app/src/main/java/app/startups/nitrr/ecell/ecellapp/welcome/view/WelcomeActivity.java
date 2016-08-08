@@ -5,7 +5,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -53,7 +52,6 @@ import org.json.JSONObject;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import app.startups.nitrr.ecell.ecellapp.LogIn.jsonParser;
 import app.startups.nitrr.ecell.ecellapp.LogIn_Mvp.view.LogIn;
 import app.startups.nitrr.ecell.ecellapp.R;
 import app.startups.nitrr.ecell.ecellapp.helper.SharedPrefs;
@@ -100,7 +98,7 @@ public class WelcomeActivity extends AppCompatActivity implements GoogleApiClien
     private static final int RC_SIGN_IN = 100;
     private static final String TAG = "Google Sign in";
     private GoogleApiClient mGoogleApiClient;
-    String refreshedToken="";
+    String refreshedToken = "";
     private TextView name;
     private SharedPrefs sharedPrefs;
 
@@ -112,29 +110,22 @@ public class WelcomeActivity extends AppCompatActivity implements GoogleApiClien
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d("Response","1");
         super.onCreate(savedInstanceState);
         sharedPrefs = new SharedPrefs(this);
-        Log.d("Response","2");
-         refreshedToken = FirebaseInstanceId.getInstance().getToken();
-        new GetData().execute();
-        Log.d("Response","3");
+        refreshedToken = FirebaseInstanceId.getInstance().getToken();
         // Making notification bar transparent
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         }
         setContentView(R.layout.activity_welcome);
-       ButterKnife.bind(this);
-        Log.d("Response","4");
+        ButterKnife.bind(this);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent log=new Intent(WelcomeActivity.this,LogIn.class);
+                Intent log = new Intent(WelcomeActivity.this, LogIn.class);
                 startActivity(log);
             }
         });
-
-
 
 
         signInPresenter = new SignInPresenterImpl(this, new MockSignInProvider());
@@ -497,55 +488,12 @@ public class WelcomeActivity extends AppCompatActivity implements GoogleApiClien
         request.executeAsync();
     }
 
-    private class GetData extends AsyncTask<Void, Void, Void>
-    {
-        ProgressDialog pDialog = new ProgressDialog(WelcomeActivity.this);
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            // Showing progress dialog
-
-            pDialog.setMessage("Please wait...");
-            pDialog.setCancelable(false);
-            pDialog.show();
-
-        }
-
-        @Override
-        protected Void doInBackground(Void... params) {
-            Log.d("ResponseOtp","Beore sh"+name);
-            jsonParser sh = new jsonParser();
-
-
-
-            String url="";
-            url="http://192.168.0.133:8000/send_fcm/";
-            String jsonStr = sh.getJSONFromUrl(url);
-            Log.d("ResponseOtp", "> " + jsonStr);
-            try
-            {
-                JSONObject jsonRootObject = new JSONObject(jsonStr);
-                String s=jsonRootObject.optString("success").toString();
-                Log.d("ResponseOtp",s);
-
-            }
-            catch (JSONException e)
-            {
-                e.printStackTrace();
-            }
-            return null;
-
-
-        }
-        protected void onPostExecute(Void result) {
-            super.onPostExecute(result);
-            // Dismiss the progress dialog
-            if (pDialog.isShowing())
-                pDialog.dismiss();
-
-        }
-
-    }
-
-
 }
+
+
+
+
+
+
+
+
