@@ -9,17 +9,17 @@ public class BQuizData {
     private String message;
     private String message_image_url;
     private int data_type;
-    private QuestionData QuestionData;
+    private QuestionData question_data;
 
 
 
     public BQuizData(boolean success, String message, String message_image_url, int data_type,
-                     QuestionData questionData) {
+                     QuestionData questiondata) {
         this.success = success;
         this.message = message;
         this.message_image_url = message_image_url;
         this.data_type = data_type;
-        QuestionData = questionData;
+        question_data = questiondata;
     }
 
     public boolean isSuccess() {
@@ -38,7 +38,7 @@ public class BQuizData {
         return data_type;
     }
 
-    public QuestionData getQuestionData() {
-        return QuestionData;
+    public QuestionData getQuestion_data() {
+        return question_data;
     }
 }

@@ -13,7 +13,10 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import app.startups.nitrr.ecell.ecellapp.BQuizNew.model.MockBquizProvider;
 import app.startups.nitrr.ecell.ecellapp.BQuizNew.model.data.BQuizData;
+import app.startups.nitrr.ecell.ecellapp.BQuizNew.presenter.BQuizPresenter;
+import app.startups.nitrr.ecell.ecellapp.BQuizNew.presenter.BQuizPresenterImpl;
 import app.startups.nitrr.ecell.ecellapp.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -56,12 +59,16 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
     @BindView(R.id.radio_group)
     RadioGroup radio_group;
     int time;
+
+    private BQuizPresenter bQuizPresenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bquiz_new);
         ButterKnife.bind(this);
-
+        bQuizPresenter = new BQuizPresenterImpl(this, new MockBquizProvider());
+        bQuizPresenter.getBquizData("8109109457");
     }
 
     @Override
@@ -83,43 +90,43 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
             case 1:
                 question_image.setVisibility(View.GONE);
                 radio_group.setVisibility(View.GONE);
-                question_text.setText(bquizData.getQuestionData().getQuestion());
-                time=bquizData.getQuestionData().getQuestion_time_seconds();
-                CountDown(time);
+                question_text.setText(bquizData.getQuestion_data().getQuestion());
+                time = bquizData.getQuestion_data().getQuestion_duration();
+                countDown(time);
                 break;
             case 2:
                 question_image.setVisibility(View.GONE);
                 input_ans.setVisibility(View.GONE);
-                question_text.setText(bquizData.getQuestionData().getQuestion());
-                rb1.setText(bquizData.getQuestionData().getOption1().toString());
-                rb2.setText(bquizData.getQuestionData().getOption2().toString());
-                rb3.setText(bquizData.getQuestionData().getOption3().toString());
-                rb4.setText(bquizData.getQuestionData().getOption4().toString());
-                time=bquizData.getQuestionData().getQuestion_time_seconds();
-                CountDown(time);
+                question_text.setText(bquizData.getQuestion_data().getQuestion());
+                rb1.setText(bquizData.getQuestion_data().getOption1().toString());
+                rb2.setText(bquizData.getQuestion_data().getOption2().toString());
+                rb3.setText(bquizData.getQuestion_data().getOption3().toString());
+                rb4.setText(bquizData.getQuestion_data().getOption4().toString());
+                time = bquizData.getQuestion_data().getQuestion_duration();
+                countDown(time);
 
                 //add images in the activity
                 break;
             case 3:
                 radio_group.setVisibility(View.GONE);
-                question_text.setText(bquizData.getQuestionData().getQuestion());
-                time=bquizData.getQuestionData().getQuestion_time_seconds();
-                CountDown(time);
+                question_text.setText(bquizData.getQuestion_data().getQuestion());
+                time = bquizData.getQuestion_data().getQuestion_duration();
+                countDown(time);
                 break;
             case 4:
-                question_text.setText(bquizData.getQuestionData().getQuestion());
-                rb1.setText(bquizData.getQuestionData().getOption1().toString());
-                rb2.setText(bquizData.getQuestionData().getOption2().toString());
-                rb3.setText(bquizData.getQuestionData().getOption3().toString());
-                rb4.setText(bquizData.getQuestionData().getOption4().toString());
-                time=bquizData.getQuestionData().getQuestion_time_seconds();
-                CountDown(time);
+                question_text.setText(bquizData.getQuestion_data().getQuestion());
+                rb1.setText(bquizData.getQuestion_data().getOption1().toString());
+                rb2.setText(bquizData.getQuestion_data().getOption2().toString());
+                rb3.setText(bquizData.getQuestion_data().getOption3().toString());
+                rb4.setText(bquizData.getQuestion_data().getOption4().toString());
+                time = bquizData.getQuestion_data().getQuestion_duration();
+                countDown(time);
                 //add images in the activity
                 break;
         }
     }
 
-    public void CountDown(int time) {
+    public void countDown(int time) {
         time *= 1000;
         new CountDownTimer(time, 1000) {
             public void onTick(long millisUntilFinished) {

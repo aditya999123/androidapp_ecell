@@ -12,10 +12,10 @@ public class QuestionData {
     private String option2;
     private String option3;
     private String option4;
-    private int question_time_seconds;
+    private int question_duration;
 
     public QuestionData(int question_id, String question, String image_url, String option1,
-                        String option2, String option3, String option4, int question_time_seconds) {
+                        String option2, String option3, String option4, int question_duration) {
         this.question_id = question_id;
         this.question = question;
         this.image_url = image_url;
@@ -23,7 +23,7 @@ public class QuestionData {
         this.option2 = option2;
         this.option3 = option3;
         this.option4 = option4;
-        this.question_time_seconds = question_time_seconds;
+        this.question_duration = question_duration;
     }
 
     public int getQuestion_id() {
@@ -54,7 +54,7 @@ public class QuestionData {
         return option4;
     }
 
-    public int getQuestion_time_seconds() {
-        return question_time_seconds;
+    public int getQuestion_duration() {
+        return question_duration;
     }
 }
