@@ -1,6 +1,7 @@
 package app.startups.nitrr.ecell.ecellapp.helper.image_loaders;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -23,8 +24,8 @@ public class GlideImageLoader implements ImageLoader {
 
     @Override
     public void loadImage(String url, final ImageView imageView) {
-
-        url = url.replace("\"", "");
+        Log.d("Response",url);
+//        url = url.replace("\"", "");
 
 
         requestManager.load(url).crossFade().thumbnail(0.1f);

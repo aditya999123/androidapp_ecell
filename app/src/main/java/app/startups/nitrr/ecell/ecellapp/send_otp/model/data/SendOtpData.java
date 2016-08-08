@@ -13,6 +13,14 @@ public class SendOtpData {
         this.message = message;
     }
 
+    public void setSuccess(boolean success) {
+        this.success = success;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
     public String getMessage() {
         return message;
     }

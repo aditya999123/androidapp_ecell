@@ -10,21 +10,30 @@ import android.widget.Toast;
 
 import app.startups.nitrr.ecell.ecellapp.R;
 import app.startups.nitrr.ecell.ecellapp.send_otp.model.RetrofitOtpProvider;
+import app.startups.nitrr.ecell.ecellapp.send_otp.model.RetrofitVerifyProvider;
 import app.startups.nitrr.ecell.ecellapp.send_otp.presenter.SendOtpPresenter;
 import app.startups.nitrr.ecell.ecellapp.send_otp.presenter.SendOtpPresenterImpl;
+import app.startups.nitrr.ecell.ecellapp.send_otp.presenter.VerifyOtpPresenterImpl;
+import app.startups.nitrr.ecell.ecellapp.send_otp.presenter.VerifyOtpPresenter;
 
 public class SendOtp extends AppCompatActivity implements SendOtpView {
     private ProgressBar progressBar;
     SendOtpPresenter sendOtpPresenter;
-    String num1="",name="",lname="",email="",college="",branch="",sem="",otp="",token="",url="";
+    VerifyOtpPresenter verifyOtpPresenter;
+    String num1="",name="",lname="",email="",college="",branch="",sem="",otp="",token="";
+    int i=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sms__verification);
         progressBar=(ProgressBar)findViewById(R.id.progressBar1);
         Button btn=(Button)findViewById(R.id.btn);
+
+        sendOtpPresenter=new SendOtpPresenterImpl(new RetrofitOtpProvider(),this);
+        verifyOtpPresenter=new VerifyOtpPresenterImpl(new RetrofitVerifyProvider(),this);
         Button btn1=(Button)findViewById(R.id.btn1);
         getIntents();
+
         btn.setOnClickListener(
                 new View.OnClickListener()
                 {
@@ -37,12 +46,28 @@ public class SendOtp extends AppCompatActivity implements SendOtpView {
                             showMessage("ENTER CORRECT MOBILE NUMBER!");
                         }
                         else
-                            sendOtpPresenter.sendOtp(num1,name,url);
+                            sendOtpPresenter.sendOtp(num1,name);
+
+                    }
+                });
+        btn1.setOnClickListener(
+                new View.OnClickListener()
+                {
+                    public void onClick(View view)
+                    {
+                        EditText verify=(EditText)findViewById(R.id.verify);
+                        otp=verify.getText().toString();
+
+                        sendOtpPresenter.sendOtp(num1,name);
 
                     }
                 });
 
-        sendOtpPresenter=new SendOtpPresenterImpl(new RetrofitOtpProvider(),this);
+
+            EditText verify=(EditText)findViewById(R.id.verify);
+
+
+
     }
 
     @Override
@@ -68,10 +93,14 @@ public class SendOtp extends AppCompatActivity implements SendOtpView {
         verify.setVisibility(View.VISIBLE);
         Button btn1=(Button)findViewById(R.id.btn1);
         btn1.setVisibility(View.VISIBLE);
-//        Button btn=(Button)findViewById(R.id.btn);
-//        btn.setText("Resend Otp");
+       Button btn=(Button)findViewById(R.id.btn);
+       btn.setText("Resend Otp");
+        i=1;
 
     }
+
+
+
     public void getIntents()
     {
         name= getIntent().getExtras().getString("name").toString();
@@ -81,8 +110,14 @@ public class SendOtp extends AppCompatActivity implements SendOtpView {
         college= getIntent().getExtras().getString("college").toString();
         branch= getIntent().getExtras().getString("branch").toString();
         sem= getIntent().getExtras().getString("sem").toString();
-        EditText url1=(EditText)findViewById(R.id.url);
-        url=url1.getText().toString();
+
+
+
+    }
+
+    @Override
+    public void onOtpVerified() {
+        Toast.makeText(SendOtp.this, "ALL DOne..", Toast.LENGTH_SHORT).show();
 
     }
 }

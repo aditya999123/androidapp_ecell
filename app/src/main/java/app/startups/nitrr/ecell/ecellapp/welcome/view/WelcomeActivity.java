@@ -82,6 +82,9 @@ public class WelcomeActivity extends AppCompatActivity implements GoogleApiClien
     @BindView(R.id.share)
     Button share;
 
+    @BindView(R.id.login)
+    Button login;
+
     @BindView(R.id.details)
     Button details;
 
@@ -186,6 +189,7 @@ public class WelcomeActivity extends AppCompatActivity implements GoogleApiClien
             signInButton.setSize(SignInButton.SIZE_WIDE);
             signInButton.setScopes(gso.getScopeArray());
         }
+
 
         // Configure sign-in to request the user's ID, email address, and basic
 // profile. ID and basic profile are included in DEFAULT_SIGN_IN.

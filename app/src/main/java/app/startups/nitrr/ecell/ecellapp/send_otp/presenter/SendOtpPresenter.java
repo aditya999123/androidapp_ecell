@@ -6,6 +6,6 @@ package app.startups.nitrr.ecell.ecellapp.send_otp.presenter;
 public interface SendOtpPresenter {
 
 
-    void sendOtp(String mobile,String name,String url);
-    void verifyOtp(String mobile,String otp);
+    void sendOtp(String mobile,String name);
+
 }
