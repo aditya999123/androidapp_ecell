@@ -81,6 +81,7 @@
             android:layout_height="wrap_content"
             android:text="Log In"
             style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+            android:id="@+id/login"
 
             />
 

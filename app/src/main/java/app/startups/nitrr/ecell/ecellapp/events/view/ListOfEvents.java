@@ -81,11 +81,11 @@ public class ListOfEvents extends AppCompatActivity implements EventsInterface{
         Log.d("ResponseOtp", "data 2");
         adapter.notifyDataSetChanged();
         Log.d("ResponseOtp", "data 3");
-       /* for (int i = 0; i <= 3; i++) {
+        for (int i = 0; i <= 3; i++) {
             Log.i("ResponseOtp", "View SetData Called : " + eventDataList.get(i).getEventName());
-            Log.i("ResponseOtp", "View SetData Called : " + eventDataList.get(i).getDate());
+          //  Log.i("ResponseOtp", "View SetData Called : " + eventDataList.get(i).getImage());
             Log.i("ResponseOtp", "View SetData Called : " + eventDataList.get(i).getDescription());
 
-        }*/
+        }
     }
 }

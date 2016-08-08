@@ -8,5 +8,7 @@ public interface SendOtpView {
     void showLoading(boolean show);
     void showMessage(String message);
     void onOtpSent();
+    void getIntents();
 
+    void onOtpVerified();
 }

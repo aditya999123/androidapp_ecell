@@ -19,15 +19,16 @@ public class SendOtpPresenterImpl implements SendOtpPresenter{
     }
 
     @Override
-    public void sendOtp(String mobile,String name,String url) {
+    public void sendOtp(String mobile,String name) {
 
         sendOtpView.showLoading(true);
-        otpProvider.sendOtp(mobile,name,url,new OnOtpSent() {
+        otpProvider.sendOtp(mobile,name,new OnOtpSent() {
 
 
             @Override
             public void onSuccess(SendOtpData sendOtpData) {
                 sendOtpView.showMessage(sendOtpData.getMessage());
+                sendOtpView.onOtpSent();
             }
 
             @Override
@@ -38,8 +39,5 @@ public class SendOtpPresenterImpl implements SendOtpPresenter{
         });
     }
 
-    @Override
-    public void verifyOtp(String mobile, String otp) {
 
-    }
 }

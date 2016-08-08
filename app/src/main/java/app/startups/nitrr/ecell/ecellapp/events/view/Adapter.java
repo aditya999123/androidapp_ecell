@@ -6,12 +6,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import app.startups.nitrr.ecell.ecellapp.R;
+
+
 
 /**
  * Created by Iket on 7/27/2016.
@@ -22,13 +25,13 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
     private Context context;
     private LayoutInflater layoutInflater;
 
-   // private ImageLoader imageLoader;
+//    private ImageLoader imageLoader;
 
     public Adapter(Context context) {
         this.context = context;
         layoutInflater = LayoutInflater.from(context);
 
-      //  imageLoader = new GlideImageLoader(context);
+//        imageLoader = new GlideImageLoader(context);
     }
 
     public void setData(List<EventsData> EventDataList) {
@@ -60,6 +63,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
         holder.date_time.setText(eventData.getDate());
         holder.venue.setText(eventData.getVenue());
         holder.description.setText(eventData.getDescription());
+//        imageLoader.loadImage(eventData.getImage(), holder.imageView);
+//        Log.d("Response",eventData.getImage());
 
 
     }
@@ -73,7 +78,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
         private TextView event_name, date_time, venue, description;
 
-       // private ImageView imageView;
+
+        private ImageView imageView;
 
 
         private MyViewHolder(View itemView) {
@@ -82,7 +88,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
             date_time = (TextView) itemView.findViewById(R.id.date_time);
             venue = (TextView) itemView.findViewById(R.id.venue);
             description = (TextView) itemView.findViewById(R.id.description);
-          //  imageView = (ImageView) itemView.findViewById(R.id.imgview1);
+//            imageView = (ImageView) itemView.findViewById(R.id.imgview1);
 
         }
 

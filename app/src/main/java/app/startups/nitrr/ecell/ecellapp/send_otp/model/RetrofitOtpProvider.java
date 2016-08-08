@@ -1,10 +1,12 @@
 package app.startups.nitrr.ecell.ecellapp.send_otp.model;
 
+import app.startups.nitrr.ecell.ecellapp.helper.Urls;
 import app.startups.nitrr.ecell.ecellapp.send_otp.OnOtpSent;
 import app.startups.nitrr.ecell.ecellapp.send_otp.api.RequestInterface;
 import app.startups.nitrr.ecell.ecellapp.send_otp.model.data.SendOtpData;
-import app.startups.nitrr.ecell.ecellapp.send_otp.view.ResponseOtp;
 import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -13,36 +15,30 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class RetrofitOtpProvider implements OtpProvider {
     @Override
-    public void sendOtp(String mobile,String name,String url, OnOtpSent onOtpSent) {
+    public void sendOtp(String mobile, String name, final OnOtpSent onOtpSent) {
         final SendOtpData sendOtpData=new SendOtpData(true);
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(url+"/get_otp/"+name+"/"+mobile)
+                .baseUrl(Urls.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         final RequestInterface request = retrofit.create(RequestInterface.class);
 
-        Call<ResponseOtp> call = request.getSuccess();
-
-      /*  call.enqueue(new Callback<Response>() {
+        Call<SendOtpData> call = request.getSuccess(name,mobile);
+        call.enqueue(new Callback<SendOtpData>() {
             @Override
-            public void onResponse(Call<Response> call, Response<Response> response) {
-
-                OnOtpSent.onSuccess(sendOtpData);
+            public void onResponse(Call<SendOtpData> call, Response<SendOtpData> response) {
+                onOtpSent.onSuccess(response.body());
             }
 
             @Override
-            public void onFailure(Call<Response> call, Throwable t) {
-                t.printStackTrace();
-                OnOtpSent.onFailure();
+            public void onFailure(Call<SendOtpData> call, Throwable t) {
 
             }
-
         });
-        */
 
 
-//        onOtpSent.onSuccess(sendOtpData);
-//        onOtpSent.onFailed();
+
+
     }
 }

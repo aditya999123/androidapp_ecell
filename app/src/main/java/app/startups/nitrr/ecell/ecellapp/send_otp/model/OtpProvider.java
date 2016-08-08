@@ -7,7 +7,7 @@ import app.startups.nitrr.ecell.ecellapp.send_otp.OnOtpSent;
  */
 public interface OtpProvider {
 
-void sendOtp(String mobile,String name,String url, OnOtpSent onOtpSent);
+void sendOtp(String mobile,String name, OnOtpSent onOtpSent);
 
 
 }

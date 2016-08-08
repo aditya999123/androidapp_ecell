@@ -7,13 +7,10 @@ public class EventsData {
 
     private String name,description,date,time,venue;
 
-   // private int img;
-
-
 
     public EventsData(String name,  String date, String time, String venue, String description) {
         this.name =name;
-       // this.img=img;
+//        this.image=image;
         this.date=date;
         this.venue=venue;
         this.description=description;
@@ -40,6 +37,25 @@ public class EventsData {
         return venue;
     }
 
+    public String getName() {
+        return name;
+    }
+
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+
+//    public void setImage(String image) {
+//        this.image = image;
+//    }
+
+//    public String getImage() {
+//
+//        return image;
+//    }
+
     public void setDescription(String description) {
         this.description = description;
     }
@@ -60,16 +76,10 @@ public class EventsData {
         return name;
     }
 
-   // public int getImg() {
-   //     return img;
-   // }
+
 
     public void setEventName(String name) {
         this.name = name;
     }
-
-   // public void setImg(int img) {
-   //     this.img = img;
-   // }
 
 }
