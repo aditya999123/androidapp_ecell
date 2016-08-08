@@ -71,7 +71,9 @@
                 <ImageView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/question_image"/>
+                    android:id="@+id/question_image"
+                    android:src="@drawable/ecell_logo"
+                    />
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
@@ -153,7 +155,6 @@
 
 
         </LinearLayout>
-
 
     </LinearLayout>
 </ScrollView>

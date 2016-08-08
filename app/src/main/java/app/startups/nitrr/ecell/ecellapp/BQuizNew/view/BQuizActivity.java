@@ -7,17 +7,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import app.startups.nitrr.ecell.ecellapp.BQuizNew.model.MockBquizProvider;
+import app.startups.nitrr.ecell.ecellapp.BQuizNew.model.RetrofitBquizProvider;
 import app.startups.nitrr.ecell.ecellapp.BQuizNew.model.data.BQuizData;
 import app.startups.nitrr.ecell.ecellapp.BQuizNew.presenter.BQuizPresenter;
 import app.startups.nitrr.ecell.ecellapp.BQuizNew.presenter.BQuizPresenterImpl;
 import app.startups.nitrr.ecell.ecellapp.R;
+import app.startups.nitrr.ecell.ecellapp.helper.image_loaders.GlideImageLoader;
+import app.startups.nitrr.ecell.ecellapp.helper.image_loaders.ImageLoader;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -52,23 +53,28 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
 
     @BindView(R.id.rb4)
     RadioButton rb4;
+/*
 
-    @BindView(R.id.progressBar1)
+    @BindView(R.id.progress_bar)
     ProgressBar progressbar;
+*/
 
     @BindView(R.id.radio_group)
     RadioGroup radio_group;
     int time;
 
     private BQuizPresenter bQuizPresenter;
+    private ImageLoader imageLoader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bquiz_new);
         ButterKnife.bind(this);
-        bQuizPresenter = new BQuizPresenterImpl(this, new MockBquizProvider());
-        bQuizPresenter.getBquizData("8109109457");
+        bQuizPresenter = new BQuizPresenterImpl(this, new RetrofitBquizProvider());
+        bQuizPresenter.getBquizData("123412341234");
+        imageLoader = new GlideImageLoader(this);
+
     }
 
     @Override
@@ -78,15 +84,18 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
 
     @Override
     public void showProgressbar(boolean show) {
-        if (show)
+       /* if (show)
             progressbar.setVisibility(View.VISIBLE);
         else
             progressbar.setVisibility(View.GONE);
+   */
     }
 
     @Override
     public void setBquizData(BQuizData bquizData) {
         switch (bquizData.getData_type()) {
+
+
             case 1:
                 question_image.setVisibility(View.GONE);
                 radio_group.setVisibility(View.GONE);
@@ -98,10 +107,12 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
                 question_image.setVisibility(View.GONE);
                 input_ans.setVisibility(View.GONE);
                 question_text.setText(bquizData.getQuestion_data().getQuestion());
-                rb1.setText(bquizData.getQuestion_data().getOption1().toString());
-                rb2.setText(bquizData.getQuestion_data().getOption2().toString());
-                rb3.setText(bquizData.getQuestion_data().getOption3().toString());
-                rb4.setText(bquizData.getQuestion_data().getOption4().toString());
+                rb1.setText(bquizData.getQuestion_data().getOption1());
+                rb2.setText(bquizData.getQuestion_data().getOption2());
+                rb3.setText(bquizData.getQuestion_data().getOption3());
+                rb4.setText(bquizData.getQuestion_data().getOption4());
+                question_image.setVisibility(View.VISIBLE);
+                imageLoader.loadImage(bquizData.getQuestion_data().getImage_url(), question_image);
                 time = bquizData.getQuestion_data().getQuestion_duration();
                 countDown(time);
 
@@ -115,14 +126,20 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
                 break;
             case 4:
                 question_text.setText(bquizData.getQuestion_data().getQuestion());
-                rb1.setText(bquizData.getQuestion_data().getOption1().toString());
-                rb2.setText(bquizData.getQuestion_data().getOption2().toString());
-                rb3.setText(bquizData.getQuestion_data().getOption3().toString());
-                rb4.setText(bquizData.getQuestion_data().getOption4().toString());
+                rb1.setText(bquizData.getQuestion_data().getOption1());
+                rb2.setText(bquizData.getQuestion_data().getOption2());
+                rb3.setText(bquizData.getQuestion_data().getOption3());
+                rb4.setText(bquizData.getQuestion_data().getOption4());
+                imageLoader.loadImage(bquizData.getQuestion_data().getImage_url(), question_image);
+                question_image.setVisibility(View.VISIBLE);
                 time = bquizData.getQuestion_data().getQuestion_duration();
                 countDown(time);
                 //add images in the activity
                 break;
+            default:
+
+
+
         }
     }
 

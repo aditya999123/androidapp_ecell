@@ -16,15 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/MyMaterialTheme">
         <activity android:name=".splash_screen.view.SplashScreenActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".home.view.Home" />
         <activity android:name=".welcome.view.WelcomeActivity" />
-        <activity android:name=".events.Events" />
         <activity android:name=".about_us.AboutUs" />
         <activity
             android:name=".blogs.view.Blogs"
@@ -58,7 +52,15 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".BQuizNew.view.BQuizActivity"></activity>
+        <activity android:name=".BQuizNew.view.BQuizActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
     </application>
 
 </manifest>
