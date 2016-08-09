@@ -15,20 +15,22 @@ public class SmsReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        Bundle data  = intent.getExtras();
+        Bundle data = intent.getExtras();
 
         Object[] pdus = (Object[]) data.get("pdus");
 
-        for(int i=0;i<pdus.length;i++){
+        for (int i = 0; i < pdus.length; i++) {
             SmsMessage smsMessage = SmsMessage.createFromPdu((byte[]) pdus[i]);
 
             String sender = smsMessage.getDisplayOriginatingAddress();
 
 
-            String messageBody = smsMessage.getMessageBody();
+            if (sender.toLowerCase().endsWith("mecell")) {
+                String messageBody = smsMessage.getMessageBody();
 
-            //Pass on the text to our listener.
-            mListener.messageReceived(messageBody);
+                //Pass on the text to our listener.
+                mListener.messageReceived(messageBody);
+            }
         }
 
     }
