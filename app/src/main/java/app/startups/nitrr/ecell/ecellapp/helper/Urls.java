@@ -6,7 +6,7 @@ package app.startups.nitrr.ecell.ecellapp.helper;
 // The class basically deals with all the URL's and we have to provide all url's here !
 public class Urls {
 
-    public static final String BASE_URL = "http://127.0.0.1:8000/";
+    public static final String BASE_URL = "http://ecellapp.pythonanywhere.com/";
     public static final String REQUEST_SIGN_IN_API = "Here half url will be there leaving base url ";
     public static final String REQUEST_BQUIZ_DATA = "get_ques/";
 

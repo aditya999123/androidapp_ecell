@@ -1,5 +1,8 @@
 package app.startups.nitrr.ecell.ecellapp.send_otp.model;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import app.startups.nitrr.ecell.ecellapp.helper.Urls;
 import app.startups.nitrr.ecell.ecellapp.send_otp.OnOtpSent;
 import app.startups.nitrr.ecell.ecellapp.send_otp.api.RequestInterface;
@@ -16,10 +19,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitOtpProvider implements OtpProvider {
     @Override
     public void sendOtp(String mobile, String name, final OnOtpSent onOtpSent) {
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Urls.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
         final RequestInterface request = retrofit.create(RequestInterface.class);

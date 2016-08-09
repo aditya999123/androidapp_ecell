@@ -19,11 +19,6 @@
         </activity>
         <activity android:name=".home.view.Home" />
         <activity android:name=".welcome.view.WelcomeActivity" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
         </activity>
         <activity android:name=".LogIn_Mvp.view.LogIn"></activity>
         <activity android:name=".about_us.AboutUs" />
@@ -60,9 +55,11 @@
         </receiver>
 
         <activity android:name=".BQuizNew.view.BQuizActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-
-
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
         <meta-data
