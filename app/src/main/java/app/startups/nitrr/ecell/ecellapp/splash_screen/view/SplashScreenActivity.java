@@ -58,12 +58,12 @@ public class SplashScreenActivity extends AppCompatActivity implements SplashScr
     public void fcmInsertStatus(boolean successful) {
 
         if(successful){
-
+            sharedPrefs.setFCM(MyApplication.fcm_token);
             Intent in=new Intent(SplashScreenActivity.this,WelcomeActivity.class);
             startActivity(in);
 
         }
-  /*      if (sharedPrefs.isLoggedIn()) {
+        if (sharedPrefs.isLoggedIn()) {
             Intent in = new Intent(SplashScreenActivity.this, Home.class);
             startActivity(in);
             finish();
@@ -73,7 +73,7 @@ public class SplashScreenActivity extends AppCompatActivity implements SplashScr
             finish();
 
         }
-*/
+
     }
 
     @Override

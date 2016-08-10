@@ -11,5 +11,5 @@ import retrofit2.http.Query;
  */
 public interface VerifyInterface {
     @GET(Urls.VERIFY_OTP)
-    Call<VerifyOtpData> getSuccess (@Query("name") String name, @Query("lname") String lname, @Query("email") String email, @Query("college")String college, @Query("sem")String sem, @Query("branch") String branch, @Query("num")String num, @Query("otp") String otp, @Query("fcm") String fcm);
+    Call<VerifyOtpData> getSuccess (@Query("name") String name, @Query("lname") String lname, @Query("email") String email, @Query("college")String college, @Query("sem")String sem, @Query("branch") String branch, @Query("mobile")String num, @Query("otp") String otp, @Query("fcm") String fcm);
 }

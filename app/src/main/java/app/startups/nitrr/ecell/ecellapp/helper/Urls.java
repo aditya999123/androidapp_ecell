@@ -11,9 +11,8 @@ public class Urls {
     public static final String REQUEST_SIGN_IN_API = "Here half url will be there leaving base url ";
     public static final String REQUEST_BQUIZ_DATA = "get_ques/";
 
-    public static final String BASE_URL_A = "send_fcm";
     public static final String SEND_OTP="get_otp/";
     public static final String VERIFY_OTP="ver_otp/";
 
-    public static final String REQUEST_SPLASH_SCREEN ="" ;
+    public static final String REQUEST_SPLASH_SCREEN ="send_fcm/" ;
 }
