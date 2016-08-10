@@ -64,7 +64,7 @@ public class SendOtp extends AppCompatActivity implements SendOtpView {
                     {
                         EditText verify=(EditText)findViewById(R.id.verify);
                         otp=verify.getText().toString();
-                        sendOtpPresenter.sendOtp(num1,name);
+                        verifyOtpPresenter.verifyOtp(name,lname,email,college,sem,branch,num1,otp,token);
                     }
                 });
 

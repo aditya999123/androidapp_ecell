@@ -1,5 +1,7 @@
 package app.startups.nitrr.ecell.ecellapp.send_otp.presenter;
 
+import android.util.Log;
+
 import app.startups.nitrr.ecell.ecellapp.send_otp.OnOtpSent;
 import app.startups.nitrr.ecell.ecellapp.send_otp.model.OtpProvider;
 import app.startups.nitrr.ecell.ecellapp.send_otp.model.data.SendOtpData;
@@ -21,18 +23,23 @@ public class SendOtpPresenterImpl implements SendOtpPresenter{
     @Override
     public void sendOtp(String mobile,String name) {
 
+
         sendOtpView.showLoading(true);
         otpProvider.sendOtp(mobile,name,new OnOtpSent() {
 
 
             @Override
             public void onSuccess(SendOtpData sendOtpData) {
-                sendOtpView.showMessage(sendOtpData.getMessage());
+                Log.d("Response","Presenter1");
+                sendOtpView.showLoading(false);
+                sendOtpView.showMessage("Successful");
+                Log.d("Response",""+sendOtpData.getMessage());
                 sendOtpView.onOtpSent();
             }
 
             @Override
             public void onFailed() {
+                Log.d("Response","Presenter 2");
                 sendOtpView.showLoading(false);
                 sendOtpView.showMessage("Failed");
             }

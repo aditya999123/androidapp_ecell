@@ -53,11 +53,7 @@
         <activity android:name=".send_otp.view.SendOtp" />
         <activity android:name=".LogIn.BQuizQuestion" />
 
-        <receiver android:name=".LogIn.SmsReceiver">
-            <intent-filter>
-                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
-            </intent-filter>
-        </receiver>
+
 
         <activity android:name=".BQuizNew.view.BQuizActivity">
 

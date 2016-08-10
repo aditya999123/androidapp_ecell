@@ -1,5 +1,10 @@
 package app.startups.nitrr.ecell.ecellapp.send_otp.model;
 
+import android.util.Log;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import app.startups.nitrr.ecell.ecellapp.helper.Urls;
 import app.startups.nitrr.ecell.ecellapp.send_otp.OnOtpSent;
 import app.startups.nitrr.ecell.ecellapp.send_otp.api.RequestInterface;
@@ -16,24 +21,31 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitOtpProvider implements OtpProvider {
     @Override
     public void sendOtp(String mobile, String name, final OnOtpSent onOtpSent) {
+        Log.d("Response","Model");
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Urls.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
-
+        Log.d("Response","Model 1");
         final RequestInterface request = retrofit.create(RequestInterface.class);
-
+        Log.d("Response","Model 2");
         Call<SendOtpData> call = request.getSuccess(name,mobile);
+        Log.d("Response","Model 3");
         call.enqueue(new Callback<SendOtpData>() {
             @Override
             public void onResponse(Call<SendOtpData> call, Response<SendOtpData> response) {
+                Log.d("Response","Model 4");
                 onOtpSent.onSuccess(response.body());
             }
 
             @Override
             public void onFailure(Call<SendOtpData> call, Throwable t) {
-t.printStackTrace();
+                Log.d("Response","Model 5");
+                t.printStackTrace();
             }
         });
 

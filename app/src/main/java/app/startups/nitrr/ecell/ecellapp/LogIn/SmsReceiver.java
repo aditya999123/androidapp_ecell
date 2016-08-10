@@ -1,15 +1,9 @@
 package app.startups.nitrr.ecell.ecellapp.LogIn;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
-import android.telephony.SmsMessage;
-
 /**
  * Created by Iket on 8/4/2016.
  */
-public class SmsReceiver extends BroadcastReceiver {
+/*public class SmsReceiver extends BroadcastReceiver {
 
     private static SmsListener mListener;
 
@@ -37,3 +31,4 @@ public class SmsReceiver extends BroadcastReceiver {
         mListener = listener;
     }
 }
+*/

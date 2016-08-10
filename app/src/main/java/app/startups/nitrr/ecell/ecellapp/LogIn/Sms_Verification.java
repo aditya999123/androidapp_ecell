@@ -47,7 +47,7 @@ public class Sms_Verification extends AppCompatActivity {
                         new GetData().execute();
                     }
                 });
-        SmsReceiver.bindListener(new SmsListener() {
+        /*SmsReceiver.bindListener(new SmsListener() {
             @Override
             public void messageReceived(String messageText) {
                 otp=messageText.substring(messageText.length()-4,messageText.length());
@@ -57,6 +57,7 @@ public class Sms_Verification extends AppCompatActivity {
                 btn1.performClick();
             }
         });
+        */
 
         btn1.setOnClickListener(
                 new View.OnClickListener()
