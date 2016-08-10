@@ -17,8 +17,7 @@ public class SharedPrefs {
     private static final String KEY_PHOTO_URL = "photoUrl";
     private static final String KEY_USER_ID = "userId";
     private static final String KEY_LOGIN_TYPE = "loginType";
-
-
+    private static final String KEY_FCM="fcm";
     // LogCat tag
     private static String TAG = "Shared Preference";
     // Shared Preferences
@@ -51,6 +50,11 @@ public class SharedPrefs {
     public String getUsername() {
 
         return pref.getString(KEY_USERNAME, "Not Available");
+    }
+    public void setFCM(String fcm)
+    {
+        editor.putString(KEY_FCM,fcm);
+        editor.commit();
     }
 
     public void setUsername(String username) {

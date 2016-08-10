@@ -1,5 +1,6 @@
 package app.startups.nitrr.ecell.ecellapp.send_otp.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 
 import app.startups.nitrr.ecell.ecellapp.R;
 import app.startups.nitrr.ecell.ecellapp.helper.SharedPrefs;
+import app.startups.nitrr.ecell.ecellapp.home.view.Home;
 import app.startups.nitrr.ecell.ecellapp.send_otp.model.RetrofitOtpProvider;
 import app.startups.nitrr.ecell.ecellapp.send_otp.model.RetrofitVerifyProvider;
 import app.startups.nitrr.ecell.ecellapp.send_otp.presenter.SendOtpPresenter;
@@ -67,9 +69,6 @@ public class SendOtp extends AppCompatActivity implements SendOtpView {
                         verifyOtpPresenter.verifyOtp(name,lname,email,college,sem,branch,num1,otp,token);
                     }
                 });
-
-
-
     }
 
     @Override
@@ -112,9 +111,6 @@ public class SendOtp extends AppCompatActivity implements SendOtpView {
         college= getIntent().getExtras().getString("college").toString();
         branch= getIntent().getExtras().getString("branch").toString();
         sem= getIntent().getExtras().getString("sem").toString();
-
-
-
     }
 
     @Override
@@ -122,7 +118,11 @@ public class SendOtp extends AppCompatActivity implements SendOtpView {
         Toast.makeText(SendOtp.this, "ALL DOne..", Toast.LENGTH_SHORT).show();
         SharedPrefs sharedPrefs=new SharedPrefs(SendOtp.this);
         sharedPrefs.setLogin(true);
-
-
+        sharedPrefs.setEmailId(email);
+        sharedPrefs.setUsername(name+" "+lname);
+        sharedPrefs.setPhotoUrl(null);
+        sharedPrefs.setFCM(token);
+        Intent in=new Intent(SendOtp.this, Home.class);
+        startActivity(in);
     }
 }

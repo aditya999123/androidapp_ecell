@@ -46,6 +46,7 @@ public class SplashScreenPresenterImpl implements SplashScreenPresenter {
                 if(splashScreenData.isSuccess()){
                     splashScreenView.fcmInsertStatus(true);
                     splashScreenView.showProgressBar(false);
+
                 }else{
                     splashScreenView.showMessage(splashScreenData.getMessage());
                 }
