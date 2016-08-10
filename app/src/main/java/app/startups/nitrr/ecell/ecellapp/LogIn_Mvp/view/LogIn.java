@@ -62,6 +62,7 @@ public class LogIn extends AppCompatActivity implements LogIn_View {
         toolbar.setTitle("Log In");
 
         Button otp = (Button) findViewById(R.id.next_button);
+        assert otp != null;
         otp.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View view) {

@@ -24,7 +24,6 @@ public class RetrofitVerifyProvider implements VerifyOtp {
         Gson gson = new GsonBuilder()
                 .setLenient()
                 .create();
-
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Urls.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
