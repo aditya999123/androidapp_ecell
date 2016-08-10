@@ -24,6 +24,7 @@ import app.startups.nitrr.ecell.ecellapp.BQuizNew.presenter.BQuizPresenterImpl;
 import app.startups.nitrr.ecell.ecellapp.BQuizNew.presenter.SubmitAnswerPresenter;
 import app.startups.nitrr.ecell.ecellapp.BQuizNew.presenter.SubmitAnswerPresenterImpl;
 import app.startups.nitrr.ecell.ecellapp.R;
+import app.startups.nitrr.ecell.ecellapp.helper.SharedPrefs;
 import app.startups.nitrr.ecell.ecellapp.helper.image_loaders.GlideImageLoader;
 import app.startups.nitrr.ecell.ecellapp.helper.image_loaders.ImageLoader;
 import butterknife.BindView;
@@ -111,7 +112,8 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
             @Override
             public void onClick(View view) {
 
-                submitAnswerPresenter.submitAnswer(questionId, getAnswer());
+                SharedPrefs sharedPrefs=new SharedPrefs(BQuizActivity.this);
+                submitAnswerPresenter.submitAnswer(questionId, getAnswer(),sharedPrefs.getAccessToken());
             }
         });
     }

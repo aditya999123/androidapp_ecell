@@ -24,7 +24,7 @@ public class VerifyOtpPresenterImpl implements VerifyOtpPresenter {
            @Override
            public void onSuccess(VerifyOtpData verifyOtpData) {
                sendOtpView.showMessage(verifyOtpData.getMessage());
-               sendOtpView.onOtpVerified();
+               sendOtpView.onOtpVerified(verifyOtpData);
            }
 
            @Override

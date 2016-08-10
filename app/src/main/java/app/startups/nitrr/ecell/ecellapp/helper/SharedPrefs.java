@@ -17,7 +17,8 @@ public class SharedPrefs {
     private static final String KEY_PHOTO_URL = "photoUrl";
     private static final String KEY_USER_ID = "userId";
     private static final String KEY_LOGIN_TYPE = "loginType";
-    private static final String KEY_FCM="fcm";
+    private static final String KEY_FCM = "fcm";
+    private static final String KEY_ACCESS_TOKEN = "access_token";
     // LogCat tag
     private static String TAG = "Shared Preference";
     // Shared Preferences
@@ -51,9 +52,9 @@ public class SharedPrefs {
 
         return pref.getString(KEY_USERNAME, "Not Available");
     }
-    public void setFCM(String fcm)
-    {
-        editor.putString(KEY_FCM,fcm);
+
+    public void setFCM(String fcm) {
+        editor.putString(KEY_FCM, fcm);
         editor.commit();
     }
 
@@ -95,6 +96,16 @@ public class SharedPrefs {
         editor.putString(KEY_PHOTO_URL, photoUrl);
         editor.commit();
 
+    }
+
+    public void setAccessToken(String accessToken) {
+        editor.putString(KEY_ACCESS_TOKEN, accessToken);
+        editor.commit();
+    }
+
+    public String getAccessToken() {
+
+        return pref.getString(KEY_ACCESS_TOKEN, null);
     }
 
     public String getEmail() {
