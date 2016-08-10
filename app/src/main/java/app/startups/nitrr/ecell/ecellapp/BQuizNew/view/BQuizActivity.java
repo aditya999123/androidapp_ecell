@@ -5,8 +5,11 @@ import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -14,6 +17,7 @@ import android.widget.Toast;
 
 import app.startups.nitrr.ecell.ecellapp.BQuizNew.model.RetrofitBquizProvider;
 import app.startups.nitrr.ecell.ecellapp.BQuizNew.model.data.BQuizData;
+import app.startups.nitrr.ecell.ecellapp.BQuizNew.model.data.SubmitAnswerData;
 import app.startups.nitrr.ecell.ecellapp.BQuizNew.presenter.BQuizPresenter;
 import app.startups.nitrr.ecell.ecellapp.BQuizNew.presenter.BQuizPresenterImpl;
 import app.startups.nitrr.ecell.ecellapp.R;
@@ -53,16 +57,27 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
 
     @BindView(R.id.rb4)
     RadioButton rb4;
-/*
 
-    @BindView(R.id.progress_bar)
+
+    @BindView(R.id.progressBar)
     ProgressBar progressbar;
-*/
 
     @BindView(R.id.radio_group)
     RadioGroup radio_group;
-    int time;
 
+    @BindView(R.id.message)
+    TextView message;
+
+    @BindView(R.id.message_image)
+    ImageView messageImage;
+
+    @BindView(R.id.message_layout)
+    LinearLayout messageLayout;
+
+    @BindView(R.id.question_layout)
+    LinearLayout questionLayout;
+
+    int time;
     private BQuizPresenter bQuizPresenter;
     private ImageLoader imageLoader;
 
@@ -75,6 +90,15 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
         bQuizPresenter.getBquizData("123412341234");
         imageLoader = new GlideImageLoader(this);
 
+        radio_group=new RadioGroup(this);
+
+        rb1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
+
+            }
+        });
     }
 
     @Override
@@ -84,15 +108,17 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
 
     @Override
     public void showProgressbar(boolean show) {
-       /* if (show)
+        if (show)
             progressbar.setVisibility(View.VISIBLE);
         else
             progressbar.setVisibility(View.GONE);
-   */
     }
 
     @Override
     public void setBquizData(BQuizData bquizData) {
+
+        messageLayout.setVisibility(View.GONE);
+        questionLayout.setVisibility(View.VISIBLE);
         switch (bquizData.getData_type()) {
 
 
@@ -139,6 +165,18 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
             default:
 
 
+        }
+    }
+
+    @Override
+    public void answerSubmitted(SubmitAnswerData submitAnswerData) {
+        if (submitAnswerData.isSuccess()) {
+
+            questionLayout.setVisibility(View.GONE);
+            messageLayout.setVisibility(View.VISIBLE);
+
+            message.setText(submitAnswerData.getMessage());
+            imageLoader.loadImage(submitAnswerData.getMessage_image(), messageImage);
 
         }
     }

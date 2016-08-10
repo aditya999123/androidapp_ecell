@@ -21,6 +21,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitOtpProvider implements OtpProvider {
     @Override
     public void sendOtp(String mobile, String name, final OnOtpSent onOtpSent) {
+
         Log.d("Response","Model");
         Gson gson = new GsonBuilder()
                 .setLenient()
