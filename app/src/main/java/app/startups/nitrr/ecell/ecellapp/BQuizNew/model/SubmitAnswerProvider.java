@@ -9,6 +9,6 @@ import rx.Observable;
  */
 public interface SubmitAnswerProvider {
 
-    Observable<SubmitAnswerData> submitQuestion(String questionId, String answerId);
+    Observable<SubmitAnswerData> submitQuestion(int questionId, String answerId,String access_token);
 
 }

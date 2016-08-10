@@ -16,4 +16,5 @@ public class Urls {
     public static final String VERIFY_OTP="ver_otp/";
 
     public static final String REQUEST_SPLASH_SCREEN ="" ;
+    public static final String REQUEST_SUBMIT_ANSWER = "send_ans/" ;
 }

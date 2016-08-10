@@ -21,7 +21,7 @@ public class RetrofitSubmitAnswerProvider implements SubmitAnswerProvider {
     Retrofit retrofit;
     SubmitAnswerRequestInterface submitAnswerRequestInterface;
 
-    RetrofitSubmitAnswerProvider() {
+    public RetrofitSubmitAnswerProvider() {
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -43,8 +43,8 @@ public class RetrofitSubmitAnswerProvider implements SubmitAnswerProvider {
     }
 
     @Override
-    public Observable<SubmitAnswerData> submitQuestion(String questionId, String answerId) {
+    public Observable<SubmitAnswerData> submitQuestion(int questionId, String answerId,String access_token) {
 
-        return submitAnswerRequestInterface.submitAnswer(questionId, answerId);
+        return submitAnswerRequestInterface.submitAnswer(questionId, answerId,access_token);
     }
 }

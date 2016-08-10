@@ -5,6 +5,6 @@ package app.startups.nitrr.ecell.ecellapp.BQuizNew.presenter;
  */
 public interface SubmitAnswerPresenter {
 
-    void submitAnswer(String questionId,String answer);
+    void submitAnswer(int questionId,String answer,String accessToken);
 
 }

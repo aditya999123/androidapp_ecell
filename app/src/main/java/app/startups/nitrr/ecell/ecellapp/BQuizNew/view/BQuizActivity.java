@@ -16,10 +16,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import app.startups.nitrr.ecell.ecellapp.BQuizNew.model.RetrofitBquizProvider;
+import app.startups.nitrr.ecell.ecellapp.BQuizNew.model.RetrofitSubmitAnswerProvider;
 import app.startups.nitrr.ecell.ecellapp.BQuizNew.model.data.BQuizData;
 import app.startups.nitrr.ecell.ecellapp.BQuizNew.model.data.SubmitAnswerData;
 import app.startups.nitrr.ecell.ecellapp.BQuizNew.presenter.BQuizPresenter;
 import app.startups.nitrr.ecell.ecellapp.BQuizNew.presenter.BQuizPresenterImpl;
+import app.startups.nitrr.ecell.ecellapp.BQuizNew.presenter.SubmitAnswerPresenter;
+import app.startups.nitrr.ecell.ecellapp.BQuizNew.presenter.SubmitAnswerPresenterImpl;
 import app.startups.nitrr.ecell.ecellapp.R;
 import app.startups.nitrr.ecell.ecellapp.helper.image_loaders.GlideImageLoader;
 import app.startups.nitrr.ecell.ecellapp.helper.image_loaders.ImageLoader;
@@ -80,6 +83,9 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
     int time;
     private BQuizPresenter bQuizPresenter;
     private ImageLoader imageLoader;
+    private SubmitAnswerPresenter submitAnswerPresenter;
+    private int questionId;
+    private int data_type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,15 +94,24 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
         ButterKnife.bind(this);
         bQuizPresenter = new BQuizPresenterImpl(this, new RetrofitBquizProvider());
         bQuizPresenter.getBquizData("123412341234");
+
+        submitAnswerPresenter = new SubmitAnswerPresenterImpl(this, new RetrofitSubmitAnswerProvider());
         imageLoader = new GlideImageLoader(this);
 
-        radio_group=new RadioGroup(this);
+        radio_group = new RadioGroup(this);
 
         rb1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
 
+            }
+        });
 
+        submit_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                submitAnswerPresenter.submitAnswer(questionId, getAnswer());
             }
         });
     }
@@ -116,6 +131,9 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
 
     @Override
     public void setBquizData(BQuizData bquizData) {
+
+        questionId = bquizData.getQuestion_data().getQuestion_id();
+        data_type = bquizData.getData_type();
 
         messageLayout.setVisibility(View.GONE);
         questionLayout.setVisibility(View.VISIBLE);
@@ -194,6 +212,34 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
             }
         }.start();
 
+    }
+
+    private String getAnswer() {
+
+        String answer = null;
+        switch (data_type) {
+
+            case 1:
+
+                answer = input_ans.getText().toString();
+                break;
+            case 2:
+
+
+                RadioButton radioButton = (RadioButton) findViewById(radio_group.getCheckedRadioButtonId());
+                answer = radioButton.getText().toString();
+                break;
+            case 3:
+
+                answer = input_ans.getText().toString();
+                break;
+            case 4:
+
+                RadioButton radioButton1 = (RadioButton) findViewById(radio_group.getCheckedRadioButtonId());
+                answer = radioButton1.getText().toString();
+                break;
+        }
+        return answer;
     }
 
 

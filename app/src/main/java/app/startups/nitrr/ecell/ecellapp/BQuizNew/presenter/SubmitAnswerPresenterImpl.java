@@ -22,10 +22,11 @@ public class SubmitAnswerPresenterImpl implements SubmitAnswerPresenter {
     }
 
     @Override
-    public void submitAnswer(String questionId, String answer) {
+    public void submitAnswer(int questionId, String answer,String accessToken) {
 
         bQuizView.showProgressbar(true);
-        Observable<SubmitAnswerData> submitAnswerDataObservable = submitAnswerProvider.submitQuestion(questionId, answer);
+        Observable<SubmitAnswerData> submitAnswerDataObservable =
+                submitAnswerProvider.submitQuestion(questionId, answer,accessToken);
 
         submitAnswerDataObservable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<SubmitAnswerData>() {
@@ -37,6 +38,7 @@ public class SubmitAnswerPresenterImpl implements SubmitAnswerPresenter {
                     @Override
                     public void onError(Throwable e) {
 
+                        e.printStackTrace();
                     }
 
                     @Override
