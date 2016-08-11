@@ -91,7 +91,7 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bquiz_new);
+        setContentView(R.layout.activity_bquiz__intro);
         ButterKnife.bind(this);
         bQuizPresenter = new BQuizPresenterImpl(this, new RetrofitBquizProvider());
         bQuizPresenter.getBquizData("123412341234");

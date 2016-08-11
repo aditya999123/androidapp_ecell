@@ -16,14 +16,11 @@
         android:supportsRtl="true"
         android:theme="@style/MyMaterialTheme">
         <activity android:name=".splash_screen.view.SplashScreenActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".home.view.Home" />
         <activity android:name=".welcome.view.WelcomeActivity" >
+
         </activity>
         <activity android:name=".LogIn_Mvp.view.LogIn">
 
@@ -49,15 +46,16 @@
 
         <activity android:name=".set_up_profile.view.SetUpProfile" />
         <activity android:name=".events.view.ListOfEvents" />
-        <activity android:name=".LogIn.LogIn" />
-        <activity android:name=".LogIn.Sms_Verification" />
-        <activity android:name=".LogIn.Bquiz_Intro" />
-        <activity android:name=".send_otp.view.SendOtp" />
-        <activity android:name=".LogIn.BQuizQuestion" />
 
+        <activity android:name=".send_otp.view.SendOtp" />
 
 
         <activity android:name=".BQuizNew.view.BQuizActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
         </activity><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
