@@ -94,7 +94,8 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
         setContentView(R.layout.activity_bquiz__intro);
         ButterKnife.bind(this);
         bQuizPresenter = new BQuizPresenterImpl(this, new RetrofitBquizProvider());
-        bQuizPresenter.getBquizData("123412341234");
+        SharedPrefs sharedPrefs=new SharedPrefs(this);
+        bQuizPresenter.getBquizData(sharedPrefs.getAccessToken());
 
         submitAnswerPresenter = new SubmitAnswerPresenterImpl(this, new RetrofitSubmitAnswerProvider());
         imageLoader = new GlideImageLoader(this);

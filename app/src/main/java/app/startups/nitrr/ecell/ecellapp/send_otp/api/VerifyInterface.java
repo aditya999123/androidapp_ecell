@@ -13,5 +13,5 @@ import retrofit2.http.POST;
 public interface VerifyInterface {
     @FormUrlEncoded
     @POST(Urls.VERIFY_OTP)
-    Call<VerifyOtpData> getSuccess (@Field("name") String name, @Field("lname") String lname, @Field("email") String email, @Field("college") String college, @Field("sem") String sem, @Field("branch") String branch, @Field("mobile") String num, @Field("otp") String otp, @Field("fcm") String fcm);
+    Call<VerifyOtpData> getSuccess(@Field("first_name") String name, @Field("last_name") String lname, @Field("email") String email, @Field("college") String college, @Field("semester") String sem, @Field("branch") String branch, @Field("mobile") String num, @Field("otp") String otp, @Field("fcm") String fcm);
 }
