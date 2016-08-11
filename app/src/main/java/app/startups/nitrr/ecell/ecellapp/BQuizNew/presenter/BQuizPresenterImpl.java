@@ -27,8 +27,12 @@ public class BQuizPresenterImpl implements BQuizPresenter {
             @Override
             public void onSuccess(BQuizData bQuizData) {
 
-                bQuizView.showProgressbar(false);
-                bQuizView.setBquizData(bQuizData);
+                if (bQuizData.isSuccess()) {
+                    bQuizView.showProgressbar(false);
+                    bQuizView.setBquizData(bQuizData);
+                }else{
+                    bQuizView.showProgressbar(false);
+                }
             }
 
             @Override
