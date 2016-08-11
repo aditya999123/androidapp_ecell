@@ -143,6 +143,12 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
             case 1:
                 question_image.setVisibility(View.GONE);
                 radio_group.setVisibility(View.GONE);
+                rb1.setVisibility(View.GONE);
+                rb2.setVisibility(View.GONE);
+                rb3.setVisibility(View.GONE);
+                rb4.setVisibility(View.GONE);
+                question_text.setVisibility(View.VISIBLE);
+
                 question_text.setText(bquizData.getQuestion_data().getQuestion());
                 time = bquizData.getQuestion_data().getQuestion_duration();
                 input_ans.setVisibility(View.VISIBLE);
