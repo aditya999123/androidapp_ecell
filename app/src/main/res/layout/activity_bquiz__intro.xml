@@ -4,7 +4,8 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:weightSum="6"
     tools:context="app.startups.nitrr.ecell.ecellapp.BQuizNew.view.BQuizActivity">
 <RelativeLayout
@@ -26,7 +27,8 @@
                     android:id="@+id/timer"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-
+                    android:fontFamily="casual"
+                    android:elevation="10dp"
                     android:gravity="center"
                     android:text="02:05"
                     android:textColor="@color/white"
@@ -65,6 +67,7 @@
                         android:layout_height="wrap_content"
                         android:paddingTop="4dp"
                         android:paddingBottom="4dp"
+                        android:fontFamily="casual"
                         android:textColor="@color/black"
                         android:gravity="center"
                         android:textSize="16dp"
@@ -89,9 +92,10 @@
                             android:id="@+id/input_ans"
                             android:layout_marginTop="20dp"
                             android:layout_width="fill_parent"
-                            android:layout_height="50dp"
+                            android:layout_height="60dp"
                             android:gravity="center"
                             android:textSize="25dp"
+                            android:fontFamily="casual"
                             android:hint="Enter your answer here"
                             android:visibility="visible"
                             />
@@ -145,6 +149,7 @@
             android:layout_height="50dp"
             android:text="SUBMIT"
             android:textSize="20dp"
+            android:fontFamily="casual"
             android:gravity="center"
             style="@style/Base.Widget.AppCompat.Button.Colored"
 

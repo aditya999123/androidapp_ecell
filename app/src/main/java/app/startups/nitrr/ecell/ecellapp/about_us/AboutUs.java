@@ -16,7 +16,7 @@ public class AboutUs extends AppCompatActivity {
 
         setContentView(R.layout.activity_about_us);
         TextView tv=(TextView)findViewById(R.id.textView);
-        tv.getBackground().setAlpha(40);
+        tv.getBackground().setAlpha(20);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("About Us");

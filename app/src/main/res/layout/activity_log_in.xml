@@ -41,8 +41,6 @@
                 android:textSize="45dp"
                 android:gravity="center"
                 android:textStyle="bold"
-
-
                 />
             <EditText
                 android:layout_width="match_parent"

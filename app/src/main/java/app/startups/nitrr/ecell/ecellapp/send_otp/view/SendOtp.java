@@ -109,7 +109,6 @@ public class SendOtp extends AppCompatActivity implements SendOtpView {
 
     @Override
     public void onOtpVerified(VerifyOtpData verifyOtpData) {
-        Toast.makeText(SendOtp.this, "ALL DOne..", Toast.LENGTH_SHORT).show();
         SharedPrefs sharedPrefs = new SharedPrefs(SendOtp.this);
         sharedPrefs.setLogin(true);
         sharedPrefs.setEmailId(email);
