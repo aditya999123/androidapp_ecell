@@ -206,7 +206,7 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
         time *= 1000;
         new CountDownTimer(time, 1000) {
             public void onTick(long millisUntilFinished) {
-                timer.setText(millisUntilFinished / 60000 + " : " + (millisUntilFinished / 1000) % 60 + "secs left");
+                timer.setText(millisUntilFinished / 60000 + " : " + (millisUntilFinished / 1000) % 60);
             }
 
             public void onFinish() {
