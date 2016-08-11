@@ -34,9 +34,15 @@ public class SplashScreenActivity extends AppCompatActivity implements SplashScr
 
         ButterKnife.bind(this);
         sharedPrefs = new SharedPrefs(this);
-        SplashScreenPresenter splashScreenPresenter = new SplashScreenPresenterImpl(this, new RetrofitSplashScreenProvider());
-        splashScreenPresenter.insertFcm(MyApplication.fcm_token);
 
+        if (sharedPrefs.getFcm() == null) {
+            SplashScreenPresenter splashScreenPresenter = new SplashScreenPresenterImpl(this, new RetrofitSplashScreenProvider());
+            splashScreenPresenter.insertFcm(MyApplication.fcm_token);
+        } else {
+            Intent intent = new Intent(SplashScreenActivity.this, WelcomeActivity.class);
+            startActivity(intent);
+            finish();
+        }
         /*
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -57,9 +63,9 @@ public class SplashScreenActivity extends AppCompatActivity implements SplashScr
     @Override
     public void fcmInsertStatus(boolean successful) {
 
-        if(successful){
+        if (successful) {
             sharedPrefs.setFCM(MyApplication.fcm_token);
-            Intent in=new Intent(SplashScreenActivity.this,WelcomeActivity.class);
+            Intent in = new Intent(SplashScreenActivity.this, WelcomeActivity.class);
             startActivity(in);
 
         }
@@ -78,9 +84,9 @@ public class SplashScreenActivity extends AppCompatActivity implements SplashScr
 
     @Override
     public void showProgressBar(boolean show) {
-        if(show){
+        if (show) {
             progressBar.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             progressBar.setVisibility(View.GONE);
         }
     }

@@ -58,6 +58,10 @@ public class SharedPrefs {
         editor.commit();
     }
 
+    public String getFcm() {
+        return pref.getString(KEY_FCM, null);
+    }
+
     public void setUsername(String username) {
 
         editor.putString(KEY_USERNAME, username);
