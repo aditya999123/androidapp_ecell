@@ -38,9 +38,6 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
     @BindView(R.id.question_image)
     ImageView question_image;
 
-    @BindView(R.id.points)
-    TextView points;
-
     @BindView(R.id.input_ans)
     EditText input_ans;
 
@@ -148,6 +145,7 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
                 radio_group.setVisibility(View.GONE);
                 question_text.setText(bquizData.getQuestion_data().getQuestion());
                 time = bquizData.getQuestion_data().getQuestion_duration();
+                input_ans.setVisibility(View.VISIBLE);
                 countDown(time);
                 break;
             case 2:
@@ -162,12 +160,11 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
                 imageLoader.loadImage(bquizData.getQuestion_data().getImage_url(), question_image);
                 time = bquizData.getQuestion_data().getQuestion_duration();
                 countDown(time);
-
-                //add images in the activity
                 break;
             case 3:
                 radio_group.setVisibility(View.GONE);
                 question_text.setText(bquizData.getQuestion_data().getQuestion());
+                input_ans.setVisibility(View.VISIBLE);
                 time = bquizData.getQuestion_data().getQuestion_duration();
                 countDown(time);
                 break;
@@ -181,11 +178,8 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
                 question_image.setVisibility(View.VISIBLE);
                 time = bquizData.getQuestion_data().getQuestion_duration();
                 countDown(time);
-                //add images in the activity
                 break;
             default:
-
-
         }
     }
 
