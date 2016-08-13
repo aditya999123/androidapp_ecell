@@ -100,7 +100,7 @@ public class LogIn extends AppCompatActivity implements LogIn_View {
                                     Toast.LENGTH_LONG).show();
                         }
                         else if(validator(name,lname,college) || spinner.getSelectedItemId()==0 || spinner1.getSelectedItemId()==0)
-                            Toast.makeText(LogIn.this, "All the fields are required.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LogIn.this, "**All the fields are required**", Toast.LENGTH_SHORT).show();
                         else
 
 

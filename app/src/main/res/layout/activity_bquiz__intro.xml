@@ -195,6 +195,10 @@
                 app:contentPadding="8dp"
 
                 >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
             <TextView
                 android:id="@+id/message"
@@ -202,7 +206,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:textSize="30dp"
+                android:textColor="@color/black"
+                android:textSize="25dp"
                 />
 
 
@@ -210,6 +215,7 @@
                 android:id="@+id/message_image"
                 android:layout_width="match_parent"
                 android:layout_height="200dp" />
+                </LinearLayout>
 
             </android.support.v7.widget.CardView>
             </LinearLayout>

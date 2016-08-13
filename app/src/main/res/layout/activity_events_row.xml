@@ -19,12 +19,12 @@
             android:layout_width="fill_parent"
             android:orientation="vertical"
             android:padding="@dimen/padding_small"
-            android:layout_height="220dp">
+            android:layout_height="wrap_content">
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="100dp">
                 <ImageView
-                    android:layout_width="160dp"
+                    android:layout_width="140dp"
                     android:layout_height="100dp"
                     android:id="@+id/imgview1"
                     android:padding="3dp"
@@ -64,16 +64,11 @@
             </LinearLayout>
             <TextView
                 android:layout_width="fill_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:id="@+id/description"
-                android:text="DESCRIPTION \n"
+                android:textColor="@color/black"
+                android:text=""
 
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="15dp"
-                android:text="Read More..."
                 />
             <Button
                 android:layout_width="fill_parent"
