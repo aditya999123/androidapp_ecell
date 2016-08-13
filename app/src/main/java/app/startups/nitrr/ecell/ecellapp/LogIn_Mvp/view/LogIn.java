@@ -98,7 +98,10 @@ public class LogIn extends AppCompatActivity implements LogIn_View {
                         if (emailInvalid(email)) {
                             Toast.makeText(LogIn.this, "ENTER CORRECT EMAIL ID!",
                                     Toast.LENGTH_LONG).show();
-                        } else
+                        }
+                        else if(validator(name,lname,college) || spinner.getSelectedItemId()==0 || spinner1.getSelectedItemId()==0)
+                            Toast.makeText(LogIn.this, "All the fields are required.", Toast.LENGTH_SHORT).show();
+                        else
 
 
                         {
@@ -114,6 +117,8 @@ public class LogIn extends AppCompatActivity implements LogIn_View {
                             startActivity(i);
                         }
                     }
+
+
                 });
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -135,5 +140,11 @@ public class LogIn extends AppCompatActivity implements LogIn_View {
         boolean a = matcher.matches();
         return !a;
     }
+    private boolean validator(String name, String lname, String college) {
+        if(name==null || lname==null || college==null)
+            return true;
+        else return false;
+    }
+
 
 }

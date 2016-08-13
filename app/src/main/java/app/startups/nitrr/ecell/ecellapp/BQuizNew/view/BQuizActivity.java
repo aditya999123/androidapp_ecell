@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -88,12 +89,25 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
     private SubmitAnswerPresenter submitAnswerPresenter;
     private int questionId;
     private int data_type;
-
+    Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bquiz__intro);
         ButterKnife.bind(this);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("B Quiz");
+        toolbar.setVisibility(View.GONE);
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
+        toolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+
         bQuizPresenter = new BQuizPresenterImpl(this, new RetrofitBquizProvider());
         SharedPrefs sharedPrefs = new SharedPrefs(this);
         bQuizPresenter.getBquizData(sharedPrefs.getAccessToken());
@@ -244,10 +258,11 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
     @Override
     public void answerSubmitted(SubmitAnswerData submitAnswerData) {
         if (submitAnswerData.isSuccess()) {
-
+            toolbar.setVisibility(View.VISIBLE);
             questionLayout.setVisibility(View.GONE);
+            LinearLayout answer_layout=(LinearLayout)findViewById(R.id.answer_layout);
+            answer_layout.setVisibility(View.VISIBLE);
             messageLayout.setVisibility(View.VISIBLE);
-
             message.setText(submitAnswerData.getMessage());
             imageLoader.loadImage(submitAnswerData.getMessage_image(), messageImage);
 
@@ -297,10 +312,5 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
         }
         return answer;
     }
-    private void show_Dialog(BQuizData bQuizData)
-    {
-
-    }
-
 
 }

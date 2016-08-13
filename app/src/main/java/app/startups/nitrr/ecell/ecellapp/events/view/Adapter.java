@@ -13,7 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.startups.nitrr.ecell.ecellapp.R;
+import app.startups.nitrr.ecell.ecellapp.helper.image_loaders.GlideImageLoader;
 import app.startups.nitrr.ecell.ecellapp.helper.image_loaders.ImageLoader;
+
 /**
  * Created by Iket on 7/27/2016.
  */
@@ -22,15 +24,15 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
     private List<EventsData> EventDataList = new ArrayList<>();
     private Context context;
     private LayoutInflater layoutInflater;
-    ImageLoader imageLoader;
 
-//    private ImageLoader imageLoader;
+
+   private ImageLoader imageLoader;
 
     public Adapter(Context context) {
         this.context = context;
         layoutInflater = LayoutInflater.from(context);
 
-//        imageLoader = new GlideImageLoader(context);
+       imageLoader = new GlideImageLoader(context);
     }
 
     public void setData(List<EventsData> EventDataList) {
@@ -62,8 +64,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
         holder.date_time.setText(eventData.getDate());
         holder.venue.setText(eventData.getVenue());
         holder.description.setText(eventData.getDescription());
-//        Log.d("Response",eventData.getImage());
-//        imageLoader.loadImage(eventData.getImage(), holder.imageView);
+        imageLoader.loadImage(eventData.getImage(), holder.imageView);
 
     }
 

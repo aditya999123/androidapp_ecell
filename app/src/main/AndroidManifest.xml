@@ -16,7 +16,11 @@
         android:supportsRtl="true"
         android:theme="@style/MyMaterialTheme">
         <activity android:name=".splash_screen.view.SplashScreenActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".home.view.Home"></activity>
         <activity android:name=".welcome.view.WelcomeActivity"></activity>
@@ -46,15 +50,13 @@
             android:value="@string/facebook_app_id" />
 
         <activity android:name=".set_up_profile.view.SetUpProfile" />
-        <activity android:name=".events.view.ListOfEvents" />
+        <activity android:name=".events.view.ListOfEvents" >
+
+        </activity>
         <activity android:name=".send_otp.view.SendOtp" />
         <activity android:name=".BQuizNew.view.BQuizActivity">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <!--
  ATTENTION: This was auto-generated to add Google Play services to your project for
