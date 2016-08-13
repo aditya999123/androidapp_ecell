@@ -51,6 +51,7 @@ public class RetrofitBquizProvider implements BQuizProvider {
             public void onResponse(Call<BQuizData> call, Response<BQuizData> response) {
 
                 onBQuizDataResponse.onSuccess(response.body());
+
             }
 
             @Override

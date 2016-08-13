@@ -40,6 +40,8 @@ public class LogIn extends AppCompatActivity implements LogIn_View {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
+         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar1);
+        toolbar.setTitle("LogIn");
 
         final Spinner spinner = (Spinner) findViewById(R.id.Spinner01);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
@@ -55,9 +57,7 @@ public class LogIn extends AppCompatActivity implements LogIn_View {
         spinner1.setAdapter(adapter1);
        // spinner1.setOnItemSelectedListener(new MyOnItemSelectedListener());
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar1);
-        assert toolbar != null;
-        toolbar.setTitle("Log In");
+
 
         Button otp = (Button) findViewById(R.id.next_button);
         assert otp != null;

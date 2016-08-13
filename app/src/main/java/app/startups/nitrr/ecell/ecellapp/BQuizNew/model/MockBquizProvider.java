@@ -31,7 +31,7 @@ public class MockBquizProvider implements BQuizProvider {
         BQuizData bQuizData = new BQuizData(true, "Successful", "none", 1, new QuestionData(
 
                 1, "What is your name", "none", null, null, null, null, 120
-        ));
+        ),"rules");
 
         return bQuizData;
     }

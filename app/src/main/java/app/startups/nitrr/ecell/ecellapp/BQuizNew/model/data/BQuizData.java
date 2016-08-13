@@ -10,16 +10,22 @@ public class BQuizData {
     private String message_image_url;
     private int data_type;
     private QuestionData question_data;
+    private String rules;
 
 
+    public String getRules() {
+        return rules;
+    }
 
     public BQuizData(boolean success, String message, String message_image_url, int data_type,
-                     QuestionData questiondata) {
+                     QuestionData questiondata, String rules) {
         this.success = success;
         this.message = message;
         this.message_image_url = message_image_url;
         this.data_type = data_type;
         question_data = questiondata;
+        this.rules=rules;
+
     }
 
     public boolean isSuccess() {
