@@ -95,7 +95,7 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
         setContentView(R.layout.activity_bquiz__intro);
         ButterKnife.bind(this);
         bQuizPresenter = new BQuizPresenterImpl(this, new RetrofitBquizProvider());
-        SharedPrefs sharedPrefs=new SharedPrefs(this);
+        SharedPrefs sharedPrefs = new SharedPrefs(this);
         bQuizPresenter.getBquizData(sharedPrefs.getAccessToken());
 
         submitAnswerPresenter = new SubmitAnswerPresenterImpl(this, new RetrofitSubmitAnswerProvider());
@@ -114,8 +114,8 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
             @Override
             public void onClick(View view) {
 
-                SharedPrefs sharedPrefs=new SharedPrefs(BQuizActivity.this);
-                submitAnswerPresenter.submitAnswer(questionId, getAnswer(),sharedPrefs.getAccessToken());
+                SharedPrefs sharedPrefs = new SharedPrefs(BQuizActivity.this);
+                submitAnswerPresenter.submitAnswer(questionId, getAnswer(), sharedPrefs.getAccessToken());
             }
         });
     }

@@ -66,47 +66,37 @@ import butterknife.ButterKnife;
 public class WelcomeActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, WelcomeView {
 
 
+    private static final int RC_SIGN_IN = 100;
+    private static final String TAG = "Google Sign in";
     @BindView(R.id.view_pager)
     ViewPager viewPager;
-
     @BindView(R.id.layoutDots)
     LinearLayout dotsLayout;
-
     @BindView(R.id.login_button)
     LoginButton facebookLoginButton;
-
-
     @BindView(R.id.picture)
     ProfilePictureView profilePictureView;
-
     @BindView(R.id.share)
     Button share;
-
     @BindView(R.id.login)
     Button login;
-
     @BindView(R.id.details)
     Button details;
-
-
+    String refreshedToken = "";
+    CallbackManager callbackManager;
+    ShareDialog shareDialog;
+    ProfilePictureView profile;
+    Dialog details_dialog;
+    TextView details_txt;
     private SignInPresenter signInPresenter;
     private Timer swipeTimer;
     private int NUM_PAGES = 4;
     private MyViewPagerAdapter myViewPagerAdapter;
     private TextView[] dots;
     private int[] layouts;
-    private static final int RC_SIGN_IN = 100;
-    private static final String TAG = "Google Sign in";
     private GoogleApiClient mGoogleApiClient;
-    String refreshedToken = "";
     private TextView name;
     private SharedPrefs sharedPrefs;
-
-    CallbackManager callbackManager;
-    ShareDialog shareDialog;
-    ProfilePictureView profile;
-    Dialog details_dialog;
-    TextView details_txt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -360,43 +350,6 @@ public class WelcomeActivity extends AppCompatActivity implements GoogleApiClien
         Toast.makeText(WelcomeActivity.this, message, Toast.LENGTH_SHORT).show();
     }
 
-
-    /**
-     * View pager adapter
-     */
-    public class MyViewPagerAdapter extends PagerAdapter {
-        private LayoutInflater layoutInflater;
-
-        public MyViewPagerAdapter() {
-        }
-
-        @Override
-        public int getCount() {
-            return layouts.length;
-        }
-
-        @Override
-        public boolean isViewFromObject(View view, Object obj) {
-            return view == obj;
-        }
-
-        @Override
-        public Object instantiateItem(ViewGroup container, int position) {
-            layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View view = layoutInflater.inflate(layouts[position], container, false);
-
-            container.addView(view);
-            return view;
-        }
-
-        @Override
-        public void destroyItem(ViewGroup container, int position, Object object) {
-            View view = (View) object;
-            container.removeView(view);
-        }
-    }
-
-
     private void signIn() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_SIGN_IN);
@@ -486,6 +439,41 @@ public class WelcomeActivity extends AppCompatActivity implements GoogleApiClien
         parameters.putString("fields", "id,name,link,email,picture");
         request.setParameters(parameters);
         request.executeAsync();
+    }
+
+    /**
+     * View pager adapter
+     */
+    public class MyViewPagerAdapter extends PagerAdapter {
+        private LayoutInflater layoutInflater;
+
+        public MyViewPagerAdapter() {
+        }
+
+        @Override
+        public int getCount() {
+            return layouts.length;
+        }
+
+        @Override
+        public boolean isViewFromObject(View view, Object obj) {
+            return view == obj;
+        }
+
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
+            layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View view = layoutInflater.inflate(layouts[position], container, false);
+
+            container.addView(view);
+            return view;
+        }
+
+        @Override
+        public void destroyItem(ViewGroup container, int position, Object object) {
+            View view = (View) object;
+            container.removeView(view);
+        }
     }
 
 }
