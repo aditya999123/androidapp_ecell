@@ -28,9 +28,6 @@ public class SendOtp extends AppCompatActivity implements SendOtpView {
     private ProgressBar progressBar;
     SendOtpPresenter sendOtpPresenter;
     VerifyOtpPresenter verifyOtpPresenter;
-    TextView resend_timer;
-    Button btn= (Button) findViewById(R.id.btn);
-    Button btn1 = (Button) findViewById(R.id.btn1);
     String num1 = "", name = "", lname = "", email = "", college = "", branch = "", sem = "", otp = "", token = "";
 
     @Override
@@ -44,6 +41,8 @@ public class SendOtp extends AppCompatActivity implements SendOtpView {
         sendOtpPresenter = new SendOtpPresenterImpl(new RetrofitOtpProvider(), this);
         verifyOtpPresenter = new VerifyOtpPresenterImpl(new RetrofitVerifyProvider(), this);
         getIntents();
+        Button btn1 = (Button) findViewById(R.id.btn1);
+       Button btn= (Button) findViewById(R.id.btn);
         Log.d("Response", "1");
         progressBar.setVisibility(View.GONE);
         assert btn != null;
@@ -90,33 +89,39 @@ public class SendOtp extends AppCompatActivity implements SendOtpView {
 
     @Override
     public void onOtpSent() {
-
+        Button btn1 = (Button) findViewById(R.id.btn1);
+        Button btn= (Button) findViewById(R.id.btn);
         EditText verify = (EditText) findViewById(R.id.verify);
         verify.setVisibility(View.VISIBLE);
         btn1.setVisibility(View.VISIBLE);
         btn.setText("Resend Otp");
-        btn.setFocusable(false);
+        countDown(30);
+        btn.setClickable(false);
+        TextView resend_timer= (TextView) findViewById(R.id.resend_timer);
+        resend_timer.setVisibility(View.VISIBLE);
+
 
     }
 
     public void countDown(int time) {
-        resend_timer= (TextView) findViewById(R.id.resend_timer);
+
         time *= 1000;
         new CountDownTimer(time,1000) {
+            TextView resend_timer= (TextView) findViewById(R.id.resend_timer);
+            Button btn=(Button)findViewById(R.id.btn);
             public void onTick(long millisUntilFinished) {
 
                 resend_timer.setText("You can resend otp in " + (millisUntilFinished / 1000) % 60+" seconds");
 
-
             }
 
             public void onFinish() {
-                btn.setFocusable(true);
+                btn.setClickable(true);
+                resend_timer.setVisibility(View.GONE);
             }
         }.start();
 
     }
-
 
     public void getIntents() {
         name = getIntent().getExtras().getString("name").toString();
@@ -126,6 +131,11 @@ public class SendOtp extends AppCompatActivity implements SendOtpView {
         college = getIntent().getExtras().getString("college").toString();
         branch = getIntent().getExtras().getString("branch").toString();
         sem = getIntent().getExtras().getString("sem").toString();
+    }
+
+    @Override
+    public void onOtpFailed() {
+        Toast.makeText(SendOtp.this, "Otp Verification Failed.Try Again", Toast.LENGTH_SHORT).show();
     }
 
     @Override
