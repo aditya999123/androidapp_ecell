@@ -36,6 +36,13 @@ public class SendOtp extends AppCompatActivity implements SendOtpView {
         setContentView(R.layout.activity_sms__verification);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Mobile Verification");
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
+        toolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar1);
         sendOtpPresenter = new SendOtpPresenterImpl(new RetrofitOtpProvider(), this);

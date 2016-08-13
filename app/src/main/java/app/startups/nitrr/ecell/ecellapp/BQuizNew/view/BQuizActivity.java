@@ -232,8 +232,6 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
                         time = bquizData.getQuestion_data().getQuestion_duration();
                         countDown(time);
                         dialog.dismiss();
-
-
                     }
                 });
 

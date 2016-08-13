@@ -51,7 +51,6 @@ public class LogIn extends AppCompatActivity implements LogIn_View {
         toolbar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 finish();
             }
         });
