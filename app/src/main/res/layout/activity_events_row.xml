@@ -10,16 +10,16 @@
     <android.support.v7.widget.CardView
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/card_view"
-        android:padding="@dimen/padding_small"
+        card_view:contentPadding="8dp"
         android:layout_gravity="center"
         android:layout_width="fill_parent"
-        android:layout_height="220dp"
+        android:layout_height="wrap_content"
         card_view:cardCornerRadius="4dp">
         <LinearLayout
             android:layout_width="fill_parent"
             android:orientation="vertical"
             android:padding="@dimen/padding_small"
-            android:layout_height="220dp">
+            android:layout_height="wrap_content">
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="100dp">
@@ -64,23 +64,18 @@
             </LinearLayout>
             <TextView
                 android:layout_width="fill_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:id="@+id/description"
-                android:text="DESCRIPTION \n"
+                android:textColor="@color/black"
+                android:text=""
 
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="15dp"
-                android:text="Read More..."
                 />
             <Button
                 android:layout_width="fill_parent"
                 android:layout_height="50dp"
                 android:text="REGISTER"
                 android:layout_gravity="bottom"
-                style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+                style="@style/Base.Widget.AppCompat.Button.Colored"
 
                 />
         </LinearLayout>
