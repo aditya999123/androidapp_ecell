@@ -5,6 +5,8 @@ import android.util.Log;
 import app.startups.nitrr.ecell.ecellapp.events.api.RequestInterface;
 import app.startups.nitrr.ecell.ecellapp.events.view.OnEventsReceived;
 import app.startups.nitrr.ecell.ecellapp.events.view.jsonResponse;
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -19,9 +21,15 @@ public class RetrofitEventsProvider implements EventsProvider {
 
     @Override
     public void requestEvents(final OnEventsReceived onEventsReceived) {
+
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://iket0512.esy.es")
                 .addConverterFactory(GsonConverterFactory.create())
+                .client(client)
                 .build();
 
         final RequestInterface request = retrofit.create(RequestInterface.class);
