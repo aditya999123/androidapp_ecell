@@ -21,6 +21,8 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+
         </activity>
         <activity android:name=".home.view.Home"></activity>
         <activity android:name=".welcome.view.WelcomeActivity"></activity>
@@ -33,7 +35,7 @@
             android:label="@string/activity_blogs" />
         <activity android:name=".contact_us.ContactUs">
 
-</activity>
+        </activity>
 
         <activity android:name=".sign_in.view.SignInActivity" />
         <activity
@@ -57,8 +59,18 @@
         <activity android:name=".BQuizNew.view.BQuizActivity">
 
 
+
         </activity>
-        <!--
+
+
+
+
+        <service android:name=".helper.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
  ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
         -->
