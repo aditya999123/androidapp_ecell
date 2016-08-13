@@ -16,6 +16,11 @@
         android:supportsRtl="true"
         android:theme="@style/MyMaterialTheme">
         <activity android:name=".splash_screen.view.SplashScreenActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
         </activity>
         <activity android:name=".home.view.Home"></activity>
@@ -29,7 +34,7 @@
             android:label="@string/activity_blogs" />
         <activity android:name=".contact_us.ContactUs">
 
-</activity>
+        </activity>
 
         <activity android:name=".sign_in.view.SignInActivity" />
         <activity
@@ -50,13 +55,15 @@
         <activity android:name=".send_otp.view.SendOtp" />
         <activity android:name=".BQuizNew.view.BQuizActivity">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
-        <!--
+
+       <!-- <service android:name=".helper.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+-->
+<!--
  ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
         -->
