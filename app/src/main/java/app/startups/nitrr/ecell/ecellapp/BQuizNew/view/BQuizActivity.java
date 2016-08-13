@@ -1,8 +1,11 @@
 package app.startups.nitrr.ecell.ecellapp.BQuizNew.view;
 
+import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -27,6 +30,7 @@ import app.startups.nitrr.ecell.ecellapp.R;
 import app.startups.nitrr.ecell.ecellapp.helper.SharedPrefs;
 import app.startups.nitrr.ecell.ecellapp.helper.image_loaders.GlideImageLoader;
 import app.startups.nitrr.ecell.ecellapp.helper.image_loaders.ImageLoader;
+import app.startups.nitrr.ecell.ecellapp.home.view.Home;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -130,31 +134,51 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
     }
 
     @Override
-    public void setBquizData(BQuizData bquizData) {
+    public void setBquizData(final BQuizData bquizData) {
+
 
         questionId = bquizData.getQuestion_data().getQuestion_id();
         data_type = bquizData.getData_type();
+        Log.d("Response",bquizData.getRules());
+        final Dialog dialog = new Dialog(BQuizActivity.this);
+        dialog.setContentView(R.layout.activity_rules__dialog_box);
+        Button btn=(Button) dialog.findViewById(R.id.dialog_button);
+        TextView rules5= (TextView)dialog.findViewById(R.id.rules5);
+        rules5.setText(bquizData.getRules().toString());
 
+
+
+        dialog.show();
         messageLayout.setVisibility(View.GONE);
         questionLayout.setVisibility(View.VISIBLE);
         switch (bquizData.getData_type()) {
 
 
             case 1:
-                question_image.setVisibility(View.GONE);
-                radio_group.setVisibility(View.GONE);
-                rb1.setVisibility(View.GONE);
-                rb2.setVisibility(View.GONE);
-                rb3.setVisibility(View.GONE);
-                rb4.setVisibility(View.GONE);
-                question_text.setVisibility(View.VISIBLE);
+                btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        question_image.setVisibility(View.GONE);
+                        radio_group.setVisibility(View.GONE);
+                        rb1.setVisibility(View.GONE);
+                        rb2.setVisibility(View.GONE);
+                        rb3.setVisibility(View.GONE);
+                        rb4.setVisibility(View.GONE);
+                        question_text.setVisibility(View.VISIBLE);
 
-                question_text.setText(bquizData.getQuestion_data().getQuestion());
-                time = bquizData.getQuestion_data().getQuestion_duration();
-                input_ans.setVisibility(View.VISIBLE);
-                countDown(time);
+                        question_text.setText(bquizData.getQuestion_data().getQuestion());
+                        time = bquizData.getQuestion_data().getQuestion_duration();
+                        input_ans.setVisibility(View.VISIBLE);
+                        countDown(time);
+                        dialog.dismiss();
+
+
+                    }
+                });
+
                 break;
             case 2:
+                show_Dialog(bquizData);
                 question_image.setVisibility(View.GONE);
                 input_ans.setVisibility(View.GONE);
                 question_text.setText(bquizData.getQuestion_data().getQuestion());
@@ -168,6 +192,7 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
                 countDown(time);
                 break;
             case 3:
+                show_Dialog(bquizData);
                 radio_group.setVisibility(View.GONE);
                 question_text.setText(bquizData.getQuestion_data().getQuestion());
                 input_ans.setVisibility(View.VISIBLE);
@@ -175,6 +200,7 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
                 countDown(time);
                 break;
             case 4:
+                show_Dialog(bquizData);
                 question_text.setText(bquizData.getQuestion_data().getQuestion());
                 rb1.setText(bquizData.getQuestion_data().getOption1());
                 rb2.setText(bquizData.getQuestion_data().getOption2());
@@ -187,7 +213,8 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
                 break;
             default:
         }
-    }
+        }
+
 
     @Override
     public void answerSubmitted(SubmitAnswerData submitAnswerData) {
@@ -204,14 +231,17 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
 
     public void countDown(int time) {
         time *= 1000;
-        new CountDownTimer(time, 1000) {
+        new CountDownTimer(time, 500) {
             public void onTick(long millisUntilFinished) {
-                timer.setText(millisUntilFinished / 60000 + " : " + (millisUntilFinished / 1000) % 60 + "secs left");
+
+                timer.setText(millisUntilFinished / 60000 + " : " + (millisUntilFinished / 1000) % 60);
+
+
             }
 
             public void onFinish() {
-
-
+                Intent in=new Intent(BQuizActivity.this,Home.class);
+                startActivity(in);
             }
         }.start();
 
@@ -227,8 +257,6 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
                 answer = input_ans.getText().toString();
                 break;
             case 2:
-
-
                 RadioButton radioButton = (RadioButton) findViewById(radio_group.getCheckedRadioButtonId());
                 answer = radioButton.getText().toString();
                 break;
@@ -243,6 +271,10 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
                 break;
         }
         return answer;
+    }
+    private void show_Dialog(BQuizData bQuizData)
+    {
+
     }
 
 

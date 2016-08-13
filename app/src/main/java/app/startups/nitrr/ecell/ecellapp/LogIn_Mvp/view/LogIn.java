@@ -1,7 +1,6 @@
 package app.startups.nitrr.ecell.ecellapp.LogIn_Mvp.view;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -13,7 +12,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -42,24 +40,24 @@ public class LogIn extends AppCompatActivity implements LogIn_View {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
+         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar1);
+        toolbar.setTitle("LogIn");
 
         final Spinner spinner = (Spinner) findViewById(R.id.Spinner01);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 this, R.array.sem_ar, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(new MyOnItemSelectedListener());
+       // spinner.setOnItemSelectedListener(new MyOnItemSelectedListener());
 
         final Spinner spinner1 = (Spinner) findViewById(R.id.Spinner02);
         ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(
                 this, R.array.branch_ar, android.R.layout.simple_spinner_item);
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner1.setAdapter(adapter1);
-        spinner1.setOnItemSelectedListener(new MyOnItemSelectedListener());
+       // spinner1.setOnItemSelectedListener(new MyOnItemSelectedListener());
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar1);
-        assert toolbar != null;
-        toolbar.setTitle("Log In");
+
 
         Button otp = (Button) findViewById(R.id.next_button);
         assert otp != null;
