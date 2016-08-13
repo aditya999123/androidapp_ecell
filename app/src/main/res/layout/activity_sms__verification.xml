@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context="app.startups.nitrr.ecell.ecellapp.send_otp.view.SendOtp">
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -14,83 +15,86 @@
         app:titleTextColor="@color/white"
 
         />
+
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp"
+        app:cardCornerRadius="4dp"
         app:contentPadding="8dp"
         >
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="8dp"
-            >
+            android:padding="8dp">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:textColor="@color/black"
                 android:gravity="center"
                 android:text="Please enter your mobile number for verification and further notifications"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/num"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:hint="Mobile number"
+                android:inputType="phone"
+                android:textSize="32dp" />
+
+            <Button
+                android:id="@+id/btn"
+                style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="send otp" />
+
+            <TextView
+                android:id="@+id/resend_timer"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:visibility="gone"
+
                 />
-    <EditText
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/num"
-        android:textSize="32dp"
-        android:gravity="center"
-        android:inputType="phone"
-        android:hint="Mobile number"
-        />
-    <Button
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:gravity="center"
-        android:text="send otp"
-        android:id="@+id/btn"
-        style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
-        />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:textColor="@color/black"
-        android:id="@+id/resend_timer"
-        android:textSize="18dp"
-        android:visibility="gone"
 
-        />
-    <EditText
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:id="@+id/verify"
-        android:gravity="center"
-        android:textSize="32dp"
-        android:inputType="phone"
-        android:hint="Enter otp"
-        android:visibility="gone"
-        />
-    <Button
+            <EditText
+                android:id="@+id/verify"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:hint="Enter otp"
+                android:inputType="phone"
+                android:textSize="32dp"
+                android:visibility="gone" />
 
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:gravity="center"
-        android:text="Verify otp"
-        android:id="@+id/btn1"
-        android:visibility="gone"
-        style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+            <Button
+
+                android:id="@+id/btn1"
+                style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="Verify otp"
+                android:visibility="gone"
 
 
-        />
+                />
         </LinearLayout>
     </android.support.v7.widget.CardView>
+
     <ProgressBar
         android:id="@+id/progressBar1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_gravity="center"
-        />
-
+        android:layout_gravity="center" />
 
 
 </LinearLayout>

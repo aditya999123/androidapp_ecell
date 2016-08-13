@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -44,10 +45,13 @@ public class ContactUs extends Activity {
         setContentView(R.layout.activity_contact_us);
 
         datals = new ArrayList<>();
-
+Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar_contactus);
+        toolbar.setTitle("Contact Us");
+        //toolbar.setTitleTextColor("@color/white");
         //new AsyncTaskParseJson().execute();
 //        datals.add(new datavar(3, "Aditya", "Tech", "7587485272", "aditya999123@gmail.com"));
 
+//setTitle("Contactus");
 
         recycler1 = (RecyclerView) findViewById(R.id.contactus_recycler1);
         lmanager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
