@@ -185,6 +185,7 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
                     public void onClick(View v) {
                         question_image.setVisibility(View.GONE);
                         input_ans.setVisibility(View.GONE);
+                        radio_group.setVisibility(View.VISIBLE);
                         question_text.setText(bquizData.getQuestion_data().getQuestion());
                         rb1.setText(bquizData.getQuestion_data().getOption1());
                         rb2.setText(bquizData.getQuestion_data().getOption2());
@@ -207,7 +208,9 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
                         radio_group.setVisibility(View.GONE);
                         question_text.setText(bquizData.getQuestion_data().getQuestion());
                         input_ans.setVisibility(View.VISIBLE);
+                        question_image.setVisibility(View.VISIBLE);
                         time = bquizData.getQuestion_data().getQuestion_duration();
+                        imageLoader.loadImage(bquizData.getQuestion_data().getImage_url(),question_image);
                         countDown(time);
                         dialog.dismiss();
 
