@@ -45,7 +45,7 @@ public class EventsData {
     public void setName(String name) {
         this.name = name;
     }
-    
+
     public String getImage() {
 
         return image;
