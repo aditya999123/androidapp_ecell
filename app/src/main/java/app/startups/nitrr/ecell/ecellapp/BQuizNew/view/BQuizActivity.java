@@ -146,7 +146,7 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
         TextView rules5= (TextView)dialog.findViewById(R.id.rules5);
         rules5.setText(bquizData.getRules().toString());
 
-
+        dialog.setTitle("Rules");
 
         dialog.show();
         messageLayout.setVisibility(View.GONE);
@@ -158,6 +158,8 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
                 btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
+
                         question_image.setVisibility(View.GONE);
                         radio_group.setVisibility(View.GONE);
                         rb1.setVisibility(View.GONE);
@@ -178,38 +180,60 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
 
                 break;
             case 2:
-                show_Dialog(bquizData);
-                question_image.setVisibility(View.GONE);
-                input_ans.setVisibility(View.GONE);
-                question_text.setText(bquizData.getQuestion_data().getQuestion());
-                rb1.setText(bquizData.getQuestion_data().getOption1());
-                rb2.setText(bquizData.getQuestion_data().getOption2());
-                rb3.setText(bquizData.getQuestion_data().getOption3());
-                rb4.setText(bquizData.getQuestion_data().getOption4());
-                question_image.setVisibility(View.VISIBLE);
-                imageLoader.loadImage(bquizData.getQuestion_data().getImage_url(), question_image);
-                time = bquizData.getQuestion_data().getQuestion_duration();
-                countDown(time);
+                btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        question_image.setVisibility(View.GONE);
+                        input_ans.setVisibility(View.GONE);
+                        question_text.setText(bquizData.getQuestion_data().getQuestion());
+                        rb1.setText(bquizData.getQuestion_data().getOption1());
+                        rb2.setText(bquizData.getQuestion_data().getOption2());
+                        rb3.setText(bquizData.getQuestion_data().getOption3());
+                        rb4.setText(bquizData.getQuestion_data().getOption4());
+                        question_image.setVisibility(View.VISIBLE);
+                        imageLoader.loadImage(bquizData.getQuestion_data().getImage_url(), question_image);
+                        time = bquizData.getQuestion_data().getQuestion_duration();
+                        countDown(time);
+                        dialog.dismiss();
+
+
+                    }
+                });
                 break;
             case 3:
-                show_Dialog(bquizData);
-                radio_group.setVisibility(View.GONE);
-                question_text.setText(bquizData.getQuestion_data().getQuestion());
-                input_ans.setVisibility(View.VISIBLE);
-                time = bquizData.getQuestion_data().getQuestion_duration();
-                countDown(time);
+                btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        radio_group.setVisibility(View.GONE);
+                        question_text.setText(bquizData.getQuestion_data().getQuestion());
+                        input_ans.setVisibility(View.VISIBLE);
+                        time = bquizData.getQuestion_data().getQuestion_duration();
+                        countDown(time);
+                        dialog.dismiss();
+
+
+                    }
+                });
                 break;
             case 4:
-                show_Dialog(bquizData);
-                question_text.setText(bquizData.getQuestion_data().getQuestion());
-                rb1.setText(bquizData.getQuestion_data().getOption1());
-                rb2.setText(bquizData.getQuestion_data().getOption2());
-                rb3.setText(bquizData.getQuestion_data().getOption3());
-                rb4.setText(bquizData.getQuestion_data().getOption4());
-                imageLoader.loadImage(bquizData.getQuestion_data().getImage_url(), question_image);
-                question_image.setVisibility(View.VISIBLE);
-                time = bquizData.getQuestion_data().getQuestion_duration();
-                countDown(time);
+                btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        question_text.setText(bquizData.getQuestion_data().getQuestion());
+                        rb1.setText(bquizData.getQuestion_data().getOption1());
+                        rb2.setText(bquizData.getQuestion_data().getOption2());
+                        rb3.setText(bquizData.getQuestion_data().getOption3());
+                        rb4.setText(bquizData.getQuestion_data().getOption4());
+                        imageLoader.loadImage(bquizData.getQuestion_data().getImage_url(), question_image);
+                        question_image.setVisibility(View.VISIBLE);
+                        time = bquizData.getQuestion_data().getQuestion_duration();
+                        countDown(time);
+                        dialog.dismiss();
+
+
+                    }
+                });
+
                 break;
             default:
         }

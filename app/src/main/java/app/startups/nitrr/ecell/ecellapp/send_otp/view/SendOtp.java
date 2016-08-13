@@ -2,12 +2,15 @@ package app.startups.nitrr.ecell.ecellapp.send_otp.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import app.startups.nitrr.ecell.ecellapp.R;
@@ -25,19 +28,21 @@ public class SendOtp extends AppCompatActivity implements SendOtpView {
     private ProgressBar progressBar;
     SendOtpPresenter sendOtpPresenter;
     VerifyOtpPresenter verifyOtpPresenter;
+    TextView resend_timer;
+    Button btn= (Button) findViewById(R.id.btn);
+    Button btn1 = (Button) findViewById(R.id.btn1);
     String num1 = "", name = "", lname = "", email = "", college = "", branch = "", sem = "", otp = "", token = "";
-    int i = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sms__verification);
-        progressBar = (ProgressBar) findViewById(R.id.progressBar1);
-        Button btn = (Button) findViewById(R.id.btn);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Mobile Verification");
 
+        progressBar = (ProgressBar) findViewById(R.id.progressBar1);
         sendOtpPresenter = new SendOtpPresenterImpl(new RetrofitOtpProvider(), this);
         verifyOtpPresenter = new VerifyOtpPresenterImpl(new RetrofitVerifyProvider(), this);
-        Button btn1 = (Button) findViewById(R.id.btn1);
         getIntents();
         Log.d("Response", "1");
         progressBar.setVisibility(View.GONE);
@@ -88,11 +93,27 @@ public class SendOtp extends AppCompatActivity implements SendOtpView {
 
         EditText verify = (EditText) findViewById(R.id.verify);
         verify.setVisibility(View.VISIBLE);
-        Button btn1 = (Button) findViewById(R.id.btn1);
         btn1.setVisibility(View.VISIBLE);
-        Button btn = (Button) findViewById(R.id.btn);
         btn.setText("Resend Otp");
-        i = 1;
+        btn.setFocusable(false);
+
+    }
+
+    public void countDown(int time) {
+        resend_timer= (TextView) findViewById(R.id.resend_timer);
+        time *= 1000;
+        new CountDownTimer(time,1000) {
+            public void onTick(long millisUntilFinished) {
+
+                resend_timer.setText("You can resend otp in " + (millisUntilFinished / 1000) % 60+" seconds");
+
+
+            }
+
+            public void onFinish() {
+                btn.setFocusable(true);
+            }
+        }.start();
 
     }
 

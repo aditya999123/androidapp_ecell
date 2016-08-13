@@ -3,12 +3,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="app.startups.nitrr.ecell.ecellapp.LogIn.Sms_Verification">
+    tools:context="app.startups.nitrr.ecell.ecellapp.send_otp.view.SendOtp">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        app:titleTextColor="@color/white"
+
+        />
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingRight="8dp"
+        android:paddingLeft="8dp"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingBottom="16dp"
+            android:paddingTop="16dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:text="Please enter your mobile number for verification and further notifications"
+                />
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="50dp"
@@ -16,19 +46,22 @@
         android:text="9174908579"
         android:hint="Enter mobile number"
         />
-
     <Button
-
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:gravity="center"
         android:text="send otp"
         android:id="@+id/btn"
         style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
-
-
         />
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:textColor="@color/black"
+        android:id="@+id/resend_timer"
+        android:textSize="18dp"
+        android:text="You can resend otp after "
+        />
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="50dp"
@@ -48,6 +81,8 @@
 
 
         />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
     <ProgressBar
         android:id="@+id/progressBar1"
         android:layout_width="wrap_content"

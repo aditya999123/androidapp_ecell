@@ -5,17 +5,6 @@
     android:layout_height="match_parent"
 
     tools:context="app.startups.nitrr.ecell.ecellapp.BQuizNew.view.BQuizActivity">
-
-<TextView
-    android:layout_width="match_parent"
-    android:layout_height="40dp"
-    android:background="@color/black"
-    android:textColor="@color/white"
-    android:text="**RULES**"
-    android:textSize="25dp"
-    android:id="@+id/tv1"
-    android:gravity="center"
-    />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,14 +13,12 @@
         android:paddingTop="16dp"
         android:orientation="vertical"
         android:paddingBottom="16dp"
-        android:layout_below="@+id/tv1"
         >
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20dp"
             android:id="@+id/rules5"
-            android:gravity="center"
             android:textColor="@color/black"
             android:text="Kindly read these rules for question 1"
             />
