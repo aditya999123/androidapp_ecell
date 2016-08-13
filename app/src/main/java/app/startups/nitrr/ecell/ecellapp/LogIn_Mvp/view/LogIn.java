@@ -21,6 +21,8 @@ import java.util.regex.Pattern;
 
 import app.startups.nitrr.ecell.ecellapp.R;
 import app.startups.nitrr.ecell.ecellapp.send_otp.view.SendOtp;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by Iket on 8/8/2016.
@@ -33,6 +35,9 @@ public class LogIn extends AppCompatActivity implements LogIn_View {
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
     private GoogleApiClient client;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,23 +45,32 @@ public class LogIn extends AppCompatActivity implements LogIn_View {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
-         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar1);
-        toolbar.setTitle("LogIn");
+        ButterKnife.bind(this);
+        toolbar.setTitle("Login");
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
+        toolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                finish();
+            }
+        });
+
 
         final Spinner spinner = (Spinner) findViewById(R.id.Spinner01);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 this, R.array.sem_ar, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-       // spinner.setOnItemSelectedListener(new MyOnItemSelectedListener());
+        // spinner.setOnItemSelectedListener(new MyOnItemSelectedListener());
 
         final Spinner spinner1 = (Spinner) findViewById(R.id.Spinner02);
         ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(
                 this, R.array.branch_ar, android.R.layout.simple_spinner_item);
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        assert spinner1 != null;
         spinner1.setAdapter(adapter1);
-       // spinner1.setOnItemSelectedListener(new MyOnItemSelectedListener());
-
+        // spinner1.setOnItemSelectedListener(new MyOnItemSelectedListener());
 
 
         Button otp = (Button) findViewById(R.id.next_button);
