@@ -10,7 +10,7 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:background="@color/black"
         app:titleTextColor="@color/white" />
 
@@ -26,9 +26,8 @@
         <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
             android:id="@+id/card_view"
             android:layout_width="fill_parent"
-            android:layout_height="450dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="#e1f8cf58"
             android:padding="8dp"
             card_view:cardCornerRadius="4dp"
             card_view:contentPadding="8dp">

@@ -1,4 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
+git add .
+    git commit -m "Worked on login designing
+    "<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -35,9 +37,12 @@
                 />
     <EditText
         android:layout_width="fill_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:id="@+id/num"
-        android:hint="Enter mobile number"
+        android:textSize="32dp"
+        android:gravity="center"
+        android:inputType="phone"
+        android:hint="Mobile number"
         />
     <Button
         android:layout_width="fill_parent"
@@ -60,6 +65,9 @@
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:id="@+id/verify"
+        android:gravity="center"
+        android:textSize="32dp"
+        android:inputType="phone"
         android:hint="Enter otp"
         android:visibility="gone"
         />
