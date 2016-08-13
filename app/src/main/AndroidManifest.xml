@@ -28,11 +28,7 @@
             android:name=".blogs.view.Blogs"
             android:label="@string/activity_blogs" />
         <activity android:name=".contact_us.ContactUs">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
 </activity>
 
         <activity android:name=".sign_in.view.SignInActivity" />
@@ -54,7 +50,11 @@
         <activity android:name=".send_otp.view.SendOtp" />
         <activity android:name=".BQuizNew.view.BQuizActivity">
 
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <!--
  ATTENTION: This was auto-generated to add Google Play services to your project for
