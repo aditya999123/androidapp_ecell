@@ -2,12 +2,15 @@ package app.startups.nitrr.ecell.ecellapp.send_otp.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import app.startups.nitrr.ecell.ecellapp.R;
@@ -26,19 +29,27 @@ public class SendOtp extends AppCompatActivity implements SendOtpView {
     SendOtpPresenter sendOtpPresenter;
     VerifyOtpPresenter verifyOtpPresenter;
     String num1 = "", name = "", lname = "", email = "", college = "", branch = "", sem = "", otp = "", token = "";
-    int i = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sms__verification);
-        progressBar = (ProgressBar) findViewById(R.id.progressBar1);
-        Button btn = (Button) findViewById(R.id.btn);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Mobile Verification");
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
+        toolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
+        progressBar = (ProgressBar) findViewById(R.id.progressBar1);
         sendOtpPresenter = new SendOtpPresenterImpl(new RetrofitOtpProvider(), this);
         verifyOtpPresenter = new VerifyOtpPresenterImpl(new RetrofitVerifyProvider(), this);
-        Button btn1 = (Button) findViewById(R.id.btn1);
         getIntents();
+        Button btn1 = (Button) findViewById(R.id.btn1);
+       Button btn= (Button) findViewById(R.id.btn);
         Log.d("Response", "1");
         progressBar.setVisibility(View.GONE);
         assert btn != null;
@@ -85,17 +96,39 @@ public class SendOtp extends AppCompatActivity implements SendOtpView {
 
     @Override
     public void onOtpSent() {
-
+        Button btn1 = (Button) findViewById(R.id.btn1);
+        Button btn= (Button) findViewById(R.id.btn);
         EditText verify = (EditText) findViewById(R.id.verify);
         verify.setVisibility(View.VISIBLE);
-        Button btn1 = (Button) findViewById(R.id.btn1);
         btn1.setVisibility(View.VISIBLE);
-        Button btn = (Button) findViewById(R.id.btn);
         btn.setText("Resend Otp");
-        i = 1;
+        countDown(30);
+        btn.setClickable(false);
+        TextView resend_timer= (TextView) findViewById(R.id.resend_timer);
+        resend_timer.setVisibility(View.VISIBLE);
+
 
     }
 
+    public void countDown(int time) {
+
+        time *= 1000;
+        new CountDownTimer(time,1000) {
+            TextView resend_timer= (TextView) findViewById(R.id.resend_timer);
+            Button btn=(Button)findViewById(R.id.btn);
+            public void onTick(long millisUntilFinished) {
+
+                resend_timer.setText("You can resend otp in " + (millisUntilFinished / 1000) % 60+" seconds");
+
+            }
+
+            public void onFinish() {
+                btn.setClickable(true);
+                resend_timer.setVisibility(View.GONE);
+            }
+        }.start();
+
+    }
 
     public void getIntents() {
         name = getIntent().getExtras().getString("name").toString();
@@ -105,6 +138,11 @@ public class SendOtp extends AppCompatActivity implements SendOtpView {
         college = getIntent().getExtras().getString("college").toString();
         branch = getIntent().getExtras().getString("branch").toString();
         sem = getIntent().getExtras().getString("sem").toString();
+    }
+
+    @Override
+    public void onOtpFailed() {
+        Toast.makeText(SendOtp.this, "Otp Verification Failed.Try Again", Toast.LENGTH_SHORT).show();
     }
 
     @Override

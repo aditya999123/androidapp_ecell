@@ -31,31 +31,25 @@ public class ListOfEvents extends AppCompatActivity implements EventsInterface{
         setContentView(R.layout.activity_list_of_events);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Events");
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
+        toolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         eventsPresenter = new EventPresenterImpl(this, new RetrofitEventsProvider());
         adapter = new Adapter(this);
 
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
-        Log.d("ResponseOtp","1st");
+
        recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setAdapter(adapter);
-
-       // setSupportActionBar(toolbar);
-       // toolbar.setNavigationIcon(ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_white_24dp));
-//       toolbar.setTitle("Events");
-        /* toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-        */
-
         requestEvents();
-
-
-
     }
     void requestEvents() {
         Log.d("ResponseOtp","2");
@@ -83,7 +77,7 @@ public class ListOfEvents extends AppCompatActivity implements EventsInterface{
         Log.d("ResponseOtp", "data 3");
         for (int i = 0; i <= 3; i++) {
             Log.i("ResponseOtp", "View SetData Called : " + eventDataList.get(i).getEventName());
-          //  Log.i("ResponseOtp", "View SetData Called : " + eventDataList.get(i).getImage());
+            //  Log.i("ResponseOtp", "View SetData Called : " + eventDataList.get(i).getImage());
             Log.i("ResponseOtp", "View SetData Called : " + eventDataList.get(i).getDescription());
 
         }

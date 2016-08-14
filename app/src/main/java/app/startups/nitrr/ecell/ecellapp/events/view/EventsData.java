@@ -5,12 +5,12 @@ package app.startups.nitrr.ecell.ecellapp.events.view;
  */
 public class EventsData {
 
-    private String name,description,date,time,venue;
+    private String name,description,date,time,venue,image;
 
 
-    public EventsData(String name,  String date, String time, String venue, String description) {
+    public EventsData(String name,  String date, String time, String venue, String description,String image) {
         this.name =name;
-//        this.image=image;
+        this.image=image;
         this.date=date;
         this.venue=venue;
         this.description=description;
@@ -45,16 +45,11 @@ public class EventsData {
     public void setName(String name) {
         this.name = name;
     }
+    
+    public String getImage() {
 
-
-//    public void setImage(String image) {
-//        this.image = image;
-//    }
-
-//    public String getImage() {
-//
-//        return image;
-//    }
+        return image;
+    }
 
     public void setDescription(String description) {
         this.description = description;

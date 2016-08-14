@@ -11,6 +11,7 @@ public interface SendOtpView {
     void showMessage(String message);
     void onOtpSent();
     void getIntents();
+    void onOtpFailed();
 
     void onOtpVerified(VerifyOtpData verifyOtpData);
 }

@@ -24,14 +24,17 @@ public class VerifyOtpPresenterImpl implements VerifyOtpPresenter {
            @Override
            public void onSuccess(VerifyOtpData verifyOtpData) {
                sendOtpView.showMessage(verifyOtpData.getMessage());
+               if(verifyOtpData.isSuccess())
                sendOtpView.onOtpVerified(verifyOtpData);
+               else
+                   sendOtpView.onOtpFailed();
+               sendOtpView.showLoading(false);
            }
 
            @Override
            public void onFailed() {
                sendOtpView.showLoading(false);
                sendOtpView.showMessage("Failed");
-
            }
        });
     }

@@ -33,7 +33,12 @@
     <string name="email">Email Textview</string>
 
     <string name="prompt">Choose semester</string>
+
     <string name="activity_contact_us">Contact Us</string>
+
+    <string name="next">Next</string>
+    <string name="proceed">Proceed</string>
+
     <string-array name="sem_ar">
         <item>--Select Semester</item>
         <item>1st</item>
