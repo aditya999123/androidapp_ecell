@@ -1,23 +1,18 @@
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/contactus_relativerecycler"
->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=" Contacts"
-        android:id="@+id/contactus_textView"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+    android:orientation="vertical">
+<android.support.v7.widget.Toolbar
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/toolbar_contactus"
+    android:background="@color/black"
+    app:titleTextColor="@color/white"
 
-        android:textSize="25dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:background="#3144ce"
-        android:textColor="#ffffff" />
+    >
+</android.support.v7.widget.Toolbar>
     <android.support.v7.widget.RecyclerView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/contactus_recycler1"
@@ -25,9 +20,9 @@
         android:layout_height="match_parent"
         android:padding="5dp"
         android:scrollbars="vertical"
-        android:layout_below="@+id/contactus_textView"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/view" />
 
 
-</RelativeLayout>
+</LinearLayout>

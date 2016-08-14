@@ -16,11 +16,6 @@
         android:supportsRtl="true"
         android:theme="@style/MyMaterialTheme">
         <activity android:name=".splash_screen.view.SplashScreenActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
         <activity android:name=".home.view.Home"></activity>
@@ -32,7 +27,14 @@
         <activity
             android:name=".blogs.view.Blogs"
             android:label="@string/activity_blogs" />
-        <activity android:name=".contact_us.ContactUs" />
+        <activity android:name=".contact_us.ContactUs">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+</activity>
+
         <activity android:name=".sign_in.view.SignInActivity" />
         <activity
             android:name=".fb.fb_login"
