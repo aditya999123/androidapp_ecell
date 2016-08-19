@@ -23,14 +23,13 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-
         </activity>
         <activity android:name=".home.view.Home"></activity>
         <activity android:name=".welcome.view.WelcomeActivity"></activity>
         <activity android:name=".LogIn_Mvp.view.LogIn">
 
         </activity>
+
         <activity android:name=".about_us.AboutUs" />
         <activity
             android:name=".blogs.view.Blogs"
@@ -63,7 +62,9 @@
 
         </activity>
 
-        <service android:name=".helper.MyFirebaseService">
+        <service android:name=".helper.MyFirebaseService"
+            android:label="Firebase">
+
             
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

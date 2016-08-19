@@ -98,6 +98,7 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
         setContentView(R.layout.activity_bquiz__intro);
         ButterKnife.bind(this);
         i=getRequestedOrientation();
+//            startService(new Intent(MyFirebaseService.class.getName()));
         Log.d("Response","value="+i);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
 
@@ -194,6 +195,7 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
                             input_ans.setVisibility(View.VISIBLE);
                             countDown(time);
                             dialog.dismiss();
+
 
 
                         }
