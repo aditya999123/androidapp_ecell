@@ -103,7 +103,7 @@
                             android:id="@+id/radio_group"
                             android:layout_width="fill_parent"
                             android:layout_height="fill_parent"
-                            android:visibility="gone"
+
 
                             >
 

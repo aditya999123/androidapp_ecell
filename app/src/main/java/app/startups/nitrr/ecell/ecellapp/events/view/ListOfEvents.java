@@ -17,7 +17,7 @@ import app.startups.nitrr.ecell.ecellapp.events.presenter.EventPresenterImpl;
 import app.startups.nitrr.ecell.ecellapp.events.presenter.EventsPresenter;
 
 public class ListOfEvents extends AppCompatActivity implements EventsInterface{
-    private static final String TAG = "Events";
+
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
     private EventsPresenter eventsPresenter;
@@ -47,14 +47,9 @@ public class ListOfEvents extends AppCompatActivity implements EventsInterface{
 
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
 
-       recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setAdapter(adapter);
-        requestEvents();
-    }
-    void requestEvents() {
-        Log.d("ResponseOtp","2");
         eventsPresenter.requestEvents();
-        Log.d("ResponseOtp","3");
     }
 
     @Override
@@ -70,15 +65,7 @@ public class ListOfEvents extends AppCompatActivity implements EventsInterface{
 
     @Override
     public void SetData(List<EventsData> eventDataList) {
-        Log.d("ResponseOtp", "data 1");
         adapter.setData(eventDataList);
-        Log.d("ResponseOtp", "data 2");
         adapter.notifyDataSetChanged();
-        Log.d("ResponseOtp", "data 3");
-        for (int i = 0; i <= 3; i++) {
-            Log.i("ResponseOtp", "View SetData Called : " + eventDataList.get(i).getImage());
-
-
-        }
     }
 }

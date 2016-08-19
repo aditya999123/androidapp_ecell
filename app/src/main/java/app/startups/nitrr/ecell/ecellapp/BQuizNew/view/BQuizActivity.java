@@ -243,6 +243,7 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
                     btn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            radio_group.setVisibility(View.VISIBLE);
                             question_text.setText(bquizData.getQuestion_data().getQuestion());
                             rb1.setText(bquizData.getQuestion_data().getOption1());
                             rb2.setText(bquizData.getQuestion_data().getOption2());
@@ -302,11 +303,14 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
 
             case 1:
 
+
                 answer = input_ans.getText().toString();
                 break;
             case 2:
                 RadioButton radioButton = (RadioButton) findViewById(radio_group.getCheckedRadioButtonId());
-                answer = radioButton.getText().toString();
+                Log.d("BQuizActivity",""+radio_group.getCheckedRadioButtonId());
+
+                answer = radioButton != null ? radioButton.getText().toString() : null;
                 break;
             case 3:
 
@@ -315,7 +319,9 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
             case 4:
 
                 RadioButton radioButton1 = (RadioButton) findViewById(radio_group.getCheckedRadioButtonId());
-                answer = radioButton1.getText().toString();
+                Log.d("BQuizActivity",""+radioButton1);
+
+                answer = radioButton1 != null ? radioButton1.getText().toString() : null;
                 break;
         }
         return answer;

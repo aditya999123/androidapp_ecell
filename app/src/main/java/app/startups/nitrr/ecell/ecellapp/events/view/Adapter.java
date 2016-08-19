@@ -20,13 +20,10 @@ import app.startups.nitrr.ecell.ecellapp.helper.image_loaders.ImageLoader;
  * Created by Iket on 7/27/2016.
  */
 public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
-    private static final String TAG = "Adapter";
     private List<EventsData> EventDataList = new ArrayList<>();
     private Context context;
     private LayoutInflater layoutInflater;
-
-
-   private ImageLoader imageLoader;
+    private ImageLoader imageLoader;
 
     public Adapter(Context context) {
         this.context = context;
@@ -37,13 +34,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
     public void setData(List<EventsData> EventDataList) {
         this.EventDataList = EventDataList;
-
-        if (EventDataList == null) {
-            Log.e(TAG, "null data set");
-        } else {
-            Log.i(TAG, "data size: " + EventDataList.size());
-        }
-
     }
 
     @Override
@@ -58,8 +48,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
 
         EventsData eventData = EventDataList.get(position);
-
-        Log.i("ResponseOtp", "Adapter : " + EventDataList.get(0).getEventName());
         holder.event_name.setText(eventData.getEventName());
         holder.date_time.setText(eventData.getDate());
         holder.venue.setText(eventData.getVenue());
