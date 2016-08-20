@@ -143,7 +143,7 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
 
     @Override
     public void showMessage(String message) {
-        Toast.makeText(BQuizActivity.this, message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(BQuizActivity.this, message, Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -181,7 +181,7 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
                         @Override
                         public void onClick(View v) {
 
-
+                            submit_button.setVisibility(View.VISIBLE);
                             question_image.setVisibility(View.GONE);
                             radio_group.setVisibility(View.GONE);
                             rb1.setVisibility(View.GONE);
@@ -189,10 +189,9 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
                             rb3.setVisibility(View.GONE);
                             rb4.setVisibility(View.GONE);
                             question_text.setVisibility(View.VISIBLE);
-
+                            input_ans.setVisibility(View.VISIBLE);
                             question_text.setText(bquizData.getQuestion_data().getQuestion());
                             time = bquizData.getQuestion_data().getQuestion_duration();
-                            input_ans.setVisibility(View.VISIBLE);
                             countDown(time);
                             dialog.dismiss();
 
@@ -206,6 +205,7 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
                     btn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            submit_button.setVisibility(View.VISIBLE);
                             question_image.setVisibility(View.GONE);
                             input_ans.setVisibility(View.GONE);
                             radio_group.setVisibility(View.VISIBLE);
@@ -228,6 +228,7 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
                     btn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            submit_button.setVisibility(View.VISIBLE);
                             radio_group.setVisibility(View.GONE);
                             question_text.setText(bquizData.getQuestion_data().getQuestion());
                             input_ans.setVisibility(View.VISIBLE);
@@ -245,6 +246,7 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
                     btn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            submit_button.setVisibility(View.VISIBLE);
                             radio_group.setVisibility(View.VISIBLE);
                             question_text.setText(bquizData.getQuestion_data().getQuestion());
                             rb1.setText(bquizData.getQuestion_data().getOption1());

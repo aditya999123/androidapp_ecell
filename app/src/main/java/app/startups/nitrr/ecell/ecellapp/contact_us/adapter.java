@@ -1,7 +1,6 @@
 package app.startups.nitrr.ecell.ecellapp.contact_us;
 
 import android.content.Context;
-import android.content.res.AssetManager;
 import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,13 +9,10 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -25,7 +21,6 @@ import app.startups.nitrr.ecell.ecellapp.R;
 import app.startups.nitrr.ecell.ecellapp.helper.Urls;
 import app.startups.nitrr.ecell.ecellapp.helper.image_loaders.GlideImageLoader;
 import app.startups.nitrr.ecell.ecellapp.helper.image_loaders.ImageLoader;
-import app.startups.nitrr.ecell.ecellapp.utils.CircleTransform;
 
 /**
  * Created by aditya on 17/5/16.
@@ -94,7 +89,6 @@ public class adapter extends RecyclerView.Adapter<adapter.contactViewHolder> {
     public class contactViewHolder extends RecyclerView.ViewHolder {
         ImageView image_p;
         TextView name_p, dsgn_p, number_p, email_p;
-        ImageButton imgbtn, emailbtn;
         RelativeLayout relativeLayout;
         RecyclerView re1;
 
@@ -107,10 +101,8 @@ public class adapter extends RecyclerView.Adapter<adapter.contactViewHolder> {
             number_p = (TextView) itemView.findViewById(R.id.contactus_cardview_viewnum);
             email_p = (TextView) itemView.findViewById(R.id.contactus_cardview_viewemail);
             re1 = (RecyclerView) itemView.findViewById(R.id.contactus_recycler1);
-            //TextView myTextView = (TextView)findViewById(R.id.myTextView);
             Typeface tf = Typeface.createFromAsset(context.getAssets(),"fonts/Roboto-Black.ttf");
             name_p.setTypeface(tf, Typeface.BOLD);
-            //name_p.setTypeface(tf);
         }
     }
 }

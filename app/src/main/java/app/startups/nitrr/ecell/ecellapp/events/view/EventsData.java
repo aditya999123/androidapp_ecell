@@ -14,8 +14,6 @@ public class EventsData {
         this.date=date;
         this.venue=venue;
         this.description=description;
-        this.time=time;
-
 
     }
     public EventsData() {
@@ -29,9 +27,6 @@ public class EventsData {
         return date;
     }
 
-    public String getTime() {
-        return time;
-    }
 
     public String getVenue() {
         return venue;
@@ -57,10 +52,6 @@ public class EventsData {
 
     public void setDate(String date) {
         this.date = date;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
     }
 
     public void setVenue(String venue) {

@@ -1,8 +1,8 @@
-package app.startups.nitrr.ecell.ecellapp.events.model;
+package app.startups.nitrr.ecell.ecellapp.contact_us.model;
 
-import app.startups.nitrr.ecell.ecellapp.events.api.RequestInterface;
-import app.startups.nitrr.ecell.ecellapp.events.view.OnEventsReceived;
-import app.startups.nitrr.ecell.ecellapp.events.view.jsonResponse;
+import app.startups.nitrr.ecell.ecellapp.contact_us.api.RequestInterface;
+import app.startups.nitrr.ecell.ecellapp.contact_us.view.JsonResponse;
+import app.startups.nitrr.ecell.ecellapp.contact_us.view.OnContactsReceived;
 import app.startups.nitrr.ecell.ecellapp.helper.Urls;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -13,14 +13,13 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * Created by Iket on 7/27/2016.
+ * Created by Iket on 8/20/2016.
  */
-public class RetrofitEventsProvider implements EventsProvider {
+public class RetrofitRequestProvider implements ContactsProvider {
 
 
     @Override
-    public void requestEvents(final OnEventsReceived onEventsReceived) {
-
+    public void requestContacts(final OnContactsReceived onContactsReceived) {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
@@ -32,24 +31,21 @@ public class RetrofitEventsProvider implements EventsProvider {
                 .build();
 
         final RequestInterface request = retrofit.create(RequestInterface.class);
+        Call<JsonResponse> call = request.getContacts();
 
-        Call<jsonResponse> call = request.getEvents();
-
-        call.enqueue(new Callback<jsonResponse>() {
+        call.enqueue(new Callback<JsonResponse>() {
             @Override
-            public void onResponse(Call<jsonResponse> call, Response<jsonResponse> response) {
-                onEventsReceived.onSuccess(response.body().getEvents());
+            public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
+                onContactsReceived.onSuccess(response.body().getContacts());
             }
 
             @Override
-            public void onFailure(Call<jsonResponse> call, Throwable t) {
-                t.printStackTrace();
-                onEventsReceived.onFailure();
-
+            public void onFailure(Call<JsonResponse> call, Throwable t) {
+            onContactsReceived.onFailure();
             }
-
         });
 
-    }
 
+
+    }
 }

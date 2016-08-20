@@ -32,10 +32,7 @@ public class ContactUs extends Activity {
     private RecyclerView.Adapter Radapter;
     private ArrayList<datavar> datals;
 
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
+
     @Override
 
     public void onCreate(Bundle savedInstanceState)

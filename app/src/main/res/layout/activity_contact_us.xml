@@ -11,8 +11,8 @@
     android:background="@color/black"
     app:titleTextColor="@color/white"
 
-    >
-</android.support.v7.widget.Toolbar>
+    />
+
     <android.support.v7.widget.RecyclerView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/contactus_recycler1"
@@ -23,6 +23,11 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/view" />
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar"
+        />
 
 
 </LinearLayout>
