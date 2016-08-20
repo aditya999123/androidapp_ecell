@@ -19,7 +19,7 @@ import java.util.List;
 
 import app.startups.nitrr.ecell.ecellapp.BQuizNew.view.BQuizActivity;
 import app.startups.nitrr.ecell.ecellapp.R;
-import app.startups.nitrr.ecell.ecellapp.about_us.AboutUs;
+import app.startups.nitrr.ecell.ecellapp.about_us.view.AboutUsPage;
 import app.startups.nitrr.ecell.ecellapp.blogs.view.Blogs;
 import app.startups.nitrr.ecell.ecellapp.contact_us.view.Contacts;
 import app.startups.nitrr.ecell.ecellapp.events.view.ListOfEvents;
@@ -120,7 +120,7 @@ public class Home extends AppCompatActivity implements FragmentDrawer.FragmentDr
                 startActivity(contact);
                 break;
             case 8:
-                Intent about_us=new Intent(Home.this, AboutUs.class);
+                Intent about_us=new Intent(Home.this, AboutUsPage.class);
                 startActivity(about_us);
                 break;
             case 9:

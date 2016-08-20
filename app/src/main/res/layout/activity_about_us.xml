@@ -31,12 +31,19 @@
         <ImageView
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:src="@drawable/coverb"
             android:scaleType="fitXY"
+            android:id="@+id/about_img"
             />
 
 
     </android.support.v7.widget.CardView>
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progress_aboutus"
+        android:layout_gravity="center"
+
+        />
 
     <TextView
         android:layout_width="fill_parent"
@@ -48,13 +55,10 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="\n The Entrepreneurship Cell is a non-profit organisation run by the students of NIT Raipur that aims at manifesting the latent entrepreneurial spirit of the young students.We at E-Cell host various workshops,innovative games,competitions for the aspiring entrepreneurs and support them by providing necessary resources such as seed funding, mentoring, consultancy and networking.\n E-Cell NITRR is devoted to promoting and helping the young minds in the campus to find the DIAMOND in them.The Committee provides a platform to share their innovations.And the'll be provided with all the help they need to meet their aim."
         android:textStyle="bold"
         android:background="@drawable/logo"
         android:textSize="18dp"
-
-
-        android:id="@+id/textView"
+        android:id="@+id/about_us"
         android:textColor="#020202" />
 
 

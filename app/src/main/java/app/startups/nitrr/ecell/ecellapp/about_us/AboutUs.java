@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.TextView;
 
 import app.startups.nitrr.ecell.ecellapp.R;
 
@@ -16,8 +15,8 @@ public class AboutUs extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_about_us);
-        TextView tv=(TextView)findViewById(R.id.textView);
-        tv.getBackground().setAlpha(20);
+//        TextView tv=(TextView)findViewById(R.id.textView);
+//        tv.getBackground().setAlpha(20);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("About Us");

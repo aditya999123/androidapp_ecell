@@ -31,11 +31,8 @@ public class RetrofitOtpProvider implements OtpProvider {
                 .baseUrl(Urls.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
-        Log.d("Response","Model 1");
         final RequestInterface request = retrofit.create(RequestInterface.class);
-        Log.d("Response","Model 2");
         Call<SendOtpData> call = request.getSuccess(name,mobile);
-        Log.d("Response","Model 3");
         call.enqueue(new Callback<SendOtpData>() {
             @Override
             public void onResponse(Call<SendOtpData> call, Response<SendOtpData> response) {
