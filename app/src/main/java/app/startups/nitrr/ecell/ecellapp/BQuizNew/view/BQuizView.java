@@ -9,7 +9,7 @@ import app.startups.nitrr.ecell.ecellapp.BQuizNew.model.data.SubmitAnswerData;
 public interface BQuizView {
 
 
-    void showMessage(String message);
+    void showMessage(BQuizData quizData);
 
     void showProgressbar(boolean show);
 

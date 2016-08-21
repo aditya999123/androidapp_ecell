@@ -32,14 +32,14 @@ public class BQuizPresenterImpl implements BQuizPresenter {
                     bQuizView.setBquizData(bQuizData);
                 }else{
                     bQuizView.showProgressbar(false);
-                    bQuizView.showMessage(bQuizData.getMessage());
+                    bQuizView.showMessage(bQuizData);
                 }
             }
 
             @Override
             public void onFailure() {
                 bQuizView.showProgressbar(false);
-                bQuizView.showMessage("Unable to contact our servers");
+
             }
         });
 

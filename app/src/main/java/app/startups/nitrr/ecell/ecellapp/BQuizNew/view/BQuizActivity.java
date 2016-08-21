@@ -150,9 +150,11 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
     }
 
     @Override
-    public void showMessage(String message) {
+    public void showMessage(BQuizData bQuizData) {
         question_text.setVisibility(View.VISIBLE);
-        question_text.setText(message);
+        question_text.setText(bQuizData.getMessage());
+        question_image.setVisibility(View.VISIBLE);
+        imageLoader.loadImage(bQuizData.getMessage_image_url(),question_image);
 //        Toast.makeText(BQuizActivity.this, message, Toast.LENGTH_LONG).show();
     }
 
