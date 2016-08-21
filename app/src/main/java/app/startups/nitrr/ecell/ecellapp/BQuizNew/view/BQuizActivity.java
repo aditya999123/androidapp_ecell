@@ -148,13 +148,17 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
         submitAnswerPresenter.submitAnswer(questionId, getAnswer(), sharedPrefs.getAccessToken());
 
     }
-
     @Override
-    public void showMessage(BQuizData bQuizData) {
-        question_text.setVisibility(View.VISIBLE);
-        question_text.setText(bQuizData.getMessage());
+    public void show_Image(String s)
+    {
         question_image.setVisibility(View.VISIBLE);
-        imageLoader.loadImage(bQuizData.getMessage_image_url(),question_image);
+        imageLoader.loadImage(s,question_image);
+    }
+    @Override
+    public void showMessage(String message) {
+        question_text.setVisibility(View.VISIBLE);
+        question_text.setText(message);
+
 //        Toast.makeText(BQuizActivity.this, message, Toast.LENGTH_LONG).show();
     }
 

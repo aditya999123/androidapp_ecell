@@ -32,7 +32,8 @@ public class BQuizPresenterImpl implements BQuizPresenter {
                     bQuizView.setBquizData(bQuizData);
                 }else{
                     bQuizView.showProgressbar(false);
-                    bQuizView.showMessage(bQuizData);
+                    bQuizView.showMessage(bQuizData.getMessage());
+                    bQuizView.show_Image(bQuizData.getMessage_image_url());
                 }
             }
 
