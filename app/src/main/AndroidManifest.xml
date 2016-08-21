@@ -20,25 +20,17 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".home.view.Home">
-
-
-        </activity>
-        <activity android:name=".welcome.view.WelcomeActivity"></activity>
-        <activity android:name=".LogIn_Mvp.view.LogIn">
-
-        </activity>
-
+        <activity android:name=".home.view.Home" />
+        <activity android:name=".welcome.view.WelcomeActivity" />
+        <activity android:name=".LogIn_Mvp.view.LogIn" />
         <activity android:name=".about_us.view.AboutUsPage" />
         <activity
             android:name=".blogs.view.Blogs"
             android:label="@string/activity_blogs" />
-        <activity android:name=".contact_us.view.Contacts"/>
-
+        <activity android:name=".contact_us.view.Contacts" />
         <activity android:name=".sign_in.view.SignInActivity" />
         <activity
             android:name=".fb.fb_login"
@@ -54,19 +46,13 @@
             android:value="@string/facebook_app_id" />
 
         <activity android:name=".set_up_profile.view.SetUpProfile" />
-        <activity android:name=".events.view.ListOfEvents">
-
-        </activity>
+        <activity android:name=".events.view.ListOfEvents" />
         <activity android:name=".send_otp.view.SendOtp" />
-        <activity android:name=".BQuizNew.view.BQuizActivity">
+        <activity android:name=".BQuizNew.view.BQuizActivity" />
 
-
-        </activity>
-
-        <service android:name=".helper.MyFirebaseService"
+        <service
+            android:name=".helper.MyFirebaseService"
             android:label="Firebase">
-
-            
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
@@ -74,10 +60,9 @@
 
         <meta-data
             android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version"
+            android:value="@integer/google_play_services_version" />
 
-            />
-
+        <activity android:name=".sponsers.view.Spons" />
     </application>
 
 </manifest>

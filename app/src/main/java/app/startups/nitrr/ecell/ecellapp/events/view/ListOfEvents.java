@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -46,7 +45,6 @@ public class ListOfEvents extends AppCompatActivity implements EventsInterface{
         adapter = new Adapter(this);
 
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
-
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setAdapter(adapter);
         eventsPresenter.requestEvents();

@@ -28,6 +28,7 @@ import app.startups.nitrr.ecell.ecellapp.home.model.MockHomeDetailsProvider;
 import app.startups.nitrr.ecell.ecellapp.home.model.data.HomeDetails;
 import app.startups.nitrr.ecell.ecellapp.home.presenter.HomePresenter;
 import app.startups.nitrr.ecell.ecellapp.home.presenter.HomePresenterImpl;
+import app.startups.nitrr.ecell.ecellapp.sponsers.view.Spons;
 import app.startups.nitrr.ecell.ecellapp.welcome.view.WelcomeActivity;
 
 
@@ -55,7 +56,6 @@ public class Home extends AppCompatActivity implements FragmentDrawer.FragmentDr
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         setSupportActionBar(toolbar);
-
         //    ButterKnife.bind(this);
         initialize();
         toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.white));
@@ -88,9 +88,9 @@ public class Home extends AppCompatActivity implements FragmentDrawer.FragmentDr
                 // Do nothing .
                 break;
             case 2:
-    /*            Intent profile = new Intent(Home.this, EditDetails.class);
-                startActivity(profile);
-    */
+                Intent spons = new Intent(Home.this, Spons.class);
+                startActivity(spons);
+
                 break;
             case 3:
                 Intent blogs = new Intent(Home.this, Blogs.class);

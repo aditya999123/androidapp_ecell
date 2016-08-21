@@ -97,7 +97,6 @@ public class HomeDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 blogsViewHolder.body.setText(homeDetails.getDiscription());
                 blogsViewHolder.date.setText(homeDetails.getTimestamp());
                 blogsViewHolder.owner.setText(homeDetails.getOwner());
-
                 Glide.with(context).load(homeDetails.getImage()).thumbnail(0.1f).into(blogsViewHolder.image);
 
                 break;

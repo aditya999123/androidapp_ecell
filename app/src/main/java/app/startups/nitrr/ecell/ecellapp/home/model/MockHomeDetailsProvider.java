@@ -20,7 +20,7 @@ public class MockHomeDetailsProvider implements HomeDetailsProvider {
 
 
         List<HomeDetails> homeDetailsList = new ArrayList<>();
-        HomeDetails welcome = new HomeDetails(4, null, "WelcomeActivity , Meghal Agrawal"
+        HomeDetails welcome = new HomeDetails(4, null, "E-cell team welcomes you."
                 , "We hope you'r doing well", null, null, null, null);
         homeDetailsList.add(welcome);
         HomeDetails blog = new HomeDetails(2, null, "Finance and technology – a tango over the decades"

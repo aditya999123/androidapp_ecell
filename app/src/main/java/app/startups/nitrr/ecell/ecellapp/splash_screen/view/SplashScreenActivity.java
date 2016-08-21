@@ -1,11 +1,14 @@
 package app.startups.nitrr.ecell.ecellapp.splash_screen.view;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import app.startups.nitrr.ecell.ecellapp.R;
@@ -13,6 +16,7 @@ import app.startups.nitrr.ecell.ecellapp.helper.MyApplication;
 import app.startups.nitrr.ecell.ecellapp.helper.SharedPrefs;
 import app.startups.nitrr.ecell.ecellapp.home.view.Home;
 import app.startups.nitrr.ecell.ecellapp.splash_screen.model.RetrofitSplashScreenProvider;
+import app.startups.nitrr.ecell.ecellapp.splash_screen.model.data.SplashScreenData;
 import app.startups.nitrr.ecell.ecellapp.splash_screen.presenter.SplashScreenPresenter;
 import app.startups.nitrr.ecell.ecellapp.splash_screen.presenter.SplashScreenPresenterImpl;
 import app.startups.nitrr.ecell.ecellapp.welcome.view.WelcomeActivity;
@@ -61,9 +65,32 @@ public class SplashScreenActivity extends AppCompatActivity implements SplashScr
     }
 
     @Override
-    public void fcmInsertStatus(boolean successful) {
+    public void fcmInsertStatus(SplashScreenData splashScreenData) {
 
-        if (successful) {
+        int i=splashScreenData.getVersion();
+
+        if(i>sharedPrefs.getKeyVersion())
+        {
+            final Dialog dialog = new Dialog(SplashScreenActivity.this);
+            dialog.setContentView(R.layout.activity_rules__dialog_box);
+            Button btn = (Button) dialog.findViewById(R.id.dialog_button);
+            TextView rules5 = (TextView) dialog.findViewById(R.id.rules5);
+            rules5.setText("Please update the latest version of this app from google play services");
+
+            dialog.setTitle("Attention");
+            btn.setText("Ok.");
+            dialog.show();
+            btn.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    finish();
+                    System.exit(0);
+                }
+            });
+        }
+
+        else if (splashScreenData.isSuccess()) {
             sharedPrefs.setFCM(MyApplication.fcm_token);
             if (sharedPrefs.isLoggedIn()) {
                 Intent in = new Intent(SplashScreenActivity.this, Home.class);

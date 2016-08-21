@@ -19,6 +19,7 @@ public class SharedPrefs {
     private static final String KEY_LOGIN_TYPE = "loginType";
     private static final String KEY_FCM = "fcm";
     private static final String KEY_ACCESS_TOKEN = "access_token";
+    private static final int KEY_VERSION=1;
     // LogCat tag
     private static String TAG = "Shared Preference";
     // Shared Preferences
@@ -27,6 +28,10 @@ public class SharedPrefs {
     Context _context;
     // Shared pref mode
     int PRIVATE_MODE = 0;
+
+    public static int getKeyVersion() {
+        return KEY_VERSION;
+    }
 
     public SharedPrefs(Context context) {
         this._context = context;

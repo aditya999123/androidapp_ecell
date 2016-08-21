@@ -44,7 +44,7 @@ public class SplashScreenPresenterImpl implements SplashScreenPresenter {
             public void onNext(SplashScreenData splashScreenData) {
 
                 if(splashScreenData.isSuccess()){
-                    splashScreenView.fcmInsertStatus(true);
+                    splashScreenView.fcmInsertStatus(splashScreenData);
                     splashScreenView.showProgressBar(false);
 
                 }else{
