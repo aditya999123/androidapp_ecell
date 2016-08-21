@@ -17,24 +17,19 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="vertical">
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_weight="5"
-                android:orientation="horizontal"
-                android:background="@color/black"
-                >
-                <TextView
-                    android:id="@+id/timer"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar_bquiz"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/black"
+                    app:titleTextColor="@color/white"
                     android:fontFamily="casual"
                     android:elevation="10dp"
-                    android:gravity="center"
-                    android:text="Bquiz"
-                    android:textColor="@color/white"
-                    android:textSize="28dp" />
-                </LinearLayout>
+                    android:title="BQuiz"
+
+                    />
+
             <ScrollView
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"

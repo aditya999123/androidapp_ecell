@@ -1,5 +1,10 @@
 package app.startups.nitrr.ecell.ecellapp.about_us.model;
 
+import android.util.Log;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import app.startups.nitrr.ecell.ecellapp.about_us.api.AboutUsRequestAPI;
 import app.startups.nitrr.ecell.ecellapp.about_us.view.AboutUsData;
 import app.startups.nitrr.ecell.ecellapp.about_us.view.OnAboutusReceived;
@@ -19,13 +24,16 @@ public class RetrofitProviderAboutUs implements AboutUsProvider {
 
     @Override
     public void requestData(final OnAboutusReceived onAboutusReceived) {
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Urls.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(client)
                 .build();
 
@@ -40,7 +48,6 @@ public class RetrofitProviderAboutUs implements AboutUsProvider {
             @Override
             public void onFailure(Call<AboutUsData> call, Throwable t) {
                 onAboutusReceived.onFailure();
-
             }
         });
 

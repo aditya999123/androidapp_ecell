@@ -6,12 +6,12 @@ package app.startups.nitrr.ecell.ecellapp.about_us.view;
 public class AboutUsData {
     private String image;
     private String description;
-    private int id;
 
-    public AboutUsData(String image, String description, int id) {
+
+    public AboutUsData(String image, String description) {
         this.image = image;
         this.description = description;
-        this.id = id;
+
     }
 
     public String getImage() {
@@ -22,7 +22,4 @@ public class AboutUsData {
         return description;
     }
 
-    public int getId() {
-        return id;
-    }
 }

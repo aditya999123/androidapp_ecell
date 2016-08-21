@@ -18,7 +18,6 @@ import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import app.startups.nitrr.ecell.ecellapp.BQuizNew.model.RetrofitBquizProvider;
 import app.startups.nitrr.ecell.ecellapp.BQuizNew.model.RetrofitSubmitAnswerProvider;
@@ -47,9 +46,6 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
     @BindView(R.id.input_ans)
     EditText input_ans;
 
-    @BindView(R.id.timer)
-    TextView timer;
-
     @BindView(R.id.submit_button)
     Button submit_button;
 
@@ -65,6 +61,8 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
     @BindView(R.id.rb4)
     RadioButton rb4;
 
+    @BindView(R.id.toolbar_bquiz)
+    Toolbar toolbar;
 
     @BindView(R.id.progressBar)
     ProgressBar progressbar;
@@ -90,22 +88,17 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
     private SubmitAnswerPresenter submitAnswerPresenter;
     private int questionId;
     private int data_type;
-    Toolbar toolbar;
+    SharedPrefs sharedPrefs;
 
         @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bquiz__intro);
         ButterKnife.bind(this);
-        i=getRequestedOrientation();
 //            startService(new Intent(MyFirebaseService.class.getName()));
-        Log.d("Response","value="+i);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
 
-
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("B Quiz");
-        toolbar.setVisibility(View.GONE);
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
         toolbar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,7 +109,7 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
 
 
         bQuizPresenter = new BQuizPresenterImpl(this, new RetrofitBquizProvider());
-        SharedPrefs sharedPrefs = new SharedPrefs(this);
+            sharedPrefs = new SharedPrefs(this);
         bQuizPresenter.getBquizData(sharedPrefs.getAccessToken());
 
         submitAnswerPresenter = new SubmitAnswerPresenterImpl(this, new RetrofitSubmitAnswerProvider());
@@ -142,8 +135,25 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
     }
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        submitAnswerPresenter.submitAnswer(questionId, getAnswer(), sharedPrefs.getAccessToken());
+
+    }
+
+    @Override
+    protected void onStop()
+    {
+        super.onStop();
+        submitAnswerPresenter.submitAnswer(questionId, getAnswer(), sharedPrefs.getAccessToken());
+
+    }
+
+    @Override
     public void showMessage(String message) {
-        Toast.makeText(BQuizActivity.this, message, Toast.LENGTH_LONG).show();
+        question_text.setVisibility(View.VISIBLE);
+        question_text.setText(message);
+//        Toast.makeText(BQuizActivity.this, message, Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -287,12 +297,11 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
         new CountDownTimer(time, 500) {
             public void onTick(long millisUntilFinished) {
 
-                timer.setText(millisUntilFinished / 60000 + " : " + (millisUntilFinished / 1000) % 60);
-
-
+                toolbar.setTitle("Remaining Time "+millisUntilFinished / 60000 + " : " + (millisUntilFinished / 1000) % 60);
             }
 
             public void onFinish() {
+                submitAnswerPresenter.submitAnswer(questionId, getAnswer(), sharedPrefs.getAccessToken());
                 Intent in=new Intent(BQuizActivity.this,Home.class);
                 startActivity(in);
             }

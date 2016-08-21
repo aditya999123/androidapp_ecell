@@ -49,7 +49,7 @@ public class SendOtp extends AppCompatActivity implements SendOtpView {
         verifyOtpPresenter = new VerifyOtpPresenterImpl(new RetrofitVerifyProvider(), this);
         getIntents();
         Button btn1 = (Button) findViewById(R.id.btn1);
-       Button btn= (Button) findViewById(R.id.btn);
+        Button btn= (Button) findViewById(R.id.btn);
         Log.d("Response", "1");
         progressBar.setVisibility(View.GONE);
         assert btn != null;

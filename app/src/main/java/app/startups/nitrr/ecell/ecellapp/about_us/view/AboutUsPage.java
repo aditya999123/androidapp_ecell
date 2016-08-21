@@ -9,6 +9,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import app.startups.nitrr.ecell.ecellapp.R;
+import app.startups.nitrr.ecell.ecellapp.about_us.model.RetrofitProviderAboutUs;
+import app.startups.nitrr.ecell.ecellapp.about_us.presenter.AboutUsPresenter;
+import app.startups.nitrr.ecell.ecellapp.about_us.presenter.AboutUsPresenterImpl;
 import app.startups.nitrr.ecell.ecellapp.helper.image_loaders.GlideImageLoader;
 import app.startups.nitrr.ecell.ecellapp.helper.image_loaders.ImageLoader;
 
@@ -21,7 +24,7 @@ public class AboutUsPage extends AppCompatActivity implements AboutUsInterface{
     TextView textView;
     ImageView imageView;
     private ImageLoader imageLoader;
-
+    AboutUsPresenter aboutUsPresenter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +39,9 @@ public class AboutUsPage extends AppCompatActivity implements AboutUsInterface{
             }
         });
 
+        aboutUsPresenter = new AboutUsPresenterImpl(this,new RetrofitProviderAboutUs());
+        aboutUsPresenter.requestData();
+
     }
 
     public void setData(AboutUsData aboutUsData)
@@ -43,6 +49,8 @@ public class AboutUsPage extends AppCompatActivity implements AboutUsInterface{
         imageView=(ImageView) findViewById(R.id.about_img);
         textView=(TextView) findViewById(R.id.about_us);
         textView.setText(""+aboutUsData.getDescription());
+
+
         textView.getBackground().setAlpha(20);
         imageLoader=new GlideImageLoader(this);
         imageLoader.loadImage(aboutUsData.getImage().toString(),imageView);
