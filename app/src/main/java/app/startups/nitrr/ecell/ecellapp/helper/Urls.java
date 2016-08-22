@@ -19,5 +19,6 @@ public class Urls {
     public static final String REQUEST_Contacts = "contactus/";
     public static final String REQUEST_ABOUTUS="aboutus/";
     public static final String REQUEST_SPONS="spons/";
+    public static final String REQUEST_BLOGS="blogs/";
 
 }

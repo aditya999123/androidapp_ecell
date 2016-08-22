@@ -37,7 +37,6 @@ public class SubmitAnswerPresenterImpl implements SubmitAnswerPresenter {
 
                     @Override
                     public void onError(Throwable e) {
-
                         e.printStackTrace();
                     }
 

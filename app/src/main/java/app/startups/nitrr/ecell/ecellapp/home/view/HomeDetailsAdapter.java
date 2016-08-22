@@ -100,6 +100,8 @@ public class HomeDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 Glide.with(context).load(homeDetails.getImage()).thumbnail(0.1f).into(blogsViewHolder.image);
 
                 break;
+            case VIEW_EVENTS:
+
 
         }
 

@@ -130,6 +130,7 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
 
                 SharedPrefs sharedPrefs = new SharedPrefs(BQuizActivity.this);
                 submitAnswerPresenter.submitAnswer(questionId, getAnswer(), sharedPrefs.getAccessToken());
+                i=0;
             }
         });
     }
@@ -137,7 +138,12 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        submitAnswerPresenter.submitAnswer(questionId, getAnswer(), sharedPrefs.getAccessToken());
+        if(i==1)
+        {
+            submitAnswerPresenter.submitAnswer(questionId, getAnswer(), sharedPrefs.getAccessToken());
+            i=0;
+        }
+
 
     }
 
@@ -145,8 +151,11 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
     protected void onStop()
     {
         super.onStop();
-        submitAnswerPresenter.submitAnswer(questionId, getAnswer(), sharedPrefs.getAccessToken());
-
+        if(i==1)
+        {
+            submitAnswerPresenter.submitAnswer(questionId, getAnswer(), sharedPrefs.getAccessToken());
+            i=0;
+        }
     }
     @Override
     public void show_Image(String s)
@@ -174,7 +183,6 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
     public void setBquizData(final BQuizData bquizData) {
 
 
-
             questionId = bquizData.getQuestion_data().getQuestion_id();
             data_type = bquizData.getData_type();
             Log.d("Response", bquizData.getRules());
@@ -196,7 +204,7 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
                     btn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-
+                            i=1;
                             submit_button.setVisibility(View.VISIBLE);
                             question_image.setVisibility(View.GONE);
                             radio_group.setVisibility(View.GONE);
@@ -235,6 +243,7 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
                             time = bquizData.getQuestion_data().getQuestion_duration();
                             countDown(time);
                             dialog.dismiss();
+                            i=1;
 
 
                         }
@@ -253,6 +262,7 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
                             imageLoader.loadImage(bquizData.getQuestion_data().getImage_url(), question_image);
                             countDown(time);
                             dialog.dismiss();
+                            i=1;
 
 
                         }
@@ -274,6 +284,7 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
                             time = bquizData.getQuestion_data().getQuestion_duration();
                             countDown(time);
                             dialog.dismiss();
+                            i=1;
                         }
                     });
 
@@ -308,8 +319,13 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
 
             public void onFinish() {
                 submitAnswerPresenter.submitAnswer(questionId, getAnswer(), sharedPrefs.getAccessToken());
-                Intent in=new Intent(BQuizActivity.this,Home.class);
-                startActivity(in);
+                i=0;
+                if(i==0)
+                {
+                    Intent in=new Intent(BQuizActivity.this,Home.class);
+                    startActivity(in);
+                }
+
             }
         }.start();
 
@@ -332,7 +348,6 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
                 answer = radioButton != null ? radioButton.getText().toString() : null;
                 break;
             case 3:
-
                 answer = input_ans.getText().toString();
                 break;
             case 4:

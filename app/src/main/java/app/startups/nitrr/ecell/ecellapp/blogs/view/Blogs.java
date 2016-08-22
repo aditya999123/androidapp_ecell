@@ -7,7 +7,6 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -22,7 +21,7 @@ import app.startups.nitrr.ecell.ecellapp.blogs.presenter.BlogsPresenterImpl;
 
 public class Blogs extends AppCompatActivity implements BlogsInterface {
 
-    private static final String TAG = "Events";
+
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
     private BlogsPresenter blogsPresenter;
@@ -78,7 +77,6 @@ public class Blogs extends AppCompatActivity implements BlogsInterface {
 
         blogsAdapter.setData(blogDataList);
         blogsAdapter.notifyDataSetChanged();
-        Log.i(TAG, "View SetData Called : " + blogDataList.get(0).getBlogTitle());
 
     }
 
