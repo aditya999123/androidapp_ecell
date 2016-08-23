@@ -197,6 +197,7 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
             dialog.show();
             messageLayout.setVisibility(View.GONE);
             questionLayout.setVisibility(View.VISIBLE);
+        toolbar.setTitle("BQuiz");
             switch (bquizData.getData_type()) {
 
 
