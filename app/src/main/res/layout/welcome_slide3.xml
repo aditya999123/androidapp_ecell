@@ -12,6 +12,18 @@
         android:layout_centerHorizontal="true"
         android:layout_margin="24dp"
         android:src="@drawable/ecell_logo" />
+    <TextView
+        android:id="@+id/quote"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView"
+        android:text="The things you regret \n most in life are the risks you didn't take."
+        android:textSize="28dp"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:textColor="@color/colorAccent"
+        android:padding="@dimen/padding_medium"
+        />
 
 
 

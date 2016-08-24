@@ -64,6 +64,9 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
     @BindView(R.id.toolbar_bquiz)
     Toolbar toolbar;
 
+    @BindView(R.id.toolbar1)
+    Toolbar toolbar1;
+
     @BindView(R.id.progressBar)
     ProgressBar progressbar;
 
@@ -106,9 +109,18 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
                 finish();
             }
         });
+            toolbar1.setTitle("B Quiz");
+            toolbar1.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
+            toolbar1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    finish();
+                }
+            });
 
 
-        bQuizPresenter = new BQuizPresenterImpl(this, new RetrofitBquizProvider());
+
+            bQuizPresenter = new BQuizPresenterImpl(this, new RetrofitBquizProvider());
             sharedPrefs = new SharedPrefs(this);
         bQuizPresenter.getBquizData(sharedPrefs.getAccessToken());
 
@@ -165,6 +177,15 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
     }
     @Override
     public void showMessage(String message) {
+        toolbar.setTitle("B Quiz");
+        Log.d("Response","show message");
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
+        toolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         question_text.setVisibility(View.VISIBLE);
         question_text.setText(message);
 
@@ -185,7 +206,6 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
 
             questionId = bquizData.getQuestion_data().getQuestion_id();
             data_type = bquizData.getData_type();
-            Log.d("Response", bquizData.getRules());
             final Dialog dialog = new Dialog(BQuizActivity.this);
             dialog.setContentView(R.layout.activity_rules__dialog_box);
             Button btn = (Button) dialog.findViewById(R.id.dialog_button);
@@ -193,11 +213,20 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
             rules5.setText(bquizData.getRules().toString());
 
             dialog.setTitle("Rules");
+        toolbar.setTitle("B Quiz");
+
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
+        Log.d("Response","2");
+        toolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
             dialog.show();
             messageLayout.setVisibility(View.GONE);
             questionLayout.setVisibility(View.VISIBLE);
-        toolbar.setTitle("BQuiz");
             switch (bquizData.getData_type()) {
 
 
@@ -300,6 +329,15 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
     public void answerSubmitted(SubmitAnswerData submitAnswerData) {
         if (submitAnswerData.isSuccess()) {
             toolbar.setVisibility(View.VISIBLE);
+            toolbar.setTitle("B Quiz");
+            toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
+            toolbar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    finish();
+                }
+            });
+
             questionLayout.setVisibility(View.GONE);
             LinearLayout answer_layout=(LinearLayout)findViewById(R.id.answer_layout);
             answer_layout.setVisibility(View.VISIBLE);
@@ -338,14 +376,11 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
         switch (data_type) {
 
             case 1:
-
-
                 answer = input_ans.getText().toString();
                 break;
             case 2:
                 RadioButton radioButton = (RadioButton) findViewById(radio_group.getCheckedRadioButtonId());
                 Log.d("BQuizActivity",""+radio_group.getCheckedRadioButtonId());
-
                 answer = radioButton != null ? radioButton.getText().toString() : null;
                 break;
             case 3:

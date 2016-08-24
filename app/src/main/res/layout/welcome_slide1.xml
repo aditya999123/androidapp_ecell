@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/imageView"
-        android:text="Welcome !\n entrepreneurship cell \n nit raipur"
+        android:text="''Failure is an option here. If things are not failing, you are not innovating enough.'' \n  - Elon Musk"
         android:textSize="28dp"
         android:layout_alignParentBottom="true"
         android:gravity="center"
