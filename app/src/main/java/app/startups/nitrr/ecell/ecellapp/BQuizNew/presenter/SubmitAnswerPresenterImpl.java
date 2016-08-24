@@ -47,7 +47,7 @@ public class SubmitAnswerPresenterImpl implements SubmitAnswerPresenter {
                         if (submitAnswerData.isSuccess()) {
                             bQuizView.answerSubmitted(submitAnswerData);
                         } else {
-                            bQuizView.showMessage(submitAnswerData.getMessage());
+                            bQuizView.showMessage(submitAnswerData.getMessage_display());
                         }
                     }
                 });

@@ -65,7 +65,7 @@
         <item>Mechanical Engineering</item>
         <item>Metallurgy</item>
         <item>Mining</item>
-        <item>MCA</item>
+        <item>Others</item>
     </string-array>
     <!-- navigation drawer item labels  -->
     <string-array name="nav_drawer_labels">

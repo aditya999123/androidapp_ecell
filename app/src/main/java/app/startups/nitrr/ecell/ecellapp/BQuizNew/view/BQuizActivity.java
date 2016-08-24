@@ -304,7 +304,7 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
             LinearLayout answer_layout=(LinearLayout)findViewById(R.id.answer_layout);
             answer_layout.setVisibility(View.VISIBLE);
             messageLayout.setVisibility(View.VISIBLE);
-            message.setText(submitAnswerData.getMessage());
+            message.setText(submitAnswerData.getMessage_display());
             imageLoader.loadImage(submitAnswerData.getMessage_image(), messageImage);
 
         }
