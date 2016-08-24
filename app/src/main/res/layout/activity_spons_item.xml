@@ -27,9 +27,7 @@
                     android:id="@+id/contactus_cardview_cardview"
                     android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:background="@color/black"
                     android:layout_height="match_parent"
-                    android:paddingRight="4dp"
                     card_view:contentPadding="8dp"
                     card_view:cardCornerRadius="4dp"
                     >
