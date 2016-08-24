@@ -2,7 +2,7 @@ package app.startups.nitrr.ecell.ecellapp.splash_screen.view;
 
 import android.app.Dialog;
 import android.content.Intent;
-import android.os.Build;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -42,8 +42,8 @@ public class SplashScreenActivity extends AppCompatActivity implements SplashScr
         sharedPrefs = new SharedPrefs(this);
 
 //        if (sharedPrefs.getFcm() == null) {
-            SplashScreenPresenter splashScreenPresenter = new SplashScreenPresenterImpl(this, new RetrofitSplashScreenProvider());
-            splashScreenPresenter.insertFcm(MyApplication.fcm_token);
+        SplashScreenPresenter splashScreenPresenter = new SplashScreenPresenterImpl(this, new RetrofitSplashScreenProvider());
+        splashScreenPresenter.insertFcm(MyApplication.fcm_token);
         /*} else {
             Intent intent = new Intent(SplashScreenActivity.this, WelcomeActivity.class);
             startActivity(intent);
@@ -69,30 +69,39 @@ public class SplashScreenActivity extends AppCompatActivity implements SplashScr
     @Override
     public void fcmInsertStatus(SplashScreenData splashScreenData) {
 
-        int i=splashScreenData.getVersion();
+        int i = splashScreenData.getVersion();
 
-        if(i> BuildConfig.VERSION_CODE)
-        {
+        if (i > BuildConfig.VERSION_CODE) {
             final Dialog dialog = new Dialog(SplashScreenActivity.this);
             dialog.setContentView(R.layout.activity_rules__dialog_box);
             Button btn = (Button) dialog.findViewById(R.id.dialog_button);
-            TextView rules5 = (TextView) dialog.findViewById(R.id.rules5);
-            rules5.setText("Please update the latest version of this app from google play services");
+            TextView rules = (TextView) dialog.findViewById(R.id.rules5);
+            if (splashScreenData.getCompulsory_update() == 1) {
+                rules.setText("We've found some major improvements in our app . To enjoy ECellApp Please Update it");
+                dialog.setCancelable(false);
 
-            dialog.setTitle("Attention");
-            btn.setText("Ok.");
+            } else {
+                rules.setText("Please Update the app for Better experience");
+
+            }
+
+            dialog.setTitle("App Update");
+            btn.setText("Update");
             dialog.show();
             btn.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View v) {
-                    finish();
-                    System.exit(0);
+
+                    final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
+                    try {
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+                    } catch (android.content.ActivityNotFoundException anfe) {
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+                    }
                 }
             });
-        }
-
-        else if (splashScreenData.isSuccess()) {
+        } else if (splashScreenData.isSuccess()) {
             sharedPrefs.setFCM(MyApplication.fcm_token);
             if (sharedPrefs.isLoggedIn()) {
                 Intent in = new Intent(SplashScreenActivity.this, Home.class);
