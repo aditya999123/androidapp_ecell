@@ -85,6 +85,7 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<RecyclerView.V
                 int red = random.nextInt(255);
                 int blue = random.nextInt(255);
                 int green = 100;
+
                 String username = sharedPrefs.getUsername();
                 HeaderViewHolder headerViewHolder = (HeaderViewHolder) holder;
                 headerViewHolder.circle.setShapeColor(Color.rgb(red, blue, green));
@@ -110,12 +111,12 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     private void getMockList() {
         iconList.add(R.drawable.ic_account_box_black_18dp);
+
         iconList.add(R.drawable.ic_home_black_24dp);
-        iconList.add(R.drawable.ic_account_box_black_18dp);
-        iconList.add(0);
         iconList.add(R.drawable.ic_event_note_black_18dp);
-        iconList.add(R.drawable.ic_monochrome_photos_black_18dp);
-        iconList.add(0);
+        iconList.add(R.drawable.ic_event_note_black_18dp);
+        iconList.add(R.drawable.ic_event_note_black_18dp);
+        iconList.add(R.drawable.ic_event_note_black_18dp);
         iconList.add(R.drawable.ic_contact_mail_black_18dp);
         iconList.add(R.drawable.ic_group_about_us_black_18dp);
         iconList.add(R.drawable.ic_all_logout_black_18dp);

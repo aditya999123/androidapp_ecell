@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -24,7 +25,7 @@ import app.startups.nitrr.ecell.ecellapp.blogs.view.Blogs;
 import app.startups.nitrr.ecell.ecellapp.contact_us.view.Contacts;
 import app.startups.nitrr.ecell.ecellapp.events.view.ListOfEvents;
 import app.startups.nitrr.ecell.ecellapp.helper.SharedPrefs;
-import app.startups.nitrr.ecell.ecellapp.home.model.MockHomeDetailsProvider;
+import app.startups.nitrr.ecell.ecellapp.home.model.RetrofitHomeDetailsProvider;
 import app.startups.nitrr.ecell.ecellapp.home.model.data.HomeDetails;
 import app.startups.nitrr.ecell.ecellapp.home.presenter.HomePresenter;
 import app.startups.nitrr.ecell.ecellapp.home.presenter.HomePresenterImpl;
@@ -34,6 +35,7 @@ import app.startups.nitrr.ecell.ecellapp.welcome.view.WelcomeActivity;
 
 public class Home extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener, HomeInterface {
 
+    private static final String TAG = "Home";
     //    @BindView(R.id.toolbar)
     Toolbar toolbar;
 
@@ -72,7 +74,7 @@ public class Home extends AppCompatActivity implements FragmentDrawer.FragmentDr
 
     private void initialize() {
         sharedPrefs = new SharedPrefs(this);
-        homePresenter = new HomePresenterImpl(this, new MockHomeDetailsProvider());
+        homePresenter = new HomePresenterImpl(this, new RetrofitHomeDetailsProvider());
         homeDetailsAdapter = new HomeDetailsAdapter(this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -93,13 +95,13 @@ public class Home extends AppCompatActivity implements FragmentDrawer.FragmentDr
 
                 break;
             case 3:
-            Intent events = new Intent(Home.this,ListOfEvents.class);
+                Intent events = new Intent(Home.this, ListOfEvents.class);
                 startActivity(events);
 
                 break;
 
             case 4:
-                Intent bquiz=new Intent(Home.this, BQuizActivity.class);
+                Intent bquiz = new Intent(Home.this, BQuizActivity.class);
                 startActivity(bquiz);
                 break;
             case 5:
@@ -109,11 +111,11 @@ public class Home extends AppCompatActivity implements FragmentDrawer.FragmentDr
                 break;
 
             case 6:
-                Intent contact=new Intent(Home.this, Contacts.class);
+                Intent contact = new Intent(Home.this, Contacts.class);
                 startActivity(contact);
                 break;
             case 7:
-                Intent about_us=new Intent(Home.this, AboutUsPage.class);
+                Intent about_us = new Intent(Home.this, AboutUsPage.class);
                 startActivity(about_us);
                 break;
             case 8:
@@ -157,7 +159,11 @@ public class Home extends AppCompatActivity implements FragmentDrawer.FragmentDr
     @Override
     public void setData(List<HomeDetails> homeDetailsList) {
 
+        Log.i(TAG, "Data received");
         homeDetailsAdapter.setData(homeDetailsList);
+        recyclerView.setAdapter(homeDetailsAdapter);
+        homeDetailsAdapter.notifyDataSetChanged();
+        recyclerView.setVisibility(View.VISIBLE);
 
     }
 

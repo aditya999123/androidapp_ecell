@@ -41,16 +41,15 @@ public class SplashScreenActivity extends AppCompatActivity implements SplashScr
         ButterKnife.bind(this);
         sharedPrefs = new SharedPrefs(this);
 
-//        if (sharedPrefs.getFcm() == null) {
+        if (sharedPrefs.getFcm() == null) {
         SplashScreenPresenter splashScreenPresenter = new SplashScreenPresenterImpl(this, new RetrofitSplashScreenProvider());
         splashScreenPresenter.insertFcm(MyApplication.fcm_token);
-        /*} else {
+        } else {
             Intent intent = new Intent(SplashScreenActivity.this, WelcomeActivity.class);
             startActivity(intent);
             finish();
         }
-        *//*
-        Handler handler = new Handler();
+        /*Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {

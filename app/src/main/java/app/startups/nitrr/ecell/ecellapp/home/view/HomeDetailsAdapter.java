@@ -2,6 +2,7 @@ package app.startups.nitrr.ecell.ecellapp.home.view;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +29,7 @@ public class HomeDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     private static final int VIEW_BLOGS = 2;
     private static final int VIEW_POST = 3;
     private static final int VIEW_WELCOME = 4;
+    private static final String TAG = "HomeDetailsAdapter" ;
     private Context context;
     private LayoutInflater layoutInflater;
     private List<HomeDetails> homeDetailsList = new ArrayList<>();
@@ -35,6 +37,7 @@ public class HomeDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     HomeDetailsAdapter(Context context) {
         this.context = context;
         layoutInflater = LayoutInflater.from(context);
+
     }
 
 
@@ -92,6 +95,7 @@ public class HomeDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
                 break;
             case VIEW_BLOGS:
+                Log.i(TAG,"Received here");
                 BlogsViewHolder blogsViewHolder = (BlogsViewHolder) holder;
                 blogsViewHolder.title.setText(homeDetails.getTitle());
                 blogsViewHolder.body.setText(homeDetails.getDiscription());
@@ -115,6 +119,8 @@ public class HomeDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     public void setData(List<HomeDetails> homeDetailsList) {
         this.homeDetailsList = homeDetailsList;
+        Log.i(TAG,"Set data is called"+homeDetailsList.get(0).toString());
+
     }
 
     public class WelcomeViewHolder extends RecyclerView.ViewHolder {
