@@ -2,6 +2,7 @@ package app.startups.nitrr.ecell.ecellapp.splash_screen.view;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import app.startups.nitrr.ecell.ecellapp.BuildConfig;
 import app.startups.nitrr.ecell.ecellapp.R;
 import app.startups.nitrr.ecell.ecellapp.helper.MyApplication;
 import app.startups.nitrr.ecell.ecellapp.helper.SharedPrefs;
@@ -69,7 +71,7 @@ public class SplashScreenActivity extends AppCompatActivity implements SplashScr
 
         int i=splashScreenData.getVersion();
 
-        if(i>sharedPrefs.getKeyVersion())
+        if(i> BuildConfig.VERSION_CODE)
         {
             final Dialog dialog = new Dialog(SplashScreenActivity.this);
             dialog.setContentView(R.layout.activity_rules__dialog_box);

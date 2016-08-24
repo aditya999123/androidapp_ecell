@@ -88,42 +88,35 @@ public class Home extends AppCompatActivity implements FragmentDrawer.FragmentDr
                 // Do nothing .
                 break;
             case 2:
-                Intent spons = new Intent(Home.this, Spons.class);
-                startActivity(spons);
-
-                break;
-            case 3:
                 Intent blogs = new Intent(Home.this, Blogs.class);
                 startActivity(blogs);
 
                 break;
-            case 4:
+            case 3:
             Intent events = new Intent(Home.this,ListOfEvents.class);
                 startActivity(events);
 
                 break;
 
-            case 5:
-  /*              PrefManager prefManager = new PrefManager(this);
-                prefManager.logout();
-                Intent in=new Intent(Home.this, WelcomeActivity.class);
-                startActivity(in);
-                finish();
-  */
-                break;
-            case 6:
+            case 4:
                 Intent bquiz=new Intent(Home.this, BQuizActivity.class);
                 startActivity(bquiz);
                 break;
-            case 7:
+            case 5:
+                Intent spons = new Intent(Home.this, Spons.class);
+                startActivity(spons);
+
+                break;
+
+            case 6:
                 Intent contact=new Intent(Home.this, Contacts.class);
                 startActivity(contact);
                 break;
-            case 8:
+            case 7:
                 Intent about_us=new Intent(Home.this, AboutUsPage.class);
                 startActivity(about_us);
                 break;
-            case 9:
+            case 8:
                 if (sharedPrefs.getLoginType() == 1) {
                     LoginManager.getInstance().logOut();
                 }

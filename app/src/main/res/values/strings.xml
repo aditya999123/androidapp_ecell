@@ -23,7 +23,7 @@
     <string name="nav_item_blogs">Blogs</string>
     <string name="nav_item_events">Events</string>
     <string name="nav_item_photo_gallery">Photo Gallery</string>
-    <string name="nav_item_e_summit">E-Summ</string>
+    <string name="nav_item_bquiz">B-Quiz</string>
     <string name="nav_item_contact_us">Contact Us</string>
     <string name="nav_item_about_us">About Us</string>
     <string name="nav_item_logout">Logout</string>
@@ -53,7 +53,7 @@
 
     <string-array name="branch_ar">
         <item>--Select Branch</item>
-        <item>Archietecture</item>
+        <item>Architecture</item>
         <item>BioMed Engineering</item>
         <item>Biotech Engineering</item>
         <item>Chemical Engineering</item>
@@ -71,11 +71,10 @@
     <string-array name="nav_drawer_labels">
         <item></item>
         <item>@string/nav_item_home</item>
-        <item>@string/nav_item_spons</item>
         <item>@string/nav_item_blogs</item>
         <item>@string/nav_item_events</item>
-        <item>@string/nav_item_photo_gallery</item>
-        <item>@string/nav_item_e_summit</item>
+        <item>@string/nav_item_bquiz</item>
+        <item>@string/nav_item_spons</item>
         <item>@string/nav_item_contact_us</item>
         <item>@string/nav_item_about_us</item>
         <item>@string/nav_item_logout</item>
