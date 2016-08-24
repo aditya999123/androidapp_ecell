@@ -193,11 +193,18 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
             rules5.setText(bquizData.getRules().toString());
 
             dialog.setTitle("Rules");
+        toolbar.setTitle("B Quiz");
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
+        toolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
             dialog.show();
             messageLayout.setVisibility(View.GONE);
             questionLayout.setVisibility(View.VISIBLE);
-        toolbar.setTitle("BQuiz");
             switch (bquizData.getData_type()) {
 
 
@@ -321,6 +328,16 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
             public void onFinish() {
                 submitAnswerPresenter.submitAnswer(questionId, getAnswer(), sharedPrefs.getAccessToken());
                 i=0;
+                toolbar.setTitle("B Quiz");
+                toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
+                toolbar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        finish();
+                    }
+                });
+
+
                 if(i==0)
                 {
                     Intent in=new Intent(BQuizActivity.this,Home.class);

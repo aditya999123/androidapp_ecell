@@ -17,6 +17,11 @@ import org.json.JSONObject;
 
 import app.startups.nitrr.ecell.ecellapp.BQuizNew.view.BQuizActivity;
 import app.startups.nitrr.ecell.ecellapp.R;
+import app.startups.nitrr.ecell.ecellapp.about_us.view.AboutUsPage;
+import app.startups.nitrr.ecell.ecellapp.blogs.view.Blogs;
+import app.startups.nitrr.ecell.ecellapp.contact_us.view.Contacts;
+import app.startups.nitrr.ecell.ecellapp.events.view.ListOfEvents;
+import app.startups.nitrr.ecell.ecellapp.sponsers.view.Spons;
 
 
 public class MyFirebaseService extends FirebaseMessagingService {
@@ -64,8 +69,23 @@ public class MyFirebaseService extends FirebaseMessagingService {
 
     private void sendNotification(String messageBody,String title) {
         Intent intent;
-        if(i==1) {
-             intent = new Intent(this, BQuizActivity.class);
+        if(i==2) {
+             intent = new Intent(this, Blogs.class);
+        }
+        else if(i==3) {
+            intent = new Intent(this, ListOfEvents.class);
+        }
+        else if(i==4) {
+            intent = new Intent(this, BQuizActivity.class);
+        }
+        else if(i==5) {
+            intent = new Intent(this, Spons.class);
+        }
+        else if(i==6) {
+            intent = new Intent(this, Contacts.class);
+        }
+        else if(i==7) {
+            intent = new Intent(this, AboutUsPage.class);
         }
         else {
              intent = new Intent(this, BQuizActivity.class);
