@@ -48,6 +48,7 @@ public class AboutUsPage extends AppCompatActivity implements AboutUsInterface{
     {
         imageView=(ImageView) findViewById(R.id.about_img);
         textView=(TextView) findViewById(R.id.about_us);
+        textView.setVisibility(View.VISIBLE);
         textView.setText(""+aboutUsData.getDescription());
 
 
