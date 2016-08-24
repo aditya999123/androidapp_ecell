@@ -5,4 +5,12 @@
     android:background="@color/orange">
 
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="24dp"
+        android:src="@drawable/ecell_logo_white" />
+
 </RelativeLayout>

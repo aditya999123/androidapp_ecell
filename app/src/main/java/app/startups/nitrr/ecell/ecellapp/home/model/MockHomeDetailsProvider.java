@@ -59,7 +59,7 @@ public class MockHomeDetailsProvider implements HomeDetailsProvider {
                 , "SINDHU KASHYAP");
         homeDetailsList.add(blog);
         homeDetailsList.add(event);
-        homeDetailsList.add(post);
+//        homeDetailsList.add(post);
 
         HomeData homeData = new HomeData(true, "Successful", homeDetailsList);
 
