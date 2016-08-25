@@ -94,6 +94,7 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
     private SubmitAnswerPresenter submitAnswerPresenter;
     private int questionId;
     private int data_type;
+    private CountDownTimer countDownTimer;
     SharedPrefs sharedPrefs;
 
         @Override
@@ -152,6 +153,7 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
 
     @Override
     public void onBackPressed() {
+        countDownTimer.cancel();
         super.onBackPressed();
         if(i==1)
         {
@@ -166,6 +168,7 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
     protected void onStop()
     {
         super.onStop();
+        countDownTimer.cancel();
         if(i==1)
         {
             submitAnswerPresenter.submitAnswer(questionId, getAnswer(), sharedPrefs.getAccessToken());
@@ -347,15 +350,22 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
 
     public void countDown(int time) {
         time *= 1000;
-        new CountDownTimer(time, 500) {
+           countDownTimer=new CountDownTimer(time, 1000) {
             public void onTick(long millisUntilFinished) {
 
                 toolbar.setTitle("Remaining Time "+millisUntilFinished / 60000 + " : " + (millisUntilFinished / 1000) % 60);
+                if(i==0)
+                {
+                    countDownTimer.cancel();
+                    Intent in=new Intent(BQuizActivity.this,Home.class);
+                    startActivity(in);
+                }
             }
 
             public void onFinish() {
                 submitAnswerPresenter.submitAnswer(questionId, getAnswer(), sharedPrefs.getAccessToken());
                 i=0;
+                countDownTimer.cancel();
                 toolbar.setTitle("B Quiz");
                 toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
                 toolbar.setOnClickListener(new View.OnClickListener() {

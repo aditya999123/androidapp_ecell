@@ -56,7 +56,6 @@ import app.startups.nitrr.ecell.ecellapp.LogIn_Mvp.view.LogIn;
 import app.startups.nitrr.ecell.ecellapp.R;
 import app.startups.nitrr.ecell.ecellapp.helper.SharedPrefs;
 import app.startups.nitrr.ecell.ecellapp.home.view.Home;
-import app.startups.nitrr.ecell.ecellapp.set_up_profile.view.SetUpProfile;
 import app.startups.nitrr.ecell.ecellapp.welcome.model.MockSignInProvider;
 import app.startups.nitrr.ecell.ecellapp.welcome.presenter.SignInPresenter;
 import app.startups.nitrr.ecell.ecellapp.welcome.presenter.SignInPresenterImpl;
@@ -416,12 +415,12 @@ public class WelcomeActivity extends AppCompatActivity implements GoogleApiClien
                         details_txt.setText(Html.fromHtml(text));
                         //          profile.setProfileId(json.getString("id"));
 
-                        Intent in = new Intent(WelcomeActivity.this, SetUpProfile.class);
-                        startActivity(in);
-                        finish();
-                    /*    signInPresenter.requestSignIn(json.getString("id"), json.getString("name"),
-                                json.getString("email"), "https://graph.facebook.com/" + json.getString("id") + "/picture?type=large", 1);
-*/
+//                        Intent in = new Intent(WelcomeActivity.this, SetUpProfile.class);
+//                        startActivity(in);
+//                        finish();
+//                        signInPresenter.requestSignIn(json.getString("id"), json.getString("name"),
+                      //          json.getString("email"), "https://graph.facebook.com/" + json.getString("id") + "/picture?type=large", 1);
+
                         sharedPrefs.setEmailId(json.getString("email"));
                         sharedPrefs.setUserId(json.getString("id"));
                         sharedPrefs.setUsername(json.getString("name"));
