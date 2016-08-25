@@ -354,12 +354,7 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
             public void onTick(long millisUntilFinished) {
 
                 toolbar.setTitle("Remaining Time "+millisUntilFinished / 60000 + " : " + (millisUntilFinished / 1000) % 60);
-                if(i==0)
-                {
-                    countDownTimer.cancel();
-                    Intent in=new Intent(BQuizActivity.this,Home.class);
-                    startActivity(in);
-                }
+
             }
 
             public void onFinish() {
