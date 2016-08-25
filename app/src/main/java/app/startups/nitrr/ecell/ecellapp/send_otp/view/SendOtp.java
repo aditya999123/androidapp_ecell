@@ -156,5 +156,6 @@ public class SendOtp extends AppCompatActivity implements SendOtpView {
         sharedPrefs.setAccessToken(verifyOtpData.getAccess_token());
         Intent in = new Intent(SendOtp.this, Home.class);
         startActivity(in);
+        finish();
     }
 }
