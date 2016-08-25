@@ -52,6 +52,9 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
     @BindView(R.id.rb1)
     RadioButton rb1;
 
+    @BindView(R.id.points)
+    TextView points;
+
     @BindView(R.id.rb2)
     RadioButton rb2;
 
@@ -213,20 +216,13 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
             rules5.setText(bquizData.getRules().toString());
 
             dialog.setTitle("Rules");
-        toolbar.setTitle("B Quiz");
 
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
-        Log.d("Response","2");
-        toolbar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
 
             dialog.show();
             messageLayout.setVisibility(View.GONE);
             questionLayout.setVisibility(View.VISIBLE);
+        points.setVisibility(View.VISIBLE);
+        points.setText(" Points : "+bquizData.getQuestion_data().getPoints());
             switch (bquizData.getData_type()) {
 
 
@@ -285,6 +281,7 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
                         public void onClick(View v) {
                             submit_button.setVisibility(View.VISIBLE);
                             radio_group.setVisibility(View.GONE);
+                            question_text.setVisibility(View.VISIBLE);
                             question_text.setText(bquizData.getQuestion_data().getQuestion());
                             input_ans.setVisibility(View.VISIBLE);
                             question_image.setVisibility(View.VISIBLE);
@@ -359,6 +356,14 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
             public void onFinish() {
                 submitAnswerPresenter.submitAnswer(questionId, getAnswer(), sharedPrefs.getAccessToken());
                 i=0;
+                toolbar.setTitle("B Quiz");
+                toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
+                toolbar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        finish();
+                    }
+                });
                 if(i==0)
                 {
                     Intent in=new Intent(BQuizActivity.this,Home.class);

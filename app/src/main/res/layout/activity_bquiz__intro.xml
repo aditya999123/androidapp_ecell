@@ -27,8 +27,18 @@
                     android:fontFamily="casual"
                     android:elevation="10dp"
                     android:title="BQuiz"
-
                     />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/colorAccent"
+            android:text=" Points : "
+            android:visibility="gone"
+            android:textColor="@color/white"
+            android:textSize="28dp"
+            android:id="@+id/points"
+
+            />
 
             <ScrollView
                 android:layout_width="fill_parent"
