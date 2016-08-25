@@ -184,17 +184,8 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
     @Override
     public void showMessage(String message) {
         toolbar.setTitle("B Quiz");
-        Log.d("Response","show message");
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
-        toolbar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
         question_text.setVisibility(View.VISIBLE);
         question_text.setText(message);
-
 //        Toast.makeText(BQuizActivity.this, message, Toast.LENGTH_LONG).show();
     }
 
