@@ -113,6 +113,7 @@ public class WelcomeActivity extends AppCompatActivity implements GoogleApiClien
             public void onClick(View v) {
                 Intent log = new Intent(WelcomeActivity.this, LogIn.class);
                 startActivity(log);
+                finish();
             }
         });
 
