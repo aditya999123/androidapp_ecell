@@ -146,17 +146,19 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
 
                 SharedPrefs sharedPrefs = new SharedPrefs(BQuizActivity.this);
                 submitAnswerPresenter.submitAnswer(questionId, getAnswer(), sharedPrefs.getAccessToken());
+                countDownTimer.cancel();
                 i=0;
+
             }
         });
     }
 
     @Override
     public void onBackPressed() {
-        countDownTimer.cancel();
         super.onBackPressed();
         if(i==1)
         {
+            countDownTimer.cancel();
             submitAnswerPresenter.submitAnswer(questionId, getAnswer(), sharedPrefs.getAccessToken());
             i=0;
         }
@@ -168,10 +170,12 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
     protected void onStop()
     {
         super.onStop();
-        countDownTimer.cancel();
+
         if(i==1)
         {
+            countDownTimer.cancel();
             submitAnswerPresenter.submitAnswer(questionId, getAnswer(), sharedPrefs.getAccessToken());
+
             i=0;
         }
     }
@@ -184,17 +188,8 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
     @Override
     public void showMessage(String message) {
         toolbar.setTitle("B Quiz");
-        Log.d("Response","show message");
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
-        toolbar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
         question_text.setVisibility(View.VISIBLE);
         question_text.setText(message);
-
 //        Toast.makeText(BQuizActivity.this, message, Toast.LENGTH_LONG).show();
     }
 
@@ -323,8 +318,6 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
             }
         }
 
-
-
     @Override
     public void answerSubmitted(SubmitAnswerData submitAnswerData) {
         if (submitAnswerData.isSuccess()) {
@@ -360,21 +353,8 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
             public void onFinish() {
                 submitAnswerPresenter.submitAnswer(questionId, getAnswer(), sharedPrefs.getAccessToken());
                 i=0;
-                countDownTimer.cancel();
-                toolbar.setTitle("B Quiz");
-                toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
-                toolbar.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        finish();
-                    }
-                });
-                if(i==0)
-                {
                     Intent in=new Intent(BQuizActivity.this,Home.class);
                     startActivity(in);
-                }
-
             }
         }.start();
 
