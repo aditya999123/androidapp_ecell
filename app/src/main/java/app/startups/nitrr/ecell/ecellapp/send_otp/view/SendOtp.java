@@ -36,6 +36,7 @@ public class SendOtp extends AppCompatActivity implements SendOtpView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sms__verification);
+        Log.d("Response","test");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Mobile Verification");
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
@@ -52,12 +53,14 @@ public class SendOtp extends AppCompatActivity implements SendOtpView {
         getIntents();
         Button btn1 = (Button) findViewById(R.id.btn1);
         Button btn= (Button) findViewById(R.id.btn);
-        Log.d("Response", "1");
         assert btn != null;
         final EditText num = (EditText) findViewById(R.id.num);
         num1 = num.getText().toString();
-        if(num1.length()==10)
+        Log.d("Response",""+num1+ " ,length "+num1.length());
+        if(num1.length()==10) {
+         Log.d("Response","Stopppppppp"+num1+ " ,length "+num1.length());
             hide_keyboard();
+        }
         btn.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View view) {
@@ -67,7 +70,6 @@ public class SendOtp extends AppCompatActivity implements SendOtpView {
                             showMessage("ENTER CORRECT MOBILE NUMBER!");
                         } else
                             sendOtpPresenter.sendOtp(num1, name);
-
                     }
                 });
         assert btn1 != null;
