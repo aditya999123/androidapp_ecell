@@ -115,6 +115,7 @@ public class LogIn extends AppCompatActivity implements LogIn_View {
                             i.putExtra("token", refreshedToken);
                             Log.d("ResponseOtp", "" + name);
                             startActivity(i);
+                            finish();
                         }
                     }
 
