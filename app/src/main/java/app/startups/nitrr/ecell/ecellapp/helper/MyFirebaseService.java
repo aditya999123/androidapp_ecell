@@ -5,6 +5,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
@@ -94,6 +95,16 @@ public class MyFirebaseService extends FirebaseMessagingService {
         else if(i==7) {
             intent = new Intent(this, AboutUsPage.class);
         }
+       else if(i==13)
+       {
+           final String appPackageName = getPackageName();
+           try {
+              intent= new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName));
+           }
+           catch (android.content.ActivityNotFoundException anfe) {
+               intent=new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName));
+           }
+       }
         else {
              intent = new Intent(this,Home.class);
         }
