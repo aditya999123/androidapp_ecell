@@ -91,7 +91,6 @@ public class MyFirebaseService extends FirebaseMessagingService {
              intent = new Intent(this, BQuizActivity.class);
         }
 
-
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 , intent,
