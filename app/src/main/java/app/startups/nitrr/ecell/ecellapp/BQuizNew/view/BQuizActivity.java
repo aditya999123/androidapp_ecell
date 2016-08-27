@@ -102,7 +102,6 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bquiz__intro);
         ButterKnife.bind(this);
-//            startService(new Intent(MyFirebaseService.class.getName()));
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
 
         toolbar.setTitle("B Quiz");

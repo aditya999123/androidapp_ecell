@@ -1,11 +1,11 @@
 package app.startups.nitrr.ecell.ecellapp.helper;
 
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.media.RingtoneManager;
-import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
@@ -21,6 +21,7 @@ import app.startups.nitrr.ecell.ecellapp.about_us.view.AboutUsPage;
 import app.startups.nitrr.ecell.ecellapp.blogs.view.Blogs;
 import app.startups.nitrr.ecell.ecellapp.contact_us.view.Contacts;
 import app.startups.nitrr.ecell.ecellapp.events.view.ListOfEvents;
+import app.startups.nitrr.ecell.ecellapp.home.view.Home;
 import app.startups.nitrr.ecell.ecellapp.sponsers.view.Spons;
 
 
@@ -42,15 +43,17 @@ public class MyFirebaseService extends FirebaseMessagingService {
         String jsonStr=remoteMessage.getData().toString();
         try {
             JSONObject jsonRootObject = new JSONObject(jsonStr);
-             i=Integer.parseInt(jsonRootObject.optString("intent_id"));
+//             i=Integer.parseInt(jsonRootObject.optString("intent_id"));
+            i=Integer.parseInt(remoteMessage.getData().get("intent_id"));
+
         }
         catch (JSONException e) {
             e.printStackTrace();
         }
 
 
-        sendNotification(""+remoteMessage.getNotification().getBody(),""+
-                remoteMessage.getNotification().getTitle());
+        sendNotification(""+remoteMessage.getData().get("body"),""+
+                remoteMessage.getData().get("title"));
 
 
         // Check if message contains a data payload.
@@ -70,7 +73,11 @@ public class MyFirebaseService extends FirebaseMessagingService {
 
     private void sendNotification(String messageBody,String title) {
         Intent intent;
-        if(i==2) {
+       if(i==1)
+       {
+           intent = new Intent(this, Home.class);
+       }
+        else  if(i==2) {
              intent = new Intent(this, Blogs.class);
         }
         else if(i==3) {
@@ -89,7 +96,7 @@ public class MyFirebaseService extends FirebaseMessagingService {
             intent = new Intent(this, AboutUsPage.class);
         }
         else {
-             intent = new Intent(this, BQuizActivity.class);
+             intent = new Intent(this,Home.class);
         }
 
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -100,11 +107,13 @@ public class MyFirebaseService extends FirebaseMessagingService {
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.ecell_logo)
                 .setContentTitle(title)
+                .setContentText(messageBody)
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(messageBody))
                 .setAutoCancel(true)
-                .setOngoing(true)
                 .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
                 .setContentIntent(pendingIntent);
+
+        notificationBuilder.setDefaults(Notification.DEFAULT_SOUND|Notification.DEFAULT_LIGHTS|Notification.DEFAULT_VIBRATE);
 
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);

@@ -1,5 +1,6 @@
 package app.startups.nitrr.ecell.ecellapp.send_otp.view;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -7,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -51,12 +53,15 @@ public class SendOtp extends AppCompatActivity implements SendOtpView {
         Button btn1 = (Button) findViewById(R.id.btn1);
         Button btn= (Button) findViewById(R.id.btn);
         Log.d("Response", "1");
-        progressBar.setVisibility(View.GONE);
         assert btn != null;
+        final EditText num = (EditText) findViewById(R.id.num);
+        num1 = num.getText().toString();
+        if(num1.length()==10)
+            hide_keyboard();
         btn.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View view) {
-                        EditText num = (EditText) findViewById(R.id.num);
+
                         num1 = num.getText().toString();
                         Log.d("Response", "2");
                         if (num1.length() != 10) {
@@ -68,16 +73,28 @@ public class SendOtp extends AppCompatActivity implements SendOtpView {
                     }
                 });
         assert btn1 != null;
+       final EditText verify = (EditText) findViewById(R.id.verify);
+        otp=verify.getText().toString();
+        if(otp.length()==4)
+            hide_keyboard();
+
         btn1.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View view) {
-                        EditText verify = (EditText) findViewById(R.id.verify);
+
                         otp = verify.getText().toString();
                         verifyOtpPresenter.verifyOtp(name, lname, email, college, sem, branch, num1, otp, token);
                     }
                 });
     }
-
+    void hide_keyboard()
+    {
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
     @Override
     public void showLoading(boolean show) {
 
