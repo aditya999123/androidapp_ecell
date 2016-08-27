@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -55,12 +57,7 @@ public class SendOtp extends AppCompatActivity implements SendOtpView {
         Button btn= (Button) findViewById(R.id.btn);
         assert btn != null;
         final EditText num = (EditText) findViewById(R.id.num);
-        num1 = num.getText().toString();
-        Log.d("Response",""+num1+ " ,length "+num1.length());
-        if(num1.length()==10) {
-         Log.d("Response","Stopppppppp"+num1+ " ,length "+num1.length());
-            hide_keyboard();
-        }
+
         btn.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View view) {
@@ -75,8 +72,24 @@ public class SendOtp extends AppCompatActivity implements SendOtpView {
         assert btn1 != null;
        final EditText verify = (EditText) findViewById(R.id.verify);
         otp=verify.getText().toString();
-        if(otp.length()==4)
-            hide_keyboard();
+        verify.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                otp=verify.getText().toString();
+                if(otp.length()==4)
+                    hide_keyboard();
+            }
+        });
 
         btn1.setOnClickListener(
                 new View.OnClickListener() {
