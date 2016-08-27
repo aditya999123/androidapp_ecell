@@ -63,12 +63,10 @@ public class SendOtp extends AppCompatActivity implements SendOtpView {
                     public void onClick(View view) {
 
                         num1 = num.getText().toString();
-                        Log.d("Response", "2");
                         if (num1.length() != 10) {
                             showMessage("ENTER CORRECT MOBILE NUMBER!");
                         } else
                             sendOtpPresenter.sendOtp(num1, name);
-                        Log.d("Response", "3");
 
                     }
                 });
