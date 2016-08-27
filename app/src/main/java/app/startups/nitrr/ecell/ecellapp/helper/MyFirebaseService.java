@@ -121,9 +121,9 @@ public class MyFirebaseService extends FirebaseMessagingService {
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(messageBody))
                 .setAutoCancel(true)
                 .setContentIntent(pendingIntent);
-//        notificationBuilder.setSound(Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.sound));
+        notificationBuilder.setSound(Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.sound));
 
-        notificationBuilder.setDefaults(Notification.DEFAULT_SOUND|Notification.DEFAULT_LIGHTS|Notification.DEFAULT_VIBRATE);
+        notificationBuilder.setDefaults(Notification.DEFAULT_LIGHTS|Notification.DEFAULT_VIBRATE);
 
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
