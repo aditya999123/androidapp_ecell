@@ -42,14 +42,15 @@ public class MyFirebaseService extends FirebaseMessagingService {
         String jsonStr=remoteMessage.getData().toString();
         try {
             JSONObject jsonRootObject = new JSONObject(jsonStr);
-             i=Integer.parseInt(jsonRootObject.optString("intent_id").toString());
+             i=Integer.parseInt(jsonRootObject.optString("intent_id"));
         }
         catch (JSONException e) {
             e.printStackTrace();
         }
 
 
-        sendNotification(""+remoteMessage.getNotification().getBody(),""+remoteMessage.getNotification().getTitle());
+        sendNotification(""+remoteMessage.getNotification().getBody(),""+
+                remoteMessage.getNotification().getTitle());
 
 
         // Check if message contains a data payload.
@@ -97,13 +98,13 @@ public class MyFirebaseService extends FirebaseMessagingService {
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 , intent,
                 PendingIntent.FLAG_ONE_SHOT);
 
-        Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.ecell_logo)
                 .setContentTitle(title)
-                .setContentText(messageBody)
+                .setStyle(new NotificationCompat.BigTextStyle().bigText(messageBody))
                 .setAutoCancel(true)
-                .setSound(defaultSoundUri)
+                .setOngoing(true)
+                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
                 .setContentIntent(pendingIntent);
 
         NotificationManager notificationManager =
