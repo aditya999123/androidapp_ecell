@@ -212,7 +212,9 @@ public class BQuizActivity extends AppCompatActivity implements BQuizView {
             TextView rules5 = (TextView) dialog.findViewById(R.id.rules5);
             rules5.setText(bquizData.getRules().toString());
 
+
             dialog.setTitle("Rules");
+            dialog.setCancelable(false);
 
 
             dialog.show();

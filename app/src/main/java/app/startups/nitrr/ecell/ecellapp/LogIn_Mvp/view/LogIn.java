@@ -85,6 +85,7 @@ public class LogIn extends AppCompatActivity implements LogIn_View {
 
                         EditText mEdit2 = (EditText) findViewById(R.id.email_id);
                         String email = mEdit2.getText().toString();
+                        email=space_remove(email);
 
                         EditText mEdit3 = (EditText) findViewById(R.id.college);
                         String college = mEdit3.getText().toString();
@@ -120,11 +121,24 @@ public class LogIn extends AppCompatActivity implements LogIn_View {
                     }
 
 
+
+
                 });
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+    }
+    public static String space_remove(String email) {
+        String s="";
+        int l=email.length();
+        for(int i=0;i<l;i++)
+        {
+            char c=email.charAt(i);
+            if(c!=(char)32)
+                s=s+c;
+        }
+        return s;
     }
 
 

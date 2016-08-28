@@ -39,13 +39,12 @@ public class MyFirebaseService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
 
-        Log.d(TAG, "From: " + remoteMessage.getData());
+        Log.d("Response", "From: " + remoteMessage.getData());
         String jsonStr=remoteMessage.getData().toString();
         try {
             JSONObject jsonRootObject = new JSONObject(jsonStr);
 //             i=Integer.parseInt(jsonRootObject.optString("intent_id"));
             i=Integer.parseInt(remoteMessage.getData().get("intent_id"));
-
         }
         catch (JSONException e) {
             e.printStackTrace();
@@ -55,8 +54,6 @@ public class MyFirebaseService extends FirebaseMessagingService {
         sendNotification(""+remoteMessage.getData().get("body"),""+
                 remoteMessage.getData().get("title"));
 
-
-        // Check if message contains a data payload.
         if (remoteMessage.getData().size() > 0) {
             Log.d(TAG, "Message data payload: " + remoteMessage.getData());
         }
