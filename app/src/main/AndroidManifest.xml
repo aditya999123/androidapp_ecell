@@ -59,9 +59,10 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+
         <meta-data
             android:name="io.fabric.ApiKey"
-            android:value="<FABRIC_API_KEY>"
+            android:value="46718d8d9197ffb1a01ebf20e1e4cdce7ced8b0a"
             />
 
 
