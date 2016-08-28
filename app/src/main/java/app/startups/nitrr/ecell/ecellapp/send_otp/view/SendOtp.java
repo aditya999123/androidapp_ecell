@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -38,7 +37,6 @@ public class SendOtp extends AppCompatActivity implements SendOtpView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sms__verification);
-        Log.d("Response","test");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Mobile Verification");
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
