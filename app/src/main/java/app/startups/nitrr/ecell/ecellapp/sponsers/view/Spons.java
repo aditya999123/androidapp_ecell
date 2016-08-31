@@ -2,7 +2,7 @@ package app.startups.nitrr.ecell.ecellapp.sponsers.view;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -22,6 +22,7 @@ public class Spons extends AppCompatActivity implements SponsInterface{
     private SponsPresenter sponsPresenter;
     private SponsAdapter adapter;
     private Toolbar toolbar;
+    private GridLayoutManager lLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +30,7 @@ public class Spons extends AppCompatActivity implements SponsInterface{
         setContentView(R.layout.activity_spons);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar_spons);
-        toolbar.setTitle("Sponsers");
+        toolbar.setTitle("Sponsors");
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
         toolbar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,9 +45,9 @@ public class Spons extends AppCompatActivity implements SponsInterface{
 
         adapter = new SponsAdapter(this);
 
-        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
+        lLayout = new GridLayoutManager(Spons.this,2);
 
-        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setLayoutManager(lLayout);
         recyclerView.setAdapter(adapter);
         sponsPresenter.requestSpons();
 
@@ -72,7 +73,5 @@ public class Spons extends AppCompatActivity implements SponsInterface{
     public void setData(List<SponsData> sponsDataList) {
         adapter.setData(sponsDataList);
         adapter.notifyDataSetChanged();
-
-
     }
 }

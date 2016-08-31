@@ -1,34 +1,16 @@
-<FrameLayout android:background="#ece4e4"
+<LinearLayout
     android:id="@+id/contactus_cardview_container"
-    android:layout_height="wrap_content"
+    android:layout_height="200dp"
     android:layout_width="match_parent"
-    tools:ignore="MergeRootFrame"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:card_view="http://schemas.android.com/apk/res-auto">
 
-
-
-        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:elevation="15dp"
-            android:id="@+id/contactus_cardview_r1"
-
-            >
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="200dp"
-                android:orientation="horizontal"
-                android:weightSum="2"
-                >
                 <android.support.v7.widget.CardView
-                    android:id="@+id/contactus_cardview_cardview"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:id="@+id/spons_card"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    card_view:contentPadding="8dp"
+                    android:padding="2dp"
                     card_view:cardCornerRadius="4dp"
                     >
             <ImageView
@@ -37,36 +19,7 @@
                 android:id="@+id/image1"
                 android:scaleType="fitCenter"
                 android:layout_gravity="center"
-                android:contentDescription="image"
-                android:padding="4dp"
                 />
                 </android.support.v7.widget.CardView>
-                <android.support.v7.widget.CardView
-                    android:id="@+id/contactus_cardview_cardvie"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:paddingRight="4dp"
-                    android:background="@color/cardview_dark_background"
-                    android:layout_height="match_parent"
-                    card_view:contentPadding="8dp"
-                    card_view:cardCornerRadius="4dp"
-                    >
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:id="@+id/image2"
-                android:scaleType="fitCenter"
-                android:layout_gravity="center"
-                android:contentDescription="image"
-                android:padding="4dp"
-                />
-                </android.support.v7.widget.CardView>
-            </LinearLayout>
 
-
-        </RelativeLayout>
-
-
-
-</FrameLayout>
+</LinearLayout>

@@ -70,6 +70,8 @@ public class MyFirebaseService extends FirebaseMessagingService {
 
     private void sendNotification(String messageBody,String title) {
         Intent intent;
+        int flag=0;
+        boolean notification_display=true;
        if(i==1)
        {
            intent = new Intent(this, Home.class);
@@ -95,6 +97,7 @@ public class MyFirebaseService extends FirebaseMessagingService {
        else if(i==13)
        {
            final String appPackageName = getPackageName();
+           Log.d("Response",""+getPackageName());
            try {
               intent= new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName));
            }
@@ -102,31 +105,48 @@ public class MyFirebaseService extends FirebaseMessagingService {
                intent=new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName));
            }
        }
+       else if(i==113)
+       {
+           final String uri_app=messageBody;
+           notification_display=false;
+           try {
+               intent= new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" +uri_app));
+           }
+           catch (android.content.ActivityNotFoundException anfe) {
+               intent=new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + uri_app));
+           }
+       }
+
         else {
-             intent = new Intent(this,Home.class);
+             flag=1;
+           intent=null;
         }
 
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this);
 
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 , intent,
-                PendingIntent.FLAG_ONE_SHOT);
+        if(notification_display)
+        {
+            notificationBuilder.setSound(Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.sound));
+            notificationBuilder .setSmallIcon(R.drawable.ecell_logo)
+                    .setContentTitle(title)
+                    .setContentText(messageBody)
+                    .setStyle(new NotificationCompat.BigTextStyle().bigText(messageBody))
+                    .setAutoCancel(true);
+            notificationBuilder.setDefaults(Notification.DEFAULT_LIGHTS|Notification.DEFAULT_VIBRATE);
+            NotificationManager notificationManager =
+                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.notify(0 , notificationBuilder.build());
+        }
+        if(flag==0)
+        {
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.addFlags(intent.FLAG_ACTIVITY_NEW_TASK);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 , intent,
+                    PendingIntent.FLAG_ONE_SHOT);
+            notificationBuilder.setContentIntent(pendingIntent);
+            startActivity(intent);
 
-        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.ecell_logo)
-                .setContentTitle(title)
-                .setContentText(messageBody)
-                .setStyle(new NotificationCompat.BigTextStyle().bigText(messageBody))
-                .setAutoCancel(true)
-                .setContentIntent(pendingIntent);
-        notificationBuilder.setSound(Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.sound));
+        }
 
-        notificationBuilder.setDefaults(Notification.DEFAULT_LIGHTS|Notification.DEFAULT_VIBRATE);
-
-        NotificationManager notificationManager =
-                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-        notificationManager.notify(0 , notificationBuilder.build());
-        intent.addFlags(intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
     }
 }

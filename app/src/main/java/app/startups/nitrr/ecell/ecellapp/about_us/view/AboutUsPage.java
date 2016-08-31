@@ -29,8 +29,10 @@ public class AboutUsPage extends AppCompatActivity implements AboutUsInterface{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_us);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("About Us");
+
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
         toolbar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,10 +40,8 @@ public class AboutUsPage extends AppCompatActivity implements AboutUsInterface{
                 finish();
             }
         });
-
         aboutUsPresenter = new AboutUsPresenterImpl(this,new RetrofitProviderAboutUs());
         aboutUsPresenter.requestData();
-
     }
 
     public void setData(AboutUsData aboutUsData)
@@ -50,9 +50,6 @@ public class AboutUsPage extends AppCompatActivity implements AboutUsInterface{
         textView=(TextView) findViewById(R.id.about_us);
         textView.setVisibility(View.VISIBLE);
         textView.setText(""+aboutUsData.getDescription());
-
-
-        textView.getBackground().setAlpha(20);
         imageLoader=new GlideImageLoader(this);
         imageLoader.loadImage(aboutUsData.getImage().toString(),imageView);
     }
@@ -63,7 +60,7 @@ public class AboutUsPage extends AppCompatActivity implements AboutUsInterface{
         if(show)
         progressBar.setVisibility(View.VISIBLE);
         else
-            progressBar.setVisibility(View.INVISIBLE);
+            progressBar.setVisibility(View.GONE);
     }
 
     @Override

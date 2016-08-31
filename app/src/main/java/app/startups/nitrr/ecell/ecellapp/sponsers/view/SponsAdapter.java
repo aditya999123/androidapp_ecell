@@ -22,7 +22,6 @@ private List<SponsData> sponsDataList= new ArrayList<>();
 private Context context;
 private LayoutInflater layoutInflater;
 private ImageLoader imageLoader;
-
 public SponsAdapter(Context context) {
         this.context = context;
         layoutInflater = LayoutInflater.from(context);
@@ -46,7 +45,6 @@ public void onBindViewHolder(final MyViewHolder holder, int position) {
 
         SponsData sponsData=sponsDataList.get(position);
         imageLoader.loadImage(sponsData.getImage1(), holder.image1);
-        imageLoader.loadImage(sponsData.getImage2(),holder.image2);
         }
 
 @Override
@@ -56,13 +54,10 @@ public int getItemCount() {
 
 protected class MyViewHolder extends RecyclerView.ViewHolder {
 
-    private ImageView image1,image2;
-
-
+    private ImageView image1;
     private MyViewHolder(View itemView) {
         super(itemView);
         image1= (ImageView) itemView.findViewById(R.id.image1);
-        image2= (ImageView) itemView.findViewById(R.id.image2);
 
     }
 

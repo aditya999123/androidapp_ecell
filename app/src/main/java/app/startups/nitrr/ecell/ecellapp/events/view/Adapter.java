@@ -2,7 +2,6 @@ package app.startups.nitrr.ecell.ecellapp.events.view;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +14,6 @@ import java.util.List;
 import app.startups.nitrr.ecell.ecellapp.R;
 import app.startups.nitrr.ecell.ecellapp.helper.image_loaders.GlideImageLoader;
 import app.startups.nitrr.ecell.ecellapp.helper.image_loaders.ImageLoader;
-import app.startups.nitrr.ecell.ecellapp.sponsers.view.SponsData;
 
 /**
  * Created by Iket on 7/27/2016.
@@ -29,7 +27,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
     public Adapter(Context context) {
         this.context = context;
         layoutInflater = LayoutInflater.from(context);
-
        imageLoader = new GlideImageLoader(context);
     }
 

@@ -86,7 +86,6 @@ public class SplashScreenActivity extends AppCompatActivity implements SplashScr
             if (splashScreenData.getCompulsory_update() == 1) {
                 rules.setText("We've found some major improvements in our app . To enjoy ECellApp Please Update it");
                 dialog.setCancelable(false);
-
             } else {
                 rules.setText("Please Update the app for Better experience");
                 dialog.setCancelable(false);
