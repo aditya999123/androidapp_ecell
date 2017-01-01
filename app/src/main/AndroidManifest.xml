@@ -15,14 +15,18 @@
         android:supportsRtl="true"
         android:theme="@style/MyMaterialTheme">
         <activity android:name=".splash_screen.view.SplashScreenActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
-        <activity android:name=".home.view.Home" />
-        <activity android:name=".welcome.view.WelcomeActivity" />
+        <activity android:name=".home.view.Home" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+
+        <activity android:name=".welcome.view.WelcomeActivity" >
+         </activity>
         <activity android:name=".LogIn_Mvp.view.LogIn" />
         <activity android:name=".about_us.view.AboutUsPage" />
         <activity
@@ -36,15 +40,13 @@
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:label="@string/app_name"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:label="@string/app_name" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 
         <activity android:name=".sponsers.view.Spons" />
-        <activity android:name=".events.view.ListOfEvents" />
         <activity android:name=".send_otp.view.SendOtp" />
         <activity android:name=".BQuizNew.view.BQuizActivity" />
 

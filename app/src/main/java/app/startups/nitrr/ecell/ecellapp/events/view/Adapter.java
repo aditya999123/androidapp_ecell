@@ -30,6 +30,9 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
        imageLoader = new GlideImageLoader(context);
     }
 
+    public Adapter(EventsFragment eventsFragment, View view) {
+    }
+
     public void setData(List<EventsData> EventDataList) {
         this.EventDataList = EventDataList;
     }

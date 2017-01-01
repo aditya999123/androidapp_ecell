@@ -31,7 +31,7 @@ public class Blogs extends AppCompatActivity implements BlogsInterface {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_blogs);
+        setContentView(R.layout.activity_about_us);
         Initialize();
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_white_24dp));

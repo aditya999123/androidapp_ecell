@@ -1,103 +1,110 @@
 package app.startups.nitrr.ecell.ecellapp.home.view;
 
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.facebook.login.LoginManager;
-
-import java.util.List;
 
 import app.startups.nitrr.ecell.ecellapp.BQuizNew.view.BQuizActivity;
 import app.startups.nitrr.ecell.ecellapp.R;
 import app.startups.nitrr.ecell.ecellapp.about_us.view.AboutUsPage;
+import app.startups.nitrr.ecell.ecellapp.blogs.view.BlogFragment;
 import app.startups.nitrr.ecell.ecellapp.blogs.view.Blogs;
 import app.startups.nitrr.ecell.ecellapp.contact_us.view.Contacts;
-import app.startups.nitrr.ecell.ecellapp.events.view.ListOfEvents;
+import app.startups.nitrr.ecell.ecellapp.events.view.EventsFragment;
 import app.startups.nitrr.ecell.ecellapp.helper.SharedPrefs;
-import app.startups.nitrr.ecell.ecellapp.home.model.RetrofitHomeDetailsProvider;
-import app.startups.nitrr.ecell.ecellapp.home.model.data.HomeDetails;
-import app.startups.nitrr.ecell.ecellapp.home.presenter.HomePresenter;
-import app.startups.nitrr.ecell.ecellapp.home.presenter.HomePresenterImpl;
 import app.startups.nitrr.ecell.ecellapp.sponsers.view.Spons;
 import app.startups.nitrr.ecell.ecellapp.welcome.view.WelcomeActivity;
 
 
-public class Home extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener, HomeInterface {
+public class Home extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener {
 
     private static final String TAG = "Home";
-    //    @BindView(R.id.toolbar)
     Toolbar toolbar;
-
-    //    @BindView(R.id.recyclerView)
-    RecyclerView recyclerView;
-
-    //    @BindView(R.id.progressBar)
-    ProgressBar progressBar;
-
     private FragmentDrawer drawerFragment;
-    private HomeDetailsAdapter homeDetailsAdapter;
-    private HomePresenter homePresenter;
     private SharedPrefs sharedPrefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        sharedPrefs = new SharedPrefs(this);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
         setSupportActionBar(toolbar);
         //    ButterKnife.bind(this);
-        initialize();
         toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.white));
         //  getSupportActionBar().setDisplayShowHomeEnabled(true);
-
         drawerFragment = (FragmentDrawer)
                 getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
-
-
         drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), toolbar);
         drawerFragment.setDrawerListener(this);
-        homePresenter.requestHomeData("1");
+        setFragment(new HomeFragment(),"Home");
+    }
+    @Override
+    public void onBackPressed() {
+        Fragment fragment=getSupportFragmentManager().findFragmentByTag("Home");
+//        int i=getSupportFragmentManager().getBackStackEntryCount();
+//
+        Log.d("check",""+fragment);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        }
+        else if(fragment==null)
+        {
+            setFragment(new HomeFragment(),"Home");
+        }
+        else{
+            // super.onBackPressed();
+            final AlertDialog ad = new AlertDialog.Builder(this)
+                    .create();
+            ad.setCancelable(false);
+            ad.setTitle("Exit ?");
+            ad.setMessage("Do you really want to exit ?");
+            ad.setButton(DialogInterface.BUTTON_POSITIVE, "yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    ad.cancel();
+                    finish();
+                }
+            });
+            ad.setButton(DialogInterface.BUTTON_NEGATIVE, "no", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    ad.cancel();
+
+                }
+            });
+            ad.show();
+        }
+
     }
 
-    private void initialize() {
-        sharedPrefs = new SharedPrefs(this);
-        homePresenter = new HomePresenterImpl(this, new RetrofitHomeDetailsProvider());
-        homeDetailsAdapter = new HomeDetailsAdapter(this);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(homeDetailsAdapter);
-
-    }
 
     @Override
     public void onDrawerItemSelected(View view, int position) {
         switch (position) {
             case 1:
-                // Do nothing .
+                setFragment(new HomeFragment(),"Home");
                 break;
             case 2:
-                Intent blogs = new Intent(Home.this, Blogs.class);
-                startActivity(blogs);
-
+                setFragment(new BlogFragment(),"Blogs");
                 break;
             case 3:
-                Intent events = new Intent(Home.this, ListOfEvents.class);
-                startActivity(events);
-
+                setFragment(new EventsFragment() , "Events");
                 break;
 
             case 4:
@@ -107,7 +114,6 @@ public class Home extends AppCompatActivity implements FragmentDrawer.FragmentDr
             case 5:
                 Intent spons = new Intent(Home.this, Spons.class);
                 startActivity(spons);
-
                 break;
 
             case 6:
@@ -137,35 +143,41 @@ public class Home extends AppCompatActivity implements FragmentDrawer.FragmentDr
         }
     }
 
-    @Override
-    public void showProgressBar(boolean show) {
 
-        if (show) {
-            recyclerView.setVisibility(View.GONE);
-            progressBar.setVisibility(View.VISIBLE);
-        } else {
-            recyclerView.setVisibility(View.VISIBLE);
-            progressBar.setVisibility(View.GONE);
+    public void setFragment(Fragment fragment, String title) {
+
+        if(title.equals("Home") && fragment!=null)
+        {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.container_body,fragment,title);
+            fragmentTransaction.commit();
+            getSupportActionBar().setTitle(title);
+
+        }
+        else if (fragment != null) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.container_body, fragment);
+            fragmentTransaction.commit();
+            getSupportActionBar().setTitle(title);
+        }
+
+
+    }
+
+    public void addFragment(Fragment fragment, String title) {
+        if (fragment != null) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.container_body, fragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+            getSupportActionBar().setTitle(title);
         }
 
     }
 
-    @Override
-    public void showMessage(String message) {
-
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void setData(List<HomeDetails> homeDetailsList) {
-
-        Log.i(TAG, "Data received");
-        homeDetailsAdapter.setData(homeDetailsList);
-        recyclerView.setAdapter(homeDetailsAdapter);
-        homeDetailsAdapter.notifyDataSetChanged();
-        recyclerView.setVisibility(View.VISIBLE);
-
-    }
 
 
 }

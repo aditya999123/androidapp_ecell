@@ -20,7 +20,6 @@ import app.startups.nitrr.ecell.ecellapp.R;
 import app.startups.nitrr.ecell.ecellapp.about_us.view.AboutUsPage;
 import app.startups.nitrr.ecell.ecellapp.blogs.view.Blogs;
 import app.startups.nitrr.ecell.ecellapp.contact_us.view.Contacts;
-import app.startups.nitrr.ecell.ecellapp.events.view.ListOfEvents;
 import app.startups.nitrr.ecell.ecellapp.home.view.Home;
 import app.startups.nitrr.ecell.ecellapp.sponsers.view.Spons;
 
@@ -80,7 +79,8 @@ public class MyFirebaseService extends FirebaseMessagingService {
              intent = new Intent(this, Blogs.class);
         }
         else if(i==3) {
-            intent = new Intent(this, ListOfEvents.class);
+           intent = new Intent(this, Blogs.class);
+//            intent = new Intent(this, ListOfEvents.class);
         }
         else if(i==4) {
             intent = new Intent(this, BQuizActivity.class);

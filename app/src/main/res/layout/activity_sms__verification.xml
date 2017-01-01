@@ -41,7 +41,9 @@
                 android:layout_height="50dp"
                 android:gravity="center"
                 android:text="Please enter your mobile number for verification and further notifications"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+
+                />
 
             <EditText
                 android:id="@+id/num"
