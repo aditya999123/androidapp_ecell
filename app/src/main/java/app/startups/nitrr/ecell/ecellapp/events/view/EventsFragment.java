@@ -46,7 +46,7 @@ public class EventsFragment extends Fragment implements EventsInterface {
     ProgressBar progressBar;
     private EventsPresenter eventsPresenter;
     private Adapter adapter;
- 
+
 
     public EventsFragment() {
         // Required empty public constructor

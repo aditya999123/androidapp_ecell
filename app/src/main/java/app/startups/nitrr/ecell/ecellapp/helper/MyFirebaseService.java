@@ -17,11 +17,7 @@ import org.json.JSONObject;
 
 import app.startups.nitrr.ecell.ecellapp.BQuizNew.view.BQuizActivity;
 import app.startups.nitrr.ecell.ecellapp.R;
-import app.startups.nitrr.ecell.ecellapp.about_us.view.AboutUsPage;
-import app.startups.nitrr.ecell.ecellapp.blogs.view.Blogs;
-import app.startups.nitrr.ecell.ecellapp.contact_us.view.Contacts;
 import app.startups.nitrr.ecell.ecellapp.home.view.Home;
-import app.startups.nitrr.ecell.ecellapp.sponsers.view.Spons;
 
 
 public class MyFirebaseService extends FirebaseMessagingService {
@@ -76,23 +72,23 @@ public class MyFirebaseService extends FirebaseMessagingService {
            intent = new Intent(this, Home.class);
        }
         else  if(i==2) {
-             intent = new Intent(this, Blogs.class);
+           intent = new Intent(this, Home.class);
         }
         else if(i==3) {
-           intent = new Intent(this, Blogs.class);
+           intent = new Intent(this, Home.class);
 //            intent = new Intent(this, ListOfEvents.class);
         }
         else if(i==4) {
             intent = new Intent(this, BQuizActivity.class);
         }
         else if(i==5) {
-            intent = new Intent(this, Spons.class);
+           intent = new Intent(this, Home.class);
         }
         else if(i==6) {
-            intent = new Intent(this, Contacts.class);
+           intent = new Intent(this, Home.class);
         }
         else if(i==7) {
-            intent = new Intent(this, AboutUsPage.class);
+            intent = new Intent(this, Home.class);
         }
        else if(i==13)
        {

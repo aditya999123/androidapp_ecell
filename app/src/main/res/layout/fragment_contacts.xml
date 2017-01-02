@@ -1,17 +1,8 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/contactus_relativerecycler"
-    android:orientation="vertical">
-<android.support.v7.widget.Toolbar
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/toolbar_contactus"
-    android:background="@color/black"
-    app:titleTextColor="@color/white"
-
-    />
+    tools:context="app.startups.nitrr.ecell.ecellapp.contact_us.view.ContactsFragment">
 
     <android.support.v7.widget.RecyclerView
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -27,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/progressBar"
+        android:layout_gravity="center"
         />
 
-
-</LinearLayout>
+</FrameLayout>

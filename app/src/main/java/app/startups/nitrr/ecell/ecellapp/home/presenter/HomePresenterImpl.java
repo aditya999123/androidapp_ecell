@@ -29,7 +29,6 @@ public class HomePresenterImpl implements HomePresenter {
             public void onSuccess(HomeData homeData) {
                 if (homeData.isSuccess()) {
                     homeInterface.setData(homeData.getHomeDetailsList());
-                    homeInterface.showMessage("Successful");
                 } else {
                     homeInterface.showMessage("Something went wrong");
 

@@ -1,0 +1,21 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="app.startups.nitrr.ecell.ecellapp.sponsers.view.SponsFragment">
+
+    <android.support.v7.widget.RecyclerView
+
+        android:id="@+id/recycler_view_spons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical" />
+
+    <ProgressBar
+        android:id="@+id/progressBar_spons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+
+
+</FrameLayout>

@@ -3,6 +3,7 @@ package app.startups.nitrr.ecell.ecellapp.home.view;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -20,13 +21,12 @@ import com.facebook.login.LoginManager;
 
 import app.startups.nitrr.ecell.ecellapp.BQuizNew.view.BQuizActivity;
 import app.startups.nitrr.ecell.ecellapp.R;
-import app.startups.nitrr.ecell.ecellapp.about_us.view.AboutUsPage;
+import app.startups.nitrr.ecell.ecellapp.about_us.view.AboutUsFragment;
 import app.startups.nitrr.ecell.ecellapp.blogs.view.BlogFragment;
-import app.startups.nitrr.ecell.ecellapp.blogs.view.Blogs;
-import app.startups.nitrr.ecell.ecellapp.contact_us.view.Contacts;
+import app.startups.nitrr.ecell.ecellapp.contact_us.view.ContactsFragment;
 import app.startups.nitrr.ecell.ecellapp.events.view.EventsFragment;
 import app.startups.nitrr.ecell.ecellapp.helper.SharedPrefs;
-import app.startups.nitrr.ecell.ecellapp.sponsers.view.Spons;
+import app.startups.nitrr.ecell.ecellapp.sponsers.view.SponsFragment;
 import app.startups.nitrr.ecell.ecellapp.welcome.view.WelcomeActivity;
 
 
@@ -44,6 +44,7 @@ public class Home extends AppCompatActivity implements FragmentDrawer.FragmentDr
         sharedPrefs = new SharedPrefs(this);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
         //    ButterKnife.bind(this);
         toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.white));
         //  getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -112,17 +113,14 @@ public class Home extends AppCompatActivity implements FragmentDrawer.FragmentDr
                 startActivity(bquiz);
                 break;
             case 5:
-                Intent spons = new Intent(Home.this, Spons.class);
-                startActivity(spons);
+                setFragment(new SponsFragment(),"Sponsors");
                 break;
 
             case 6:
-                Intent contact = new Intent(Home.this, Contacts.class);
-                startActivity(contact);
+                setFragment(new ContactsFragment(),"Contacts");
                 break;
             case 7:
-                Intent about_us = new Intent(Home.this, AboutUsPage.class);
-                startActivity(about_us);
+                setFragment(new AboutUsFragment(),"About Us");
                 break;
             case 8:
                 if (sharedPrefs.getLoginType() == 1) {

@@ -1,12 +1,11 @@
-package app.startups.nitrr.ecell.ecellapp.home.view;
+package app.startups.nitrr.ecell.ecellapp.sponsers.view;
 
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,43 +15,40 @@ import android.widget.Toast;
 import java.util.List;
 
 import app.startups.nitrr.ecell.ecellapp.R;
-import app.startups.nitrr.ecell.ecellapp.home.model.RetrofitHomeDetailsProvider;
-import app.startups.nitrr.ecell.ecellapp.home.model.data.HomeDetails;
-import app.startups.nitrr.ecell.ecellapp.home.presenter.HomePresenter;
-import app.startups.nitrr.ecell.ecellapp.home.presenter.HomePresenterImpl;
+import app.startups.nitrr.ecell.ecellapp.sponsers.model.RetrofitSponsProvider;
+import app.startups.nitrr.ecell.ecellapp.sponsers.presenter.SponsPresenter;
+import app.startups.nitrr.ecell.ecellapp.sponsers.presenter.SponsPresenterImpl;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link HomeFragment.OnFragmentInteractionListener} interface
+ * {@link SponsFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link HomeFragment#newInstance} factory method to
+ * Use the {@link SponsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-
-public class HomeFragment extends Fragment implements HomeInterface {
+public class SponsFragment extends Fragment implements SponsInterface {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    @BindView(R.id.recyclerView1)
-    RecyclerView recyclerView;
-    @BindView(R.id.progressBar)
-    ProgressBar progressBar;
-    private HomeDetailsAdapter homeDetailsAdapter;
-    private HomePresenter homePresenter;
-
-
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    @BindView(R.id.recycler_view_spons)
+    RecyclerView recyclerView;
+    @BindView(R.id.progressBar_spons)
+    ProgressBar progressBar;
+    private SponsPresenter sponsPresenter;
+    private SponsAdapter adapter;
+    private GridLayoutManager lLayout;
 
     private OnFragmentInteractionListener mListener;
 
-    public HomeFragment() {
+    public SponsFragment() {
         // Required empty public constructor
     }
 
@@ -62,11 +58,11 @@ public class HomeFragment extends Fragment implements HomeInterface {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment HomeFragment.
+     * @return A new instance of fragment SponsFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static HomeFragment newInstance(String param1, String param2) {
-        HomeFragment fragment = new HomeFragment();
+    public static SponsFragment newInstance(String param1, String param2) {
+        SponsFragment fragment = new SponsFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -87,18 +83,21 @@ public class HomeFragment extends Fragment implements HomeInterface {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view=inflater.inflate(R.layout.fragment_home, container, false);
+        View view= inflater.inflate(R.layout.fragment_spons, container, false);
+
         ButterKnife.bind(this,view);
-        homePresenter = new HomePresenterImpl(this, new RetrofitHomeDetailsProvider());
-        homeDetailsAdapter = new HomeDetailsAdapter(getContext());
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(homeDetailsAdapter);
-        homePresenter.requestHomeData("1");
+        sponsPresenter=new SponsPresenterImpl(this,new RetrofitSponsProvider());
+
+        adapter = new SponsAdapter(getContext());
+
+        lLayout = new GridLayoutManager(getContext(),2);
+
+        recyclerView.setLayoutManager(lLayout);
+        recyclerView.setAdapter(adapter);
+        sponsPresenter.requestSpons();
+
 
         return view;
-
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -134,32 +133,25 @@ public class HomeFragment extends Fragment implements HomeInterface {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
-
     @Override
-    public void showProgressBar(boolean show) {
-
-        if (show) {
-            recyclerView.setVisibility(View.GONE);
+    public void showLoading(boolean show) {
+        if(show)
+        {
             progressBar.setVisibility(View.VISIBLE);
-        } else {
-            recyclerView.setVisibility(View.VISIBLE);
-            progressBar.setVisibility(View.GONE);
         }
+        else
+            progressBar.setVisibility(View.GONE);
 
     }
 
     @Override
     public void showMessage(String message) {
-        Toast.makeText(getActivity(), "", Toast.LENGTH_SHORT).show();
-
+        Toast.makeText(getActivity(), ""+message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void setData(List<HomeDetails> homeDetailsList) {
-        homeDetailsAdapter.setData(homeDetailsList);
-        recyclerView.setAdapter(homeDetailsAdapter);
-        homeDetailsAdapter.notifyDataSetChanged();
-        recyclerView.setVisibility(View.VISIBLE);
-
+    public void setData(List<SponsData> sponsDataList) {
+        adapter.setData(sponsDataList);
+        adapter.notifyDataSetChanged();
     }
 }

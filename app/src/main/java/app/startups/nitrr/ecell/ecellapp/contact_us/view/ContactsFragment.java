@@ -1,4 +1,4 @@
-package app.startups.nitrr.ecell.ecellapp.home.view;
+package app.startups.nitrr.ecell.ecellapp.contact_us.view;
 
 import android.content.Context;
 import android.net.Uri;
@@ -6,53 +6,48 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import java.util.List;
 
 import app.startups.nitrr.ecell.ecellapp.R;
-import app.startups.nitrr.ecell.ecellapp.home.model.RetrofitHomeDetailsProvider;
-import app.startups.nitrr.ecell.ecellapp.home.model.data.HomeDetails;
-import app.startups.nitrr.ecell.ecellapp.home.presenter.HomePresenter;
-import app.startups.nitrr.ecell.ecellapp.home.presenter.HomePresenterImpl;
+import app.startups.nitrr.ecell.ecellapp.contact_us.model.RetrofitRequestProvider;
+import app.startups.nitrr.ecell.ecellapp.contact_us.presenter.ContactsPresenter;
+import app.startups.nitrr.ecell.ecellapp.contact_us.presenter.ContactsPresenterImpl;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link HomeFragment.OnFragmentInteractionListener} interface
+ * {@link ContactsFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link HomeFragment#newInstance} factory method to
+ * Use the {@link ContactsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-
-public class HomeFragment extends Fragment implements HomeInterface {
+public class ContactsFragment extends Fragment implements ContactsInterface{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    @BindView(R.id.recyclerView1)
-    RecyclerView recyclerView;
-    @BindView(R.id.progressBar)
-    ProgressBar progressBar;
-    private HomeDetailsAdapter homeDetailsAdapter;
-    private HomePresenter homePresenter;
-
-
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    @BindView(R.id.contactus_recycler1)
+    RecyclerView recyclerView;
+    @BindView(R.id.progressBar)
+    ProgressBar progressBar;
+    private ContactsPresenter contactsPresenter;
+    private Adapter adapter;
 
     private OnFragmentInteractionListener mListener;
 
-    public HomeFragment() {
+    public ContactsFragment() {
         // Required empty public constructor
     }
 
@@ -62,11 +57,11 @@ public class HomeFragment extends Fragment implements HomeInterface {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment HomeFragment.
+     * @return A new instance of fragment ContactsFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static HomeFragment newInstance(String param1, String param2) {
-        HomeFragment fragment = new HomeFragment();
+    public static ContactsFragment newInstance(String param1, String param2) {
+        ContactsFragment fragment = new ContactsFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -87,18 +82,15 @@ public class HomeFragment extends Fragment implements HomeInterface {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view=inflater.inflate(R.layout.fragment_home, container, false);
+        View view=inflater.inflate(R.layout.fragment_contacts, container, false);
         ButterKnife.bind(this,view);
-        homePresenter = new HomePresenterImpl(this, new RetrofitHomeDetailsProvider());
-        homeDetailsAdapter = new HomeDetailsAdapter(getContext());
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(homeDetailsAdapter);
-        homePresenter.requestHomeData("1");
-
+        contactsPresenter = new ContactsPresenterImpl(this, new RetrofitRequestProvider());
+        adapter = new Adapter(getContext());
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setAdapter(adapter);
+        contactsPresenter.requestContacts();
         return view;
-
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -134,32 +126,20 @@ public class HomeFragment extends Fragment implements HomeInterface {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
-
     @Override
-    public void showProgressBar(boolean show) {
-
+    public void ShowProgressBar(boolean show) {
         if (show) {
-            recyclerView.setVisibility(View.GONE);
             progressBar.setVisibility(View.VISIBLE);
-        } else {
             recyclerView.setVisibility(View.VISIBLE);
+        } else {
             progressBar.setVisibility(View.GONE);
         }
 
     }
 
     @Override
-    public void showMessage(String message) {
-        Toast.makeText(getActivity(), "", Toast.LENGTH_SHORT).show();
-
-    }
-
-    @Override
-    public void setData(List<HomeDetails> homeDetailsList) {
-        homeDetailsAdapter.setData(homeDetailsList);
-        recyclerView.setAdapter(homeDetailsAdapter);
-        homeDetailsAdapter.notifyDataSetChanged();
-        recyclerView.setVisibility(View.VISIBLE);
-
+    public void SetData(List<ContactsData> contactDataList) {
+        adapter.setData(contactDataList);
+        adapter.notifyDataSetChanged();
     }
 }
