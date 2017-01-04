@@ -3,6 +3,7 @@ package app.startups.nitrr.ecell.ecellapp.home.model;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import app.startups.nitrr.ecell.ecellapp.helper.Cache;
 import app.startups.nitrr.ecell.ecellapp.helper.Urls;
 import app.startups.nitrr.ecell.ecellapp.home.OnHomeDataRequest;
 import app.startups.nitrr.ecell.ecellapp.home.api.HomeDetailsRequestInterface;
@@ -14,7 +15,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.Url;
 
 /**
  * Created by Meghal on 6/19/2016.
@@ -25,7 +25,9 @@ public class RetrofitHomeDetailsProvider implements HomeDetailsProvider {
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor)
+                .addInterceptor(Cache.REWRITE_CACHE_CONTROL_INTERCEPTOR).cache(Cache.provideCache()).build();
+
         Gson gson = new GsonBuilder()
                 .setLenient()
                 .create();

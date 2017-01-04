@@ -3,6 +3,7 @@ package app.startups.nitrr.ecell.ecellapp.events.model;
 import app.startups.nitrr.ecell.ecellapp.events.api.RequestInterface;
 import app.startups.nitrr.ecell.ecellapp.events.view.OnEventsReceived;
 import app.startups.nitrr.ecell.ecellapp.events.view.jsonResponse;
+import app.startups.nitrr.ecell.ecellapp.helper.Cache;
 import app.startups.nitrr.ecell.ecellapp.helper.Urls;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -23,7 +24,8 @@ public class RetrofitEventsProvider implements EventsProvider {
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor)
+                .addInterceptor(Cache.REWRITE_CACHE_CONTROL_INTERCEPTOR).cache(Cache.provideCache()).build();
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Urls.BASE_URL)

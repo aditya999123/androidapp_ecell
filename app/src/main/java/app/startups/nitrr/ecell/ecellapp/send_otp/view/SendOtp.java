@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -31,6 +32,7 @@ public class SendOtp extends AppCompatActivity implements SendOtpView {
     private ProgressBar progressBar;
     SendOtpPresenter sendOtpPresenter;
     VerifyOtpPresenter verifyOtpPresenter;
+    private EditText verify;
     String num1 = "", name = "", lname = "", email = "", college = "", branch = "", sem = "", otp = "", token = "";
 
     @Override
@@ -68,7 +70,7 @@ public class SendOtp extends AppCompatActivity implements SendOtpView {
                     }
                 });
         assert btn1 != null;
-       final EditText verify = (EditText) findViewById(R.id.verify);
+        verify = (EditText) findViewById(R.id.verify);
         otp=verify.getText().toString();
         verify.addTextChangedListener(new TextWatcher() {
             @Override
@@ -171,6 +173,19 @@ public class SendOtp extends AppCompatActivity implements SendOtpView {
     @Override
     public void onOtpFailed() {
         Toast.makeText(SendOtp.this, "Otp Verification Failed.Try Again", Toast.LENGTH_SHORT).show();
+    }
+    public void recivedSms(String message)
+    {
+        Log.d("Try","Almost there");
+        try
+        {
+            verify.setText(message);
+        }
+        catch (Exception e)
+        {
+            Log.d("Try","Fail 2");
+            e.printStackTrace();
+        }
     }
 
     @Override

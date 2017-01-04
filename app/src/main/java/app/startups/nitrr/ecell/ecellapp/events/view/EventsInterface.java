@@ -5,4 +5,5 @@ import java.util.List;
 public interface EventsInterface {
     void ShowProgressBar(boolean show);
     void SetData(List<EventsData> eventDataList);
+    void showMessage(String message);
 }

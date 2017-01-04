@@ -20,6 +20,4 @@
         android:layout_gravity="center"
         android:foregroundGravity="center"
         />
-
-
 </FrameLayout>

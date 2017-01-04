@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -141,5 +142,10 @@ public class EventsFragment extends Fragment implements EventsInterface {
     public void SetData(List<EventsData> eventDataList) {
         adapter.setData(eventDataList);
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showMessage(String message) {
+        Toast.makeText(getActivity(),message, Toast.LENGTH_SHORT).show();
     }
 }

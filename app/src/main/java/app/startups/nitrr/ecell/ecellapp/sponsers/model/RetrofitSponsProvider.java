@@ -1,5 +1,6 @@
 package app.startups.nitrr.ecell.ecellapp.sponsers.model;
 
+import app.startups.nitrr.ecell.ecellapp.helper.Cache;
 import app.startups.nitrr.ecell.ecellapp.helper.Urls;
 import app.startups.nitrr.ecell.ecellapp.sponsers.api.RequestApiSpons;
 import app.startups.nitrr.ecell.ecellapp.sponsers.view.OnSponsReceived;
@@ -21,7 +22,8 @@ public class RetrofitSponsProvider implements SponsProvider {
     public void reqSpons(final OnSponsReceived onSponsReceived) {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor)
+        .addInterceptor(Cache.REWRITE_CACHE_CONTROL_INTERCEPTOR).cache(Cache.provideCache()).build();
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Urls.BASE_URL)
